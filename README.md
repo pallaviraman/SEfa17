@@ -1,7 +1,7 @@
 # Bug Tracking Tool/Sublease Listing Website
-#####This is the project detail page
+##### This is the project detail page
 
- |Bug Tracker Tool | Sublease Listing |
+Bug Tracker Tool | Sublease Listing |
 ---|--- | --- |
 db |*Structured* | `ElasticSearch` |
 type | **SPA** | multi-page |
