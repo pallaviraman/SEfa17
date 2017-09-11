@@ -5,4 +5,4 @@
 | ----- | ----- | ----- |
 | db |*Structured* | `ElasticSearch` |
 | type | **SPA** | multi-page |
-| limitation | ~~UX~~ backend calls | _Map manipulation_** |
+| limitation | ~~UX~~ backend calls | __Map manipulation__** |
