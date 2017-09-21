@@ -1,8 +1,23 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <md-sidenav-container fullscreen>
-    
+    <md-sidenav #sidenav class="sidenav-props" mode="side">
+        <md-toolbar>
+           <span>First Row</span>
+           <md-toolbar-row>
+              <span>Second Row</span>
+           </md-toolbar-row>
+           <md-toolbar-row>
+              <span>Third Row</span>
+           </md-toolbar-row>
+        </md-toolbar>
+     </md-sidenav>
+
   <md-toolbar color="primary">
-    <span><md-icon>mood</md-icon></span>
+    <span>
+      <button md-button (click)="sidenav.toggle()">
+        <md-icon>menu</md-icon>
+     </button>
+    </span>
 
     <span>{{title}}</span>
 
