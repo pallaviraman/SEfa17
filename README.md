@@ -9,3 +9,13 @@
 | type | **SPA** | multi-page |
 | limitation | ~~UX~~ backend calls | __Map manipulation__** |
 | limitation | ~~UX~~ backend calls | **_Map_ _manipulation_** |
+
+
+
+
+BACKEND Code Development - 
+
+1) Clone the repository and go to the /backend folder
+2) Run npm install -> This will download all the dependencies
+3) Run Node server.js to start the server.
+4) Open localhsot:3000 to check if server is up  
