@@ -19,6 +19,24 @@ router.post("/add", function (req, res) {
     });
 });
 
+// GET API to get entries from database
+router.get("/get", function (req, res) {
+    console.log("Accepting GET request");
+    dbHelper.dbget(req, res, function (err, result) {
+	    if (err)
+            return res.status(400).send("Cannot obtain data");
+		else
+		{
+			if (result) {
+				res.render('index',{
+					items : result
+				}); 
+			}
+			return res.status(200).send("Data obtained");
+		}
+    });
+});
+
 // DELETE API to delete the database
 router.post("/delete", function (req, res) {
     console.log("Accepting DELETE request");
