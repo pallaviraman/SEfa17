@@ -93,7 +93,34 @@ var dbinsert = function(req, res, callback) {
       });
 }
 
+// check if DB is present; if present, delete the DB
+var dbdelete = function() {
+    elasticclient.indices.get({
+        index:'housing'
+    }, function(err,resp, status) {
+        if(status == 200) {
+            console.log("Database does not exist");
+        } else {
+            deletedb();
+        }
+    });   
+}
+
+// helper function to delete an existing DB
+function deletedb() {
+     elasticclient.indices.delete({  
+        index: 'housing'
+      },function(err,resp,status) {
+        if(err) {
+          console.log("Unable to delete DB");
+        }
+        else {
+          console.log("DB successfully deleted");
+        }
+      });
+}
 
 // functions exposed for other modules
 exports.dbstart = dbstart;
 exports.dbinsert = dbinsert;
+exports.dbdelete = dbdelete;
