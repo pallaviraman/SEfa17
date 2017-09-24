@@ -1,8 +1,10 @@
-var elasticsearch = require('elasticsearch')
+var elasticsearch = require('elasticsearch');
+var config = require('./config.json');
 
-var elasticclient = new elasticsearch.client({
+var elasticclient = new elasticsearch.Client({
     hosts: [
-        'https://localhost:9200'
+        //'localhost:9200'
+        config.hostip+":"+config.port
     ]
 });
 
