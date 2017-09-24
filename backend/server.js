@@ -31,3 +31,5 @@ elasticclient.cluster.health({},function(err,resp,status) {
     }
 });
 
+module.exports = app;
+

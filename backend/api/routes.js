@@ -4,7 +4,8 @@ var dbHelper = require('./databasehelper.js');
 
 // the default route to check if API request is reaching this file
 router.get("/", function (req, res) {
-    res.send("Hello Gator Housing");
+    return res.status(200).send({
+        results:"Hello Gator Housing"});
 });
 
 // POST API to add new entries to database
