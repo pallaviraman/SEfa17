@@ -29,7 +29,7 @@ function createdb() {
 }
 
 
-
+// helper function to insert entry in DB
 var dbinsert = function(req, res, callback) {
     var uuid = new ObjectId();
     elasticclient.index({  
@@ -94,5 +94,6 @@ var dbinsert = function(req, res, callback) {
 }
 
 
+// functions exposed for other modules
 exports.dbstart = dbstart;
 exports.dbinsert = dbinsert;
