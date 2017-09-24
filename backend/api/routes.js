@@ -18,5 +18,16 @@ router.post("/add", function (req, res) {
     });
 });
 
+// DELETE API to delete the database
+router.post("/delete", function (req, res) {
+    console.log("Accepting DELETE request");
+    dbHelper.dbdelete(req, res, function (err, result) {
+        if (err)
+            return res.status(400).send("Not deleted");
+        else
+            return res.status(200).send("Deleted");
+    });
+});
+
 // expose to other modules
 module.exports = router;
