@@ -1,5 +1,4 @@
 {
-	"id": 12345,
 	"title": "some ttile",
 	"owner": "saptarshi",
 	"location": "gainesville, Florida, USA",
