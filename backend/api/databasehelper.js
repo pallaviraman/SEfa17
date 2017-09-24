@@ -120,7 +120,23 @@ function deletedb() {
       });
 }
 
+// search for the db and return all documents for an index.
+var dbget = function(req, res, callback) {
+    elasticclient.search({
+        index:'housing'
+    },	function(err,resp, status) {
+		if(err) {
+			console.log("Unable to obtain the database");
+		}
+		if(res) {
+			console.log(response);
+			callback(err,resp);
+		}
+	});   
+}
+
 // functions exposed for other modules
 exports.dbstart = dbstart;
 exports.dbinsert = dbinsert;
 exports.dbdelete = dbdelete;
+exports.dbget = dbget;
