@@ -27,32 +27,25 @@ router.get("/get", function (req, res) {
             return res.status(400).send("Cannot obtain data");
 		else
 		{
-			if (result) {
+			/*if (result) {
 				res.render('index',{
 					items : result
 				}); 
-			}
-			return res.status(200).send("Data obtained");
+			}*/
+			return res.status(200).send(result);
 		}
     });
 });
 
 // GET API to get entries with a specific id from database
 router.get("/get_id", function (req, res) {
-    console.log("Accepting GET request with specific id");
-    dbHelper.dbget_id(req.id,req, res, function (err, result) {
+    console.log("Accepting GET request with specific id"+ req.query.id);
+    dbHelper.dbget_id(req.query.id,req, res, function (err, result) {
 	    if (err)
             return res.status(400).send("Cannot obtain data specific to an id");
 		else
-		{
-			/*if (result) {
-				res.render('index','id':{
-					items : result
-				}); 
-            }*/
-            console.log(result);
-			return res.status(200).send("Data obtained");
-		}
+			return res.status(200).send(result);
+		
     });
 });
 

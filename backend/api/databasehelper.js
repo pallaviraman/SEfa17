@@ -217,14 +217,7 @@ var dbget_id = function(input_id,req, res, callback) {
     elasticclient.get({
         index:'housing',
 		type: 'lease',
-		//id:input_id
-		body :{
-			"query":{ 
-				"ids":{ 
-					"values": [ input_id ] 
-				} 
-			} 
-		}
+		id:input_id
     },	function(err,resp, status) {
 		if(err) {
 			console.log("Unable to obtain the database");
