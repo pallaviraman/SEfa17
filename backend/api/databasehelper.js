@@ -215,6 +215,38 @@ var dbget_id = function(input_id,req, res, callback) {
 	});   
 }
 
+// geo location based searching
+var dbgetgeo = function(req, res, callback) {
+    elasticclient.search({
+        index: 'housing',
+        type: 'lease',
+        body: {
+            query: {
+                bool : {
+                    must : {
+                        match_all : {}
+                    },
+                    filter : {
+                        geo_distance : {
+                            distance : "1000km",
+                            geolocation : {
+                                lat : 40,
+                                lon : -70
+                            }
+                        }
+                    }
+                }
+            }
+        }
+      }).then(function (err, resp, status) {
+          if(err) {
+              console.log("Error" + err);
+          } else {
+              console.log("items around" + resp);
+           }
+           callback(err,resp);
+      });
+}
 
 // functions exposed for other modules
 exports.dbstart = dbstart;
@@ -223,3 +255,5 @@ exports.dbdelete = dbdelete;
 exports.dbget = dbget;
 exports.dbget_id = dbget_id;
 exports.dbdelete_id = dbdelete_id;
+exports.dbgetgeo = dbgetgeo;
+

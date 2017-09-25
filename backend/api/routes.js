@@ -71,6 +71,14 @@ router.delete("/delete_id", function (req, res) {
     });
 });
 
+router.get("/geosearch", function(req, res) {
+    dbHelper.dbgetgeo(req, res, function(err, result) {
+        if (err)
+            return res.status(400).send("Not Found"+ err);
+        else
+            return res.status(200).send("Found"+ result);
+    })
+});
 
 // expose to other modules
 module.exports = router;
