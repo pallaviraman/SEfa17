@@ -11,8 +11,10 @@ var dbstart = function() {
         } else {
             createdb();
         }
-    });   
+    });
+    
 }
+
 
 // helper function to create new DB
 function createdb() {
@@ -24,7 +26,28 @@ function createdb() {
         }
         else {
           console.log("DB successfully created");
+          //createGeoLocationMapping();
         }
+      });
+}
+
+
+// this creates the indexing for geo location points in the DB programmatically. 
+// Need to integrate this with the main code 
+function createGeoLocationMapping() {
+    elasticclient.indices.putMapping({  
+        index: 'housing',
+        type: 'lease',
+        body: {
+          properties: {
+            "geolocation": {
+              "type": "geo_point",
+            }
+          }
+        }
+      }, (err, resp, status) => {
+          if (err) throw err;
+          console.log(resp);
       });
 }
 
@@ -42,6 +65,10 @@ var dbinsert = function(req, res, callback) {
             "location": req.body.location,
             "zipcode": req.body.zipcode,
             "description": req.body.description,
+            "geolocation" : {
+                "lat" : req.body.geolocation.lat,
+                "lon" : req.body.geolocation.lon
+            },
             "details": {
                 "accomodates": req.body.details.accomodates,
                 "bathrooms": req.body.details.bathrooms,
