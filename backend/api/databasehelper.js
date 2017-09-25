@@ -155,7 +155,7 @@ var dbdelete_id =  function(input_id,req, res, callback) {
         index:'housing',
 		type:'lease',
 		//id:input_id
-		{
+		body : {
 			"query":{ 
 				"ids":{ 
 					"values": [ input_id ] 
@@ -177,7 +177,7 @@ function deletedb_id(input_id,req, res, callback) {
         index: 'housing',
 		type:'lease',
 		//id:input_id
-		{
+		body : {
 			"query":{ 
 				"ids":{ 
 					"values": [ input_id ] 
@@ -216,9 +216,9 @@ var dbget = function(req, res, callback) {
 var dbget_id = function(input_id,req, res, callback) {
     elasticclient.get({
         index:'housing',
-		type: 'lease'
+		type: 'lease',
 		//id:input_id
-		{
+		body :{
 			"query":{ 
 				"ids":{ 
 					"values": [ input_id ] 

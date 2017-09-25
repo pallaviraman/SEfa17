@@ -45,11 +45,12 @@ router.get("/get_id", function (req, res) {
             return res.status(400).send("Cannot obtain data specific to an id");
 		else
 		{
-			if (result) {
-				res.render('index','id'{
+			/*if (result) {
+				res.render('index','id':{
 					items : result
 				}); 
-			}
+            }*/
+            console.log(result);
 			return res.status(200).send("Data obtained");
 		}
     });
