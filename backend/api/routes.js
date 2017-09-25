@@ -61,9 +61,9 @@ router.post("/delete", function (req, res) {
 });
 
 // DELETE API to delete the database with a specific id
-router.post("/delete_id", function (req, res) {
+router.delete("/delete_id", function (req, res) {
     console.log("Accepting DELETE request with a specific id");
-    dbHelper.dbdelete_id(req.id,req, res, function (err, result) {
+    dbHelper.dbdelete_id(req.query.id, res, function (err, result) {
         if (err)
             return res.status(400).send("Not deleted");
         else

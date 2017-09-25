@@ -151,17 +151,9 @@ function deletedb(req, res, callback) {
 
 // check if DB is present; if present, delete the DB corresponding to a specific id
 var dbdelete_id =  function(input_id,req, res, callback) {
-    elasticclient.indices.get({
+    elasticclient.delete({
         index:'housing',
 		type:'lease',
-		//id:input_id
-		body : {
-			"query":{ 
-				"ids":{ 
-					"values": [ input_id ] 
-				} 
-			} 
-		}
     }, function(err,resp, status) {
         if(status == 200) {
             console.log("Database does not exist");
@@ -172,18 +164,11 @@ var dbdelete_id =  function(input_id,req, res, callback) {
 }
 
 // helper function to delete an existing DB corresponding to a specific id
-function deletedb_id(input_id,req, res, callback) {
-     elasticclient.indices.delete({  
+function deletedb_id(input_id, res, callback) {
+     elasticclient.delete({  
         index: 'housing',
 		type:'lease',
-		//id:input_id
-		body : {
-			"query":{ 
-				"ids":{ 
-					"values": [ input_id ] 
-				} 
-			} 
-		}
+		id:input_id
       },function(err,resp,status) {
         if(err) {
           console.log("Unable to delete DB");
