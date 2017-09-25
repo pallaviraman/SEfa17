@@ -199,11 +199,12 @@ function deletedb_id(input_id,req, res, callback) {
 
 // search for the db and return all documents for an index.
 var dbget = function(req, res, callback) {
-    elasticclient.get({
-        index:'housing'
+    elasticclient.search({
+        index:'housing',
+        type : 'lease'
     },	function(err,resp, status) {
 		if(err) {
-			console.log("Unable to obtain the database");
+			console.log("Unable to obtain the database"+ err);
 		}
 		else{
 			console.log("Obtained documents from the database");
@@ -217,7 +218,7 @@ var dbget_id = function(input_id,req, res, callback) {
     elasticclient.get({
         index:'housing',
 		type: 'lease',
-		id:input_id
+		id: input_id
     },	function(err,resp, status) {
 		if(err) {
 			console.log("Unable to obtain the database");
