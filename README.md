@@ -33,7 +33,7 @@ Database Code -
 
 * **URL**
 
-  http://IP Address:3000/add
+  http:// IP Address:3000/add
 
 * **Method:**
   
@@ -41,7 +41,7 @@ Database Code -
   
 *  **URL Params**
 
-   URL does not have any parameter.
+   None
 
 * **Data Params**
 
@@ -118,6 +118,52 @@ Database Code -
 
   * **Code:** 400 BAD REQUEST <br />
     **Content:** `{ error : "JSON Invalid" }`
+
+* **Sample Call:**
+
+    // to be updated
+
+
+**Apartment/House sublease GET ALL API**
+----
+  This API is used to get all the apartments present in the DB.
+
+* **URL**
+
+  http:// IP Address:3000/get
+
+* **Method:**
+  
+     `GET`
+  
+*  **URL Params**
+
+   None
+
+* **Data Params**
+
+    `None`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `[{ id : the identifier of the newly listed apartment }] -> [id1, id2, id3]`
+ 
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Log in" }`
+
+  OR
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ error : "Invalid Request" }`
+
+
+  OR
+
+  * **Code:** 400 NOT FOUND <br />
+    **Content:** `{ error : "No entry found in DB" }`
 
 * **Sample Call:**
 
