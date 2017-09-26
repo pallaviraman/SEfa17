@@ -29,15 +29,15 @@ Database Code -
 
 **Apartment/House sublease ADD API**
 ----
-  This API is used to add or post new sublease apartments
+  This API is used to add or post new sublease apartments.
 
 * **URL**
 
-  http://<IP Address>:3000/add
+  http://IP Address:3000/add
 
 * **Method:**
   
-     `POST``
+     `POST`
   
 *  **URL Params**
 
@@ -45,7 +45,7 @@ Database Code -
 
 * **Data Params**
 
-    {
+    `{
 	"title": "some title",
 	"owner": "saptarshi",
 	"location": "gainesville, Florida, USA",
@@ -102,7 +102,7 @@ Database Code -
 		"No parties or events",
 		"Check in time is 12PM (noon) - 5PM"
 	]
-}
+}`
 
 * **Success Response:**
 
