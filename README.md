@@ -1,31 +1,42 @@
 [![Build Status](https://img.shields.io/travis/DilipKunderu/SEfa17.svg?style=flat-square)](https://travis-ci.org/DilipKunderu/SEfa17)
 
-Sublease Listing Website
-##### This is the project detail page
+# GatorHousing - Apartemtn / sublease finder Website
 
-| Issue | Bug Tracker Tool | Sublease Listing |
-| ----- | ----- | ----- |
-| db |*Structured* | `ElasticSearch` |
-| type | **SPA** | multi-page |
-| limitation | ~~UX~~ backend calls | **_Map_ _manipulation_** |
+	Online marketplace enabling people to lease or rent apartments
+
+## Getting Started
+
+    The following instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+ `` 1) 'Angular 4'
+    2)  Node.JS
+    3)  Elasticsearch``
+
+### Installing
+
+    A step by step series that tells you how to get a development env running
+
+```
+    1) Clone the repository and go to the /backend folder
+    2) Run npm install -> This will download all the dependencies
+    3) Run npm start to start the server.
+    4) Open localhsot:3000 and it should print a welcome message 
+```
+
+
+## Running the tests
+
+    To run the automated test cases for this system
+
+```
+    Go to the /backend folder and run npm test command. This should start the automated test cases. 
+```
 
 
 
-
-BACKEND Code Development - 
-
-1) Clone the repository and go to the /backend folder
-2) Run npm install -> This will download all the dependencies
-3) Run Node server.js to start the server.
-4) Open localhsot:3000 to check if server is up  
-
-Database Code - 
-
-1) Clone the repository and go to the /database folder
-2) Run npm install -> This will download all the dependencies
-3) Run Node connection.js to setup connection with Elastic cluster.
-4) Open http://localhost:9200/ to check if the cluster is set-up.
-
+## Backend API Description
 
 **Apartment/House sublease ADD API**
 ----
