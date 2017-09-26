@@ -7,7 +7,7 @@
 	"geolocation" : {
             "lat" : 40.12,
             "lon" : -71.34
-    }
+    },
 	"details": {
 		"accomodates": 1,
 		"bathrooms": 1,
