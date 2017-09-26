@@ -1,0 +1,99 @@
+<div fxLayout="column" fxFlex [class.dark-theme]="isDarkTheme">
+
+  <md-toolbar color="primary">
+    <span>SE Project</span>
+
+    <!-- Filler that pushes the menu button to the end of the toolbar -->
+    <span fxFlex></span>
+
+    <button md-icon-button [mdMenuTriggerFor]="themeMenu">
+      <md-icon>more_vert</md-icon>
+    </button>
+
+  </md-toolbar>
+
+  <md-sidenav-container fxFlex>
+    <md-sidenav mode="side" opened>
+
+      <md-tab-group>
+        <md-tab label="Users">
+          <md-nav-list>
+            <md-list-item *ngFor="let user of users" (click)="selectedUser = user">
+              <md-icon svgIcon="avatars:{{user.avatar}}" class="avatar"></md-icon>
+              <span>{{user.name}}</span>
+            </md-list-item>
+          </md-nav-list>
+        </md-tab>
+        <md-tab label="Settings">
+          <p>Sublease listing will come here</p>
+        </md-tab>
+
+      </md-tab-group>
+
+    </md-sidenav>
+    <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px">
+
+      <md-card fxFlex="80">
+        <md-icon svgIcon="avatars:{{selectedUser.avatar}}" class="avatar"></md-icon>
+        <h2>{{selectedUser.name}}</h2>
+        <form class="example-form">
+        
+        <md-form-field class="example-full-width">
+              <input mdInput placeholder="Full name">
+            </md-form-field>
+            <table class="example-full-width" cellspacing="0"><tr>
+                <td><p>Sublease start date</p></td>
+                <td> <input type="date" ng-model="myDateObject"></td>
+              </tr></table>
+            
+          <p>
+            <md-form-field class="example-full-width">
+              <textarea mdInput placeholder="Address"></textarea>
+            </md-form-field>
+            <md-form-field class="example-full-width">
+              <textarea mdInput placeholder="Address 2"></textarea>
+            </md-form-field>
+          </p>
+          
+          <!--<md-form-field>
+              <input mdInput [mdDatepicker]="picker" placeholder="Choose a date">
+              <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+              <md-datepicker #picker></md-datepicker>
+          </md-form-field>-->
+          
+          
+          <table class="example-full-width" cellspacing="0"><tr>
+            <td><md-form-field class="example-full-width">
+              <input mdInput placeholder="City">
+            </md-form-field></td>
+            <td><md-form-field class="example-full-width">
+              <input mdInput placeholder="State">
+            </md-form-field></td>
+            <td><md-form-field class="example-full-width">
+              <input mdInput #postalCode maxlength="5" placeholder="Postal Code">
+            </md-form-field></td>
+          </tr></table>
+          <md-dialog-actions align="end">
+              <button md-button type="button">Cancel</button>
+              <button md-button color="accent">Save</button>
+            </md-dialog-actions> 
+        </form>
+      </md-card>
+
+      <md-card fxFlex fxLayout="column" fxLayoutGap="14px">
+        <md-slide-toggle [(ngModel)]="selectedUser.subleasing">Subleasing?</md-slide-toggle>
+        <md-slide-toggle [(ngModel)]="selectedUser.lookingForSublease">Looking for sublease?</md-slide-toggle>
+      </md-card>
+      
+    </div>
+  </md-sidenav-container>
+
+  <md-menu #themeMenu x-position="before">
+    <button md-menu-item (click)="isDarkTheme = !isDarkTheme">Toggle Theme</button>
+  </md-menu>
+
+  <button md-fab (click)="openAdminDialog()" class="fab-bottom-right">
+    <md-icon>add</md-icon>
+  </button>
+
+</div>
