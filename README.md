@@ -38,7 +38,7 @@
 
 ## Backend API Description
 
-**Apartment/House sublease ADD API**
+**1) Apartment/House sublease ADD API**
 ----
   This API is used to add or post new sublease apartments.
 
@@ -132,10 +132,10 @@
 
 * **Sample Call:**
 
-    // to be updated
+    `curl -H "Content-Type: application/json" -X POST -d '<your json data>' http://127.0.0.1:3000/add`
 
 
-**Apartment/House sublease GET ALL API**
+**2) Apartment/House sublease GET ALL API**
 ----
   This API is used to get all the apartments present in the DB.
 
@@ -178,11 +178,11 @@
 
 * **Sample Call:**
 
-    // to be updated
+    `curl http://127.0.0.1:3000/get`
 
 
 
-**Apartment/House sublease DELETE ALL API**
+**3) Apartment/House sublease DELETE ALL API**
 ----
   This API is used to delete all the apartments present in the DB.
 
@@ -225,10 +225,10 @@
 
 * **Sample Call:**
 
-    // to be updated
+    `curl -X "DELETE" http://127.0.0.1:3000/delete`
 
 
-**Apartment/House sublease GET ALL API with id**
+**4) Apartment/House sublease GET ALL API with id**
 ----
   This API is used to get a specific apartment, if it is present in the DB.
 
@@ -271,16 +271,16 @@
 
 * **Sample Call:**
 
-    // to be updated
+    `curl http://127.0.0.1:3000/get_id?id=12345cf234`
 
 
-**Apartment/House sublease DELETE ALL API**
+**5) Apartment/House sublease DELETE ALL API**
 ----
   This API is used to delete all the apartments present in the DB.
 
 * **URL**
 
-  `http:// IP Address:3000/delete?id=someid"`
+  `http:// IP Address:3000/delete_id?id=someid"`
 
 * **Method:**
   
@@ -317,4 +317,4 @@
 
 * **Sample Call:**
 
-    // to be updated
+    `curl -X "DELETE" http://127.0.0.1:3000/delete_id?id=12334cf2`
