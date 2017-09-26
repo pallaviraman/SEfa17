@@ -33,7 +33,7 @@ Database Code -
 
 * **URL**
 
-  http:// IP Address:3000/add
+  `http:// IP Address:3000/add`
 
 * **Method:**
   
@@ -41,7 +41,7 @@ Database Code -
   
 *  **URL Params**
 
-   None
+   `None`
 
 * **Data Params**
 
@@ -130,7 +130,7 @@ Database Code -
 
 * **URL**
 
-  http:// IP Address:3000/get
+  `http:// IP Address:3000/get`
 
 * **Method:**
   
@@ -138,7 +138,146 @@ Database Code -
   
 *  **URL Params**
 
-   None
+   `None`
+
+* **Data Params**
+
+    `None`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `[{ id : the identifier of the newly listed apartment }] -> [id1, id2, id3]`
+ 
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Log in" }`
+
+  OR
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ error : "Invalid Request" }`
+
+
+  OR
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : "No entry found in DB" }`
+
+* **Sample Call:**
+
+    // to be updated
+
+
+
+**Apartment/House sublease DELETE ALL API**
+----
+  This API is used to delete all the apartments present in the DB.
+
+* **URL**
+
+  `http:// IP Address:3000/get`
+
+* **Method:**
+  
+     `DELETE`
+  
+*  **URL Params**
+
+   `None`
+
+* **Data Params**
+
+    `None`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `[{ true }]`
+ 
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Log in" }`
+
+  OR
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ error : "Invalid Request" }`
+
+
+  OR
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : "No entry found in DB" }`
+
+* **Sample Call:**
+
+    // to be updated
+
+
+**Apartment/House sublease GET ALL API with id**
+----
+  This API is used to get a specific apartment, if it is present in the DB.
+
+* **URL**
+
+  `http:// IP Address:3000/get_id?id=some id`
+
+* **Method:**
+  
+     `GET`
+  
+*  **URL Params**
+
+   `id`
+
+* **Data Params**
+
+    `None`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `[{ information about the element with specific id }] `
+ 
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Log in" }`
+
+  OR
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{ error : "Invalid Request with non-existing id" }`
+
+
+  OR
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : "No entry found in DB" }`
+
+* **Sample Call:**
+
+    // to be updated
+
+
+**Apartment/House sublease DELETE ALL API**
+----
+  This API is used to delete all the apartments present in the DB.
+
+* **URL**
+
+  `http:// IP Address:3000/delete?id=someid"`
+
+* **Method:**
+  
+     `DELETE`
+  
+*  **URL Params**
+
+   `id`
 
 * **Data Params**
 
