@@ -1,61 +1,77 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Component} from '@angular/core';
+import {MdIconRegistry, MdDialog} from '@angular/material';
+import {DomSanitizer} from '@angular/platform-browser';
+
+import 'rxjs/add/operator/filter';
+
+import {DialogComponent} from './dialog/dialog.component';
+
+/**
+ * @title Basic datepicker
+ */
+@Component({
+  selector: 'datepicker-overview-example',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class DatepickerOverviewExample {}
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-
 export class AppComponent {
-  title: string;
-  titles: Array<string> = [
-    'Under Construction',
-    'Under Construction.',
-    'Under Construction..',
-    'Under Construction...'];
 
-  titleCounter: number = 0;
-  urlCounter: number = 0;
-  myData: Array<any> = [];
-  res: Object;
-  imgUrl: string = 'https://source.unsplash.com/random/800x600';
+  users = [
+    {
+      name: 'Saptarshi',
+      avatar: 'svg-12',
+      subleasing: false,
+      lookingForSublease: true
+    },
 
-    constructor(private http: HttpClient) {
-      this.title = this.titles[0];
-      setInterval((): void => {
-        this.title = this.titles[this.titleCounter];
-        this.titleCounter++;
-        this.titleCounter %= 4;
-      }, 500);
+    {
+      name: 'Pallavi Raman',
+      avatar: 'svg-13',
+      subleasing: true,
+      lookingForSublease: true
+    },
 
-      this.http.get('https://jsonplaceholder.typicode.com/photos')
-      .subscribe(res => {
-        this.res = res;
-        [].push.apply(this.myData, res);
+    {
+      name: 'Meghana Madineni',
+      avatar: 'svg-11',
+      subleasing: true,
+      lookingForSublease: false
+    },
+    
+    {
+      name: 'Dilip K',
+      avatar: 'svg-14',
+      subleasing: false,
+      lookingForSublease: false
+    },
+  ];
+
+  selectedUser = this.users[0];
+  isDarkTheme = false;
+
+  constructor(iconRegistry: MdIconRegistry, sanitizer: DomSanitizer, private dialog: MdDialog) {
+    // To avoid XSS attacks, the URL needs to be trusted from inside of your application.
+    const avatarsSafeUrl = sanitizer.bypassSecurityTrustResourceUrl('./assets/avatars.svg');
+
+    iconRegistry.addSvgIconSetInNamespace('avatars', avatarsSafeUrl);
+  }
+
+  openAdminDialog() {
+    this.dialog.open(DialogComponent).afterClosed()
+      .filter(result => !!result)
+      .subscribe(user => {
+        this.users.push(user);
+        this.selectedUser = user;
       });
+  }
+  
 
-      setInterval((): void => {
-        this.imgUrl = this.extractURL(this.myData[this.urlCounter]);
-        this.urlCounter++;
-        this.urlCounter %= 10;
-        console.log(this.urlCounter);
-        console.log(this.imgUrl);
-      }, 3000);
-    }
-
-    extractURL(x: object): string {
-      const s: string = JSON.stringify(x);
-
-      interface MyObj {
-        albumId: number;
-        id: number;
-        title: string;
-        url: string;
-        thumbnailUrl: string;
-      }
-
-      const obj: MyObj = JSON.parse(s);
-      return obj.url;
-    }
 }
