@@ -301,7 +301,7 @@ Database Code -
 
   OR
 
-  * **Code:** 400 NOT FOUND <br />
+  * **Code:** 404 NOT FOUND <br />
     **Content:** `{ error : "No entry found in DB" }`
 
 * **Sample Call:**
