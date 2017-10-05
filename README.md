@@ -1,3 +1,5 @@
+[![Build Status](https://img.shields.io/travis/DilipKunderu/SEfa17.svg?style=flat-square)](https://travis-ci.org/DilipKunderu/SEfa17)
+
 # GatorHousing - Apartment / sublease finder Website
 
 	Online marketplace enabling people to lease or rent apartments
