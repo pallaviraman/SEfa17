@@ -1,0 +1,17 @@
+sudo: required
+dist: zesty
+language: node_js
+node_js:
+  - '7'
+
+branches:
+  only:
+  - master
+  - FRONT_END
+
+before_script:
+- npm install -g @angular/cli
+- npm install -g karma
+- npm install
+
+script: ng build
