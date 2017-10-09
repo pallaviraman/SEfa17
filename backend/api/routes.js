@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router();
 var dbHelper = require('./databasehelper.js');
+var rest = require('restler');
 
 // the default route to check if API request is reaching this file
 router.get("/", function (req, res) {
@@ -66,6 +67,36 @@ router.get("/geosearch", function(req, res) {
             return res.status(200).send("Found"+ result);
     })
 });
+
+router.get("/test", function(req, res) {
+    /*rest.get('http://localhost:9200/my_locations/location/_search?pretty').on('complete', function(data) {
+        console.log(data.hits.hits[0]); // auto convert to object
+      });
+*/
+
+      var jsonData = {
+        "query": {
+            "bool" : {
+                "must" : {
+                    "match_all" : {}
+                },
+                "filter" : {
+                    "geo_distance" : {
+                        "distance" : "120km",
+                        "pin.location" : {
+                            "lat" : 40,
+                            "lon" : -70
+                        }
+                    }
+                }
+            }
+        }
+    };
+      rest.postJson('http://localhost:9200/my_locations/location/_search?pretty', jsonData).on('complete', function(data, response) {
+        console.log(data.hits.hits);
+      });
+
+})
 
 // expose to other modules
 module.exports = router;

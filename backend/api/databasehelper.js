@@ -189,12 +189,7 @@ var dbgetgeo = function(req, res, callback) {
         index: 'housing',
         type: 'lease',
         body: {
-            query: {
-                bool : {
-                    must : {
-                        match_all : {}
-                    },
-                    filter : {
+                filter : {
                         geo_distance : {
                             distance : "1000km",
                             geolocation : {
@@ -205,8 +200,9 @@ var dbgetgeo = function(req, res, callback) {
                     }
                 }
             }
-        }
-      }).then(function (err, resp, status) {
+        
+        
+      ).then(function (err, resp, status) {
           if(err) {
               console.log("Error" + err);
           } else {
