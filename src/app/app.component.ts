@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {MdIconRegistry, MdDialog} from '@angular/material';
+import {MatIconRegistry, MatDialog} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
 
 import 'rxjs/add/operator/filter';
@@ -9,12 +9,12 @@ import {DialogComponent} from './dialog/dialog.component';
 /**
  * @title Basic datepicker
  */
-@Component({
-  selector: 'datepicker-overview-example',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class DatepickerOverviewExample {}
+// @Component({
+//   selector: 'datepicker-overview-example',
+//   templateUrl: './app.component.html',
+//   styleUrls: ['./app.component.css']
+// })
+// export class DatepickerOverviewExample {}
 
 
 @Component({
@@ -45,7 +45,7 @@ export class AppComponent {
       subleasing: true,
       lookingForSublease: false
     },
-    
+
     {
       name: 'Dilip K',
       avatar: 'svg-14',
@@ -57,7 +57,7 @@ export class AppComponent {
   selectedUser = this.users[0];
   isDarkTheme = false;
 
-  constructor(iconRegistry: MdIconRegistry, sanitizer: DomSanitizer, private dialog: MdDialog) {
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private dialog: MatDialog) {
     // To avoid XSS attacks, the URL needs to be trusted from inside of your application.
     const avatarsSafeUrl = sanitizer.bypassSecurityTrustResourceUrl('./assets/avatars.svg');
 
@@ -72,6 +72,4 @@ export class AppComponent {
         this.selectedUser = user;
       });
   }
-  
-
 }
