@@ -4,17 +4,10 @@ import {DomSanitizer} from '@angular/platform-browser';
 
 import 'rxjs/add/operator/filter';
 
-import {DialogComponent} from './dialog/dialog.component';
-
-/**
- * @title Basic datepicker
- */
-// @Component({
-//   selector: 'datepicker-overview-example',
-//   templateUrl: './app.component.html',
-//   styleUrls: ['./app.component.css']
-// })
-// export class DatepickerOverviewExample {}
+import { ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { } from 'googlemaps';
+import { MapsAPILoader } from '@agm/core';
 
 
 @Component({
@@ -22,54 +15,73 @@ import {DialogComponent} from './dialog/dialog.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  users = [
-    {
-      name: 'Saptarshi',
-      avatar: 'svg-12',
-      subleasing: false,
-      lookingForSublease: true
-    },
 
-    {
-      name: 'Pallavi Raman',
-      avatar: 'svg-13',
-      subleasing: true,
-      lookingForSublease: true
-    },
+  public latitude: number;
+  public longitude: number;
+  public searchControl: FormControl;
+  public zoom: number;
 
-    {
-      name: 'Meghana Madineni',
-      avatar: 'svg-11',
-      subleasing: true,
-      lookingForSublease: false
-    },
+  @ViewChild('search')
+  public searchElementRef: ElementRef;
 
-    {
-      name: 'Dilip K',
-      avatar: 'svg-14',
-      subleasing: false,
-      lookingForSublease: false
-    },
-  ];
-
-  selectedUser = this.users[0];
   isDarkTheme = false;
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private dialog: MatDialog) {
+  constructor(
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer,
+    private dialog: MatDialog,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone) {
     // To avoid XSS attacks, the URL needs to be trusted from inside of your application.
-    const avatarsSafeUrl = sanitizer.bypassSecurityTrustResourceUrl('./assets/avatars.svg');
-
-    iconRegistry.addSvgIconSetInNamespace('avatars', avatarsSafeUrl);
+    iconRegistry.addSvgIcon( 'logo',
+    sanitizer.bypassSecurityTrustResourceUrl('./assets/logo.svg'));
   }
 
-  openAdminDialog() {
-    this.dialog.open(DialogComponent).afterClosed()
-      .filter(result => !!result)
-      .subscribe(user => {
-        this.users.push(user);
-        this.selectedUser = user;
+  ngOnInit() {
+    // set google maps defaults
+    this.zoom = 4;
+    this.latitude = 39.8282;
+    this.longitude = -98.5795;
+
+    // create search FormControl
+    this.searchControl = new FormControl();
+
+    // set current position
+    this.setCurrentPosition();
+
+    // load Places Autocomplete
+    this.mapsAPILoader.load().then(() => {
+      const autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ['address']
       });
+      autocomplete.addListener('place_changed', () => {
+        this.ngZone.run(() => {
+          // get the place result
+          const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+          // verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+
+          // set latitude, longitude and zoom
+          this.latitude = place.geometry.location.lat();
+          this.longitude = place.geometry.location.lng();
+          this.zoom = 12;
+        });
+      });
+    });
+  }
+
+  private setCurrentPosition() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.zoom = 12;
+      });
+    }
   }
 }
