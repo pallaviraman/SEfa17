@@ -11,8 +11,8 @@ import {
   MatDialogModule,
   MatSlideToggleModule,
   MatDatepickerModule,
-  MdInputModule,
-  MdNativeDateModule,
+  MatInputModule,
+  MatNativeDateModule,
   MatChipsModule,
   MatExpansionModule,
   MatGridListModule
@@ -30,8 +30,8 @@ import {
     MatDialogModule,
     MatSlideToggleModule,
     MatDatepickerModule,
-    MdInputModule,
-    MdNativeDateModule,
+    MatInputModule,
+    MatNativeDateModule,
     MatChipsModule,
     MatExpansionModule,
     MatGridListModule
@@ -47,11 +47,11 @@ import {
     MatDialogModule,
     MatSlideToggleModule,
     MatDatepickerModule,
-    MdInputModule,
-    MdNativeDateModule,
+    MatInputModule,
+    MatNativeDateModule,
     MatChipsModule,
     MatExpansionModule,
     MatGridListModule
   ]
 })
-export class MaterialModule {}
+export     class MaterialModule {}
