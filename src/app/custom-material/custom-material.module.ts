@@ -14,7 +14,8 @@ import {
   MdInputModule,
   MdNativeDateModule,
   MatChipsModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatGridListModule
 } from '@angular/material';
 
 @NgModule({
@@ -32,7 +33,8 @@ import {
     MdInputModule,
     MdNativeDateModule,
     MatChipsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatGridListModule
   ],
   exports: [
     MatButtonModule,
@@ -48,7 +50,8 @@ import {
     MdInputModule,
     MdNativeDateModule,
     MatChipsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatGridListModule
   ]
 })
 export class MaterialModule {}

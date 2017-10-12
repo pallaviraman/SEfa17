@@ -5,6 +5,7 @@ import {
   ReactiveFormsModule,
   FormControl
 } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
 import {AgmCoreModule} from '@agm/core';
 
@@ -16,11 +17,15 @@ import {AppComponent} from './app.component';
 
 import 'hammerjs';
 import { SelectorComponent } from './components/selector/selector.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { AgmMapComponent } from './components/agm-map/agm-map.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SelectorComponent
+    SelectorComponent,
+    CarouselComponent,
+    AgmMapComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -30,6 +35,7 @@ import { SelectorComponent } from './components/selector/selector.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     HttpModule,
     MaterialModule,
     FlexLayoutModule,
