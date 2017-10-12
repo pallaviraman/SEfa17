@@ -1,45 +1,50 @@
 <div fxLayout="column" fxFlex [class.dark-theme]="isDarkTheme">
 
   <md-toolbar color="primary">
-      <md-icon class="icon" svgIcon="logo"></md-icon>
-      <span fxFlex></span>
-      <md-form-field class="width" flex-gt-sm>
-          <input mdInput placeholder="search for location" autocorrect="on" autocapitalize="off" spellcheck="on" type="text" class="form-control" #search [formControl]="searchControl">
-      </md-form-field>
-       <span fxFlex></span>
-    <span>SE Project</span>
-
-    <!-- Filler that pushes the menu button to the end of the toolbar -->
+    <md-icon class="icon" svgIcon="logo"></md-icon>
     <span fxFlex></span>
-
-    <button md-icon-button [mdMenuTriggerFor]="themeMenu">
-      <md-icon>more_vert</md-icon>
-    </button>
-
+    <md-form-field flex-gt-sm>
+      <input mdInput 
+      placeholder="where" 
+      autocorrect="on" 
+      autocapitalize="off" 
+      spellcheck="on" 
+      type="text" 
+      class="form-control"
+        #search [formControl]="searchControl">
+        
+    </md-form-field>
+    <md-icon class="icon">edit_location</md-icon>
+    
+    <span class="width"></span>
+    <md-form-field>
+      <input mdInput placeholder="when" [mdDatepicker]="picker" placeholder="Choose a date">
+      <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+      <md-datepicker #picker></md-datepicker>
+    </md-form-field>
+    <span class="width"></span>
+    <button md-raised-button color="accent" (click)="openDialog()">LOGISTICS</button>
+    <span fxFlex></span>
+    <button md-button>Help</button>
+    <button md-button>Sign Up</button>
+    <button md-button>Login</button>
   </md-toolbar>
 
   <md-sidenav-container fxFlex>
-    <md-sidenav mode="push">  
+    <md-sidenav mode="push">
     </md-sidenav>
 
     <!-- map -->
     <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px">
-    <md-card class="z-depth-5" fxFlex="100">
-     <md-card-content>
-        <div class="container">
+      <md-card class="z-depth-5" fxFlex="100">
+        <md-card-content>
+          <div class="container">
             <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
               <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
             </agm-map>
           </div>
-     </md-card-content>
-    </md-card>
-  </div>
-    
-
+        </md-card-content>
+      </md-card>
+    </div>
   </md-sidenav-container>
-
-  <md-menu #themeMenu x-position="before">
-    <button md-menu-item (click)="isDarkTheme = !isDarkTheme">Toggle Theme</button>
-  </md-menu>
-
 </div>

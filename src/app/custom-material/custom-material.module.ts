@@ -11,7 +11,10 @@ import {
   MatDialogModule,
   MatSlideToggleModule,
   MatDatepickerModule,
-  MdInputModule
+  MdInputModule,
+  MdNativeDateModule,
+  MatChipsModule,
+  MatExpansionModule
 } from '@angular/material';
 
 @NgModule({
@@ -23,12 +26,13 @@ import {
     MatCardModule,
     MatSidenavModule,
     MatSelectModule,
-    // MdDialog,
-    // MdDialogRef,
     MatDialogModule,
     MatSlideToggleModule,
     MatDatepickerModule,
-    MdInputModule
+    MdInputModule,
+    MdNativeDateModule,
+    MatChipsModule,
+    MatExpansionModule
   ],
   exports: [
     MatButtonModule,
@@ -38,12 +42,13 @@ import {
     MatCardModule,
     MatSidenavModule,
     MatSelectModule,
-    // MdDialog,
-    // MdDialogRef,
     MatDialogModule,
     MatSlideToggleModule,
     MatDatepickerModule,
-    MdInputModule
+    MdInputModule,
+    MdNativeDateModule,
+    MatChipsModule,
+    MatExpansionModule
   ]
 })
 export class MaterialModule {}

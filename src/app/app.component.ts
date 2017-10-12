@@ -1,3 +1,4 @@
+import { SelectorComponent } from './components/selector/selector.component';
 import {Component} from '@angular/core';
 import {MatIconRegistry, MatDialog} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -16,8 +17,6 @@ import { MapsAPILoader } from '@agm/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
-
   public latitude: number;
   public longitude: number;
   public searchControl: FormControl;
@@ -73,6 +72,10 @@ export class AppComponent implements OnInit {
         });
       });
     });
+  }
+
+  openDialog() {
+    this.dialog.open(SelectorComponent);
   }
 
   private setCurrentPosition() {

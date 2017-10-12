@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {NgModule, LOCALE_ID} from '@angular/core';
 import {
   FormsModule,
   ReactiveFormsModule,
@@ -15,10 +15,12 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {AppComponent} from './app.component';
 
 import 'hammerjs';
+import { SelectorComponent } from './components/selector/selector.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SelectorComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -31,10 +33,12 @@ import 'hammerjs';
     HttpModule,
     MaterialModule,
     FlexLayoutModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
-  providers: [],
-  entryComponents: [],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'en-US'},
+  ],
+  entryComponents: [SelectorComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
