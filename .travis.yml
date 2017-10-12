@@ -7,7 +7,7 @@ node_js:
 branches:
   only:
   - master
-  - FRONT_END
+  - dev
 
 before_script:
 - npm install -g @angular/cli
