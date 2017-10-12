@@ -8,7 +8,6 @@ branches:
   only:
   - master
   - dev
-  - FRONT_END
 
 before_script:
 - npm install -g @angular/cli
