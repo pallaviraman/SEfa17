@@ -1,0 +1,15 @@
+.row-example {
+    /* border: 0.5px solid #D4C9C9; */
+    height:58px;
+  }
+
+  div {
+    background: #F48D8D;
+    /* border: 1px solid #D4C9C9; */
+    padding: 2px;
+    margin: 0 0px;
+  }
+
+.adjust{
+    height: 50px;
+}

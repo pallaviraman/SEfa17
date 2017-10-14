@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import {
+  CompatibilityModule,
   MatButtonModule,
   MatMenuModule,
   MatToolbarModule,
@@ -20,6 +21,7 @@ import {
 
 @NgModule({
   imports: [
+    CompatibilityModule,
     MatButtonModule,
     MatMenuModule,
     MatToolbarModule,
@@ -37,6 +39,7 @@ import {
     MatGridListModule
   ],
   exports: [
+    CompatibilityModule,
     MatButtonModule,
     MatMenuModule,
     MatToolbarModule,

@@ -19,13 +19,15 @@ import 'hammerjs';
 import { SelectorComponent } from './components/selector/selector.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { AgmMapComponent } from './components/agm-map/agm-map.component';
+import { WhenWhereComponent } from './components/when-where/when-where.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SelectorComponent,
     CarouselComponent,
-    AgmMapComponent
+    AgmMapComponent,
+    WhenWhereComponent
   ],
   imports: [
     AgmCoreModule.forRoot({

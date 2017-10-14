@@ -1,4 +1,4 @@
-<div fxLayout="column" fxFlex [class.dark-theme]="isDarkTheme">
+<div fxLayout="column" fxFlex>
 
   <md-toolbar color="primary">
     <md-icon class="icon" svgIcon="logo"></md-icon>
@@ -15,25 +15,26 @@
         
     </md-form-field>
     <md-icon class="icon">edit_location</md-icon>
-    
-    <span class="width"></span>
-    <md-form-field>
+    <!-- <md-form-field>
       <input mdInput placeholder="when" [mdDatepicker]="picker" placeholder="Choose a date">
       <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
       <md-datepicker #picker></md-datepicker>
-    </md-form-field>
-    <span class="width"></span>
-    <button md-raised-button color="accent" (click)="openDialog()">LOGISTICS</button>
-    <span fxFlex></span>
-    <button md-button>Help</button>
+    </md-form-field> -->
+    <!-- <button md-raised-button color="accent" (click)="openDialog()">LOGISTICS</button> -->
+    <!-- <button md-button>Help</button>
     <button md-button>Sign Up</button>
-    <button md-button>Login</button>
+    <button md-button>Login</button> -->
+    <div class="z-depth-5">
+      <app-when-where></app-when-where>
+    </div>
+    <!-- <app-when-where></app-when-where> -->
+    <span fxFlex></span>
   </md-toolbar>
 
   <md-sidenav-container fxFlex>
     <md-sidenav mode="push">
     </md-sidenav>
-
+   
     <!-- map -->
     <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed">
         <md-card class="z-depth-5" fxFlex="60">

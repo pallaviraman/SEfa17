@@ -20,29 +20,30 @@ export class CarouselComponent implements OnInit {
       [].push.apply(this.myData, res);
     });
 
-    setInterval((): void => {
-      this.imgUrl = this.extractURL(this.myData[this.urlCounter]);
-      this.urlCounter++;
-      this.urlCounter %= 10;
-      console.log(this.urlCounter);
-      console.log(this.imgUrl);
-    }, 3000);
+    // setInterval((): void => {
+    //   this.imgUrl = this.extractURL(this.myData[this.urlCounter]);
+    //   this.urlCounter++;
+    //   this.urlCounter %= 10;
+    //   console.log(this.urlCounter);
+    //   console.log(this.imgUrl);
+    // }, 3000);
    }
 
-   extractURL(x: object): string {
-    const s: string = JSON.stringify(x);
+  //  extractURL(x: object): string {
+  //   const s: string = JSON.stringify(x);
 
-    interface MyObj {
-      albumId: number;
-      id: number;
-      title: string;
-      url: string;
-      thumbnailUrl: string;
-    }
+  //   interface MyObj {
+  //     albumId: number;
+  //     id: number;
+  //     title: string;
+  //     url: string;
+  //     thumbnailUrl: string;
+  //   }
 
-    const obj: MyObj = JSON.parse(s);
-    return obj.url;
-  }
+  //   const obj: MyObj = JSON.parse(s);
+  //   return obj.url;
+  // }
+
   ngOnInit() {
   }
 

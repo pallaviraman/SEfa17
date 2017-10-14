@@ -1,4 +1,3 @@
-import { SelectorComponent } from './components/selector/selector.component';
 import {Component} from '@angular/core';
 import {MatIconRegistry, MatDialog} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -9,6 +8,8 @@ import { ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
+
+import { SelectorComponent } from './components/selector/selector.component';
 
 
 @Component({
@@ -25,8 +26,6 @@ export class AppComponent implements OnInit {
   @ViewChild('search')
   public searchElementRef: ElementRef;
 
-  isDarkTheme = false;
-
   constructor(
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
@@ -34,8 +33,8 @@ export class AppComponent implements OnInit {
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone) {
     // To avoid XSS attacks, the URL needs to be trusted from inside of your application.
-    iconRegistry.addSvgIcon( 'logo',
-    sanitizer.bypassSecurityTrustResourceUrl('./assets/logo.svg'));
+      iconRegistry.addSvgIcon( 'logo',
+      sanitizer.bypassSecurityTrustResourceUrl('./assets/logo.svg'));
   }
 
   ngOnInit() {
