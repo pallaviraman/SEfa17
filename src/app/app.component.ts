@@ -11,6 +11,8 @@ import { MapsAPILoader } from '@agm/core';
 
 import { SelectorComponent } from './components/selector/selector.component';
 
+// import { MapModifierService } from './services/mapmodifier/map-modifier.service';
+
 
 @Component({
   selector: 'app-root',
@@ -32,6 +34,7 @@ export class AppComponent implements OnInit {
     private dialog: MatDialog,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone) {
+    // private latServ: MapModifierService) {
     // To avoid XSS attacks, the URL needs to be trusted from inside of your application.
       iconRegistry.addSvgIcon( 'logo',
       sanitizer.bypassSecurityTrustResourceUrl('./assets/logo.svg'));
@@ -66,6 +69,7 @@ export class AppComponent implements OnInit {
 
           // set latitude, longitude and zoom
           this.latitude = place.geometry.location.lat();
+          // this.latServ.currentLat.subscribe
           this.longitude = place.geometry.location.lng();
           this.zoom = 12;
         });

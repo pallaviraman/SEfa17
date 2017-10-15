@@ -1,57 +1,22 @@
 <div fxLayout="column" fxFlex>
-
-  <md-toolbar color="primary">
-    <md-icon class="icon" svgIcon="logo"></md-icon>
-    <span fxFlex></span>
-    <md-form-field flex-gt-sm>
-      <input mdInput 
-      placeholder="where" 
-      autocorrect="on" 
-      autocapitalize="off" 
-      spellcheck="on" 
-      type="text" 
-      class="form-control"
-        #search [formControl]="searchControl">
-        
-    </md-form-field>
-    <md-icon class="icon">edit_location</md-icon>
-    <!-- <md-form-field>
-      <input mdInput placeholder="when" [mdDatepicker]="picker" placeholder="Choose a date">
-      <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
-      <md-datepicker #picker></md-datepicker>
-    </md-form-field> -->
-    <!-- <button md-raised-button color="accent" (click)="openDialog()">LOGISTICS</button> -->
-    <!-- <button md-button>Help</button>
-    <button md-button>Sign Up</button>
-    <button md-button>Login</button> -->
-    <div class="z-depth-5">
-      <app-when-where></app-when-where>
-    </div>
-    <!-- <app-when-where></app-when-where> -->
-    <span fxFlex></span>
-  </md-toolbar>
-
   <md-sidenav-container fxFlex>
-    <md-sidenav mode="push">
+      <router-outlet></router-outlet>
+    <md-sidenav mode="side" opened>
+        <md-toolbar color="primary">
+            <md-icon class="icon" svgIcon="logo"></md-icon>
+        </md-toolbar>
+        <nav>
+            <a routerLink="/" routerLinkActive="active">
+                  <button md-raised-button><md-icon>home</md-icon></button>
+                </a>
+            <a routerLink="/help" routerLinkActive="active">
+                    <button md-raised-button color="accent">Help</button></a>
+            <a routerLink="/signup" routerLinkActive="active">
+                      <button md-raised-button color="accent">Sign Up</button></a>
+            <a routerLink="/login" routerLinkActive="active">
+                        <button md-raised-button color="accent">Login</button></a>
+          </nav>
+
     </md-sidenav>
-   
-    <!-- map -->
-    <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed">
-        <md-card class="z-depth-5" fxFlex="60">
-          <app-carousel></app-carousel>
-        </md-card>
-        <!-- <md-card class="z-depth-5" fxFlex="40">
-          <app-agm-map></app-agm-map>
-        </md-card> -->
-      <md-card class="z-depth-5" fxFlex="40">
-        <md-card-content>
-          <div class="container">
-            <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-              <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-            </agm-map>
-          </div>
-        </md-card-content>
-      </md-card>
-    </div>
   </md-sidenav-container>
 </div>

@@ -20,6 +20,13 @@ import { SelectorComponent } from './components/selector/selector.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { AgmMapComponent } from './components/agm-map/agm-map.component';
 import { WhenWhereComponent } from './components/when-where/when-where.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { HelpComponent } from './components/help/help.component';
+import { ListingDetailComponent } from './components/listing-detail/listing-detail.component';
+
+import { routes } from './app.router';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +34,12 @@ import { WhenWhereComponent } from './components/when-where/when-where.component
     SelectorComponent,
     CarouselComponent,
     AgmMapComponent,
-    WhenWhereComponent
+    WhenWhereComponent,
+    LoginComponent,
+    SignupComponent,
+    HelpComponent,
+    ListingDetailComponent,
+    HomeComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -42,6 +54,7 @@ import { WhenWhereComponent } from './components/when-where/when-where.component
     MaterialModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
+    routes
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'en-US'},
