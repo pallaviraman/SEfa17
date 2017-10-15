@@ -16,6 +16,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {AppComponent} from './app.component';
 
 import 'hammerjs';
+import { routes } from './app.router';
+
 import { SelectorComponent } from './components/selector/selector.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { LoginComponent } from './components/login/login.component';
@@ -23,7 +25,6 @@ import { SignupComponent } from './components/signup/signup.component';
 import { HelpComponent } from './components/help/help.component';
 import { ListingDetailComponent } from './components/listing-detail/listing-detail.component';
 
-import { routes } from './app.router';
 import { HomeComponent } from './components/home/home.component';
 
 @NgModule({

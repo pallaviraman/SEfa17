@@ -9,6 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 
+
 const router: Routes = [
     {path: '',
     redirectTo: '/home',
@@ -17,10 +18,12 @@ const router: Routes = [
         component: HomeComponent},
     {path: 'help',
         component: HelpComponent},
-        {path: 'login',
+    {path: 'login',
         component: LoginComponent},
-        {path: 'signup',
-        component: SignupComponent}
+    {path: 'signup',
+        component: SignupComponent},
+    {path: 'listing-detail',
+        component: ListingDetailComponent}
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(router);

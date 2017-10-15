@@ -12,7 +12,7 @@
       
     </md-card> -->
 <md-grid-list cols="2" rowHeight="1:2">
-  <md-grid-tile *ngFor="let data of (myData ? myData.slice(0,10): []); let i = index">
+  <md-grid-tile *ngFor="let data of (myData ? myData.slice(0,10): []); let i = index" routerLink="/listing-detail" routerLinkActive="active">
     <md-card>
         <img md-card-image src="{{ data.url }}">
       <md-card-title>{{data.title}}</md-card-title>
