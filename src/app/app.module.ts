@@ -1,32 +1,61 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {NgModule, LOCALE_ID} from '@angular/core';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormControl
+} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 import {HttpModule} from '@angular/http';
+import {AgmCoreModule} from '@agm/core';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './custom-material/custom-material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
 import {AppComponent} from './app.component';
-import {DialogComponent} from './dialog/dialog.component';
 
 import 'hammerjs';
+import { SelectorComponent } from './components/selector/selector.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { HelpComponent } from './components/help/help.component';
+import { ListingDetailComponent } from './components/listing-detail/listing-detail.component';
+
+import { routes } from './app.router';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DialogComponent,
+    SelectorComponent,
+    CarouselComponent,
+    LoginComponent,
+    SignupComponent,
+    HelpComponent,
+    ListingDetailComponent,
+    HomeComponent
   ],
   imports: [
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDSFMoD5C6VpWI6D7uZd-OfvuZBUc8cdj8',
+      libraries: ['places']
+    }),
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     HttpModule,
     MaterialModule,
     FlexLayoutModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    routes
   ],
-  providers: [],
-  entryComponents: [DialogComponent],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'en-US'},
+  ],
+  entryComponents: [SelectorComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
