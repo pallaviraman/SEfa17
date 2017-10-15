@@ -1,22 +1,21 @@
-<div fxLayout="column" fxFlex>
+<div fxLayout="column" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed" fxFlex>
   <md-sidenav-container fxFlex>
-      <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
     <md-sidenav mode="side" opened>
-        <md-toolbar color="primary">
-            <md-icon class="icon" svgIcon="logo"></md-icon>
-        </md-toolbar>
-        <nav>
-            <a routerLink="/" routerLinkActive="active">
-                  <button md-raised-button><md-icon>home</md-icon></button>
+      <md-toolbar color="primary">
+        <md-icon class="icon" svgIcon="logo"></md-icon>
+      </md-toolbar>
+      <nav>
+        <a routerLink="/" routerLinkActive="active">
+                  <button md-raised-button color="accent"><md-icon>home</md-icon></button>
                 </a>
-            <a routerLink="/help" routerLinkActive="active">
+        <a routerLink="/help" routerLinkActive="active">
                     <button md-raised-button color="accent">Help</button></a>
-            <a routerLink="/signup" routerLinkActive="active">
+        <a routerLink="/signup" routerLinkActive="active">
                       <button md-raised-button color="accent">Sign Up</button></a>
-            <a routerLink="/login" routerLinkActive="active">
+        <a routerLink="/login" routerLinkActive="active">
                         <button md-raised-button color="accent">Login</button></a>
-          </nav>
-
+      </nav>
     </md-sidenav>
   </md-sidenav-container>
 </div>

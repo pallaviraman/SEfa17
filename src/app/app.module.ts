@@ -18,8 +18,6 @@ import {AppComponent} from './app.component';
 import 'hammerjs';
 import { SelectorComponent } from './components/selector/selector.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
-import { AgmMapComponent } from './components/agm-map/agm-map.component';
-import { WhenWhereComponent } from './components/when-where/when-where.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { HelpComponent } from './components/help/help.component';
@@ -33,8 +31,6 @@ import { HomeComponent } from './components/home/home.component';
     AppComponent,
     SelectorComponent,
     CarouselComponent,
-    AgmMapComponent,
-    WhenWhereComponent,
     LoginComponent,
     SignupComponent,
     HelpComponent,

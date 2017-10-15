@@ -6,20 +6,17 @@
           <input mdInput placeholder="where" autocorrect="on" autocapitalize="off" spellcheck="on" type="text" class="form-control"
           #search [formControl]="searchControl">
       </md-form-field>
+      <md-icon class="icon" color="accent">edit_location</md-icon>
+      
     </div>
-
-    <md-icon class="icon">edit_location</md-icon>
-    <!-- <md-form-field>
-      <input mdInput placeholder="when" [mdDatepicker]="picker" placeholder="Choose a date">
-      <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
-      <md-datepicker #picker></md-datepicker>
-    </md-form-field> -->
-    <!-- <button md-raised-button color="accent" (click)="openDialog()">LOGISTICS</button> -->
-
     <div class="z-depth-5">
-      <app-when-where></app-when-where>
+    <md-form-field>
+        <input mdInput placeholder="when" [mdDatepicker]="picker" placeholder="Choose a date">
+        <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+        <md-datepicker #picker></md-datepicker>
+      </md-form-field>
     </div>
-    <!-- <app-when-where></app-when-where> -->
+    <button md-raised-button color="accent" (click)="openDialog()">LOGISTICS</button>
     <span fxFlex></span>
   </md-toolbar>
 <!-- map -->
@@ -30,13 +27,9 @@
   <!-- <md-card class="z-depth-5" fxFlex="40">
       <app-agm-map></app-agm-map>
     </md-card> -->
-  <md-card fxFlex="40">
-    <md-card-content>
-      <div class="container">
+    <div class="container" fcFlex="40">
         <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
           <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
         </agm-map>
       </div>
-    </md-card-content>
-  </md-card>
 </div>
