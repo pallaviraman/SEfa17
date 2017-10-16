@@ -1,29 +1,60 @@
 import { NgModule } from '@angular/core';
+
 import {
-  MdButtonModule,
-  MdMenuModule,
-  MdToolbarModule,
-  MdIconModule,
-  MdCardModule,
-  MdSidenavModule
+  CompatibilityModule,
+  MatButtonModule,
+  MatMenuModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatCardModule,
+  MatSidenavModule,
+  MatSelectModule,
+  MatDialogModule,
+  MatSlideToggleModule,
+  MatDatepickerModule,
+  MatInputModule,
+  MatNativeDateModule,
+  MatChipsModule,
+  MatExpansionModule,
+  MatGridListModule
 } from '@angular/material';
 
 @NgModule({
   imports: [
-    MdButtonModule,
-    MdMenuModule,
-    MdToolbarModule,
-    MdIconModule,
-    MdCardModule,
-    MdSidenavModule
+    CompatibilityModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    MatSidenavModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatSlideToggleModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatChipsModule,
+    MatExpansionModule,
+    MatGridListModule
   ],
   exports: [
-    MdButtonModule,
-    MdMenuModule,
-    MdToolbarModule,
-    MdIconModule,
-    MdCardModule,
-    MdSidenavModule
+    CompatibilityModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    MatSidenavModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatSlideToggleModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatChipsModule,
+    MatExpansionModule,
+    MatGridListModule
   ]
 })
-export class MaterialModule {}
+export     class MaterialModule {}

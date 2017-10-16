@@ -1,5 +1,14 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MatIconRegistry} from '@angular/material';
+import {DomSanitizer} from '@angular/platform-browser';
+
+import 'rxjs/add/operator/filter';
+
 import { HttpClient } from '@angular/common/http';
+
+
+// import { MapModifierService } from './services/mapmodifier/map-modifier.service';
+
 
 @Component({
   selector: 'app-root',
@@ -7,55 +16,31 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
-  title: string;
-  titles: Array<string> = [
-    'Under Construction',
-    'Under Construction.',
-    'Under Construction..',
-    'Under Construction...'];
+export class AppComponent implements OnInit {
+  testData: Array<any> = [];
+  testObj: Object;
 
-  titleCounter: number = 0;
-  urlCounter: number = 0;
-  myData: Array<any> = [];
-  res: Object;
-  imgUrl: string = 'https://source.unsplash.com/random/800x600';
-
-    constructor(private http: HttpClient) {
-      this.title = this.titles[0];
-      setInterval((): void => {
-        this.title = this.titles[this.titleCounter];
-        this.titleCounter++;
-        this.titleCounter %= 4;
-      }, 500);
-
-      this.http.get('https://jsonplaceholder.typicode.com/photos')
+  constructor(
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer,
+    private http: HttpClient
+   ) {
+    // private latServ: MapModifierService) {
+    // To avoid XSS attacks, the URL needs to be trusted from inside of your application.
+      iconRegistry.addSvgIcon( 'logo',
+      sanitizer.bypassSecurityTrustResourceUrl('./assets/logo.svg'));
+      this.http.get('https://jsonplaceholder.typicode.com/posts/1')
       .subscribe(res => {
-        this.res = res;
-        [].push.apply(this.myData, res);
+        this.testObj = res;
+        [].push.apply(this.testData, res);
+        console.log(res);
       });
 
-      setInterval((): void => {
-        this.imgUrl = this.extractURL(this.myData[this.urlCounter]);
-        this.urlCounter++;
-        this.urlCounter %= 10;
-        console.log(this.urlCounter);
-        console.log(this.imgUrl);
-      }, 3000);
-    }
+      // console.log(this.testData);
 
-    extractURL(x: object): string {
-      const s: string = JSON.stringify(x);
+  }
 
-      interface MyObj {
-        albumId: number;
-        id: number;
-        title: string;
-        url: string;
-        thumbnailUrl: string;
-      }
+  ngOnInit() {
+  }
 
-      const obj: MyObj = JSON.parse(s);
-      return obj.url;
-    }
 }

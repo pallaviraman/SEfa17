@@ -115,9 +115,9 @@ var dbinsert = function(req, res, callback) {
             "house_roles": req.body.house_roles
         }
       },function(err,resp,status) {
-          console.log(resp);
+          console.log(err);
           callback(err, resp);
-      });
+      } );
 }
 
 // check if DB is present; if present, delete the DB
@@ -141,101 +141,76 @@ function deletedb(req, res, callback) {
         if(err) {
           console.log("Unable to delete DB");
         }
-        else {
-          console.log("DB successfully deleted");
-        }
-		console.log(resp);
         callback(err, resp);
       });
 }
 
-// check if DB is present; if present, delete the DB corresponding to a specific id
-var dbdelete_id =  function(input_id,req, res, callback) {
-    elasticclient.indices.get({
-        index:'housing',
-		type:'lease',
-		//id:input_id
-		{
-			"query":{ 
-				"ids":{ 
-					"values": [ input_id ] 
-				} 
-			} 
-		}
-    }, function(err,resp, status) {
-        if(status == 200) {
-            console.log("Database does not exist");
-        } else {
-            deletedb_id(input_id,req, res, callback);
-        }
-    });   
-}
-
-// helper function to delete an existing DB corresponding to a specific id
-function deletedb_id(input_id,req, res, callback) {
-     elasticclient.indices.delete({  
+// delete the DB element corresponding to a specific id
+var dbdelete_id =  function(input_id, res, callback) {
+    elasticclient.delete({  
         index: 'housing',
 		type:'lease',
-		//id:input_id
-		{
-			"query":{ 
-				"ids":{ 
-					"values": [ input_id ] 
-				} 
-			} 
-		}
-      },function(err,resp,status) {
-        if(err) {
-          console.log("Unable to delete DB");
-        }
-        else {
-          console.log("DB successfully deleted");
-        }
-		console.log(resp);
-        callback(err, resp);
-      });
+		id: input_id
+      }, function(err,resp,status) {
+            callback(err, resp);
+      });  
 }
-
 
 // search for the db and return all documents for an index.
 var dbget = function(req, res, callback) {
-    elasticclient.get({
-        index:'housing'
+    elasticclient.search({
+        index:'housing',
+        type : 'lease'
     },	function(err,resp, status) {
 		if(err) {
-			console.log("Unable to obtain the database");
-		}
-		else{
-			console.log("Obtained documents from the database");
+			console.log("Unable to obtain the database"+ err);
 		}
 		callback(err,resp);
 	});   
 }
 
 // search for the db and return all documents with a specific id.
-var dbget_id = function(input_id,req, res, callback) {
+var dbget_id = function(input_id, res, callback) {
     elasticclient.get({
         index:'housing',
-		type: 'lease'
-		//id:input_id
-		{
-			"query":{ 
-				"ids":{ 
-					"values": [ input_id ] 
-				} 
-			} 
-		}
+		type: 'lease',
+		id: input_id
     },	function(err,resp, status) {
 		if(err) {
 			console.log("Unable to obtain the database");
-		}
-		else {
-			console.log("Obtained documents with a specific id");
 		}
 		callback(err,resp);
 	});   
 }
 
+// geo location based searching
+var dbgetgeo = function(req, res, callback) {
+    elasticclient.search({
+        index: 'housing',
+        type: 'lease',
+        body: {
+                filter : {
+                        geo_distance : {
+                            distance : "1000km",
+                            geolocation : {
+                                lat : 40,
+                                lon : -70
+                            }
+                        }
+                    }
+                }
+            }
+        
+        
+      ).then(function (err, resp, status) {
+          if(err) {
+              console.log("Error" + err);
+          } else {
+              console.log("items around" + resp);
+           }
+           callback(err,resp);
+      });
+}
 
 // functions exposed for other modules
 exports.dbstart = dbstart;
@@ -244,3 +219,5 @@ exports.dbdelete = dbdelete;
 exports.dbget = dbget;
 exports.dbget_id = dbget_id;
 exports.dbdelete_id = dbdelete_id;
+exports.dbgetgeo = dbgetgeo;
+

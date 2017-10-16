@@ -1,72 +1,21 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<md-sidenav-container fullscreen>
-    <md-sidenav #sidenav class="sidenav-props" mode="side">
-        <md-toolbar>
-           <span>First Row</span>
-           <md-toolbar-row>
-              <span>Second Row</span>
-           </md-toolbar-row>
-           <md-toolbar-row>
-              <span>Third Row</span>
-           </md-toolbar-row>
-        </md-toolbar>
-     </md-sidenav>
-
-  <md-toolbar color="primary">
-    <span>
-      <button md-button (click)="sidenav.toggle()">
-        <md-icon>menu</md-icon>
-     </button>
-    </span>
-
-    <span>{{ title }}</span>
-
-    <button md-icon-button [mdMenuTriggerFor]="menu">
-      <md-icon>more_vert</md-icon>
-   </button>
-  </md-toolbar>
-
-  <md-menu #menu="mdMenu">
-    <button md-menu-item>
-       <md-icon>dialpad</md-icon>
-       <span>Call 1-800-SOO-COOL</span>
-    </button>
-    <button md-menu-item disabled>
-       <md-icon>voicemail</md-icon>
-       <span>You can't check your voicemail</span>
-    </button>
-    <button md-menu-item>
-       <md-icon>notifications_off</md-icon>
-       <span>Do Not Disturb</span>
-    </button>
-    </md-menu>
-
-    <md-card >  
-          <md-card-header>
-              <img md-card-avatar src="https://source.unsplash.com/random/200x200">
-            <md-card-title>Dynamic Carousel</md-card-title>
-            <md-card-subtitle>no need of nav buttons around the image anymore</md-card-subtitle>
-          </md-card-header>
-        
-          <img md-card-image [src]="imgUrl">
-
-          <md-card-actions>
-            <button md-button>LIKE</button>
-            <button md-button>SHARE</button>
-          </md-card-actions>
-          
-        </md-card>
-
-  <md-card>
-    <button md-button>All</button>
-    <button md-raised-button>Of</button>
-    <button md-raised-button color="primary">The</button>
-    <button md-raised-button color="accent">Buttons</button>
-  </md-card>
-
-    <span class="done">
-    <button md-fab>
-      <md-icon>check circle</md-icon>
-    </button>
-  </span>
-</md-sidenav-container>
+<div fxLayout="column" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed" fxFlex>
+  <md-sidenav-container fxFlex>
+    <router-outlet></router-outlet>
+    <md-sidenav mode="side" opened>
+      <md-toolbar color="primary">
+        <md-icon class="icon" svgIcon="logo"></md-icon>
+      </md-toolbar>
+      <nav>
+        <a routerLink="/" routerLinkActive="active">
+                  <button md-raised-button color="accent"><md-icon>home</md-icon></button>
+                </a>
+        <a routerLink="/help" routerLinkActive="active">
+                    <button md-raised-button color="accent">Help</button></a>
+        <a routerLink="/signup" routerLinkActive="active">
+                      <button md-raised-button color="accent">Sign Up</button></a>
+        <a routerLink="/login" routerLinkActive="active">
+                        <button md-raised-button color="accent">Login</button></a>
+      </nav>
+    </md-sidenav>
+  </md-sidenav-container>
+</div>

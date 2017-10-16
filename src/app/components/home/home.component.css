@@ -1,0 +1,15 @@
+agm-map {
+    height: 580px;
+    width: 500px;
+  }
+
+.z-depth-5 {
+  background: rgb(220, 218, 21);
+  border: 1px solid #45493F;
+  border-radius: 15px;
+  padding: 2px;
+  width: 250px;
+  height: 60px; 
+  margin: 0 0px; 
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3);
+}
