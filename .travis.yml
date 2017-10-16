@@ -14,8 +14,6 @@ before_install:
 
 before_script:
 - npm install
-- npm start
-- sleep 3
 - cd ..
 - npm install -g @angular/cli
 - npm install -g karma
