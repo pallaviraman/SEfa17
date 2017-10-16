@@ -215,7 +215,8 @@ var dbget_id = function(input_id, res, callback) {
 
 // geo location based searching
 var dbgetgeo = function(req, res, callback) {
-    var jsonData = {
+    var jsonData = 
+    {
         "query": {
             "bool" : {
                 "must" : {
@@ -223,49 +224,26 @@ var dbgetgeo = function(req, res, callback) {
                 },
                 "filter" : {
                     "geo_distance" : {
-                        "distance" : "120km",
+                        "distance" : "100km",
                         "geolocation" : {
                             "lat" : 40,
-                            "lon" : 70
+                            "lon" : 79
                         }
                     }
                 }
             }
         }
-    };
+    }
 
-    rest.postJson('http://localhost:9200/my_locations/location/_search?pretty', jsonData).
-        on('complete', function(data, response) {
-        console.log(data.hits.hits);
+    console.log(jsonData.query.bool.filter.geo_distance.distance);
+      rest.postJson('http://localhost:9200/housing/leasemetadata/_search?pretty', jsonData).
+      on('success', function(data, response) {
         callback(data, response);
-    });
-    
-    
-    elasticclient.search({
-        index: 'housing',
-        type: 'lease',
-        body: {
-                filter : {
-                        geo_distance : {
-                            distance : "1000km",
-                            geolocation : {
-                                lat : 40,
-                                lon : -70
-                            }
-                        }
-                    }
-                }
-            }
-        
-        
-      ).then(function (err, resp, status) {
-          if(err) {
-              console.log("Error" + err);
-          } else {
-              console.log("items around" + resp);
-           }
-           callback(err,resp);
+      }).
+      on('fail', function(data, response) {
+        callback(data, response);
       });
+
 }
 
 // functions exposed for other modules

@@ -73,40 +73,13 @@ router.delete("/delete_id", function (req, res) {
 });
 
 router.get("/geosearch", function(req, res) {
-    dbHelper.dbgetgeo(req, res, function(err, result) {
-        if (err)
-            return res.status(400).send("Not Found"+ err);
+    dbHelper.dbgetgeo(req, res, function(data, response) {
+        //console.log(response);
+        if (response.statusCode != 200)
+            return res.status(400).send("Not Found");
         else
-            return res.status(200).send("Found"+ result);
+            return res.status(200).send(data.hits.hits);
     })
-});
-
-router.get("/geolocation", function(req, res) {
-    
-      var jsonData = {
-        "query": {
-            "bool" : {
-                "must" : {
-                    "match_all" : {}
-                },
-                "filter" : {
-                    "geo_distance" : {
-                        "distance" : "120km",
-                        "pin.location" : {
-                            "lat" : 40,
-                            "lon" : -70
-                        }
-                    }
-                }
-            }
-        }
-    };
-
-    console.log(jsonData.query.bool.filter.geo_distance.distance);
-    //  rest.postJson('http://localhost:9200/my_locations/location/_search?pretty', jsonData).on('complete', function(data, response) {
-      //  console.log(data.hits.hits);
-      //});
-
 });
 
 router.post('/leasemetadata', upload.any(), function (req, res, next) {
