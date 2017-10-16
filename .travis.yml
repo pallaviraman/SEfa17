@@ -12,12 +12,11 @@ branches:
 before_install:
 - cd backend
 
-install:
+before_script:
 - npm install
 - npm start
+- sleep 10
 - cd ..
-
-before_script:
 - npm install -g @angular/cli
 - npm install -g karma
 - npm install
