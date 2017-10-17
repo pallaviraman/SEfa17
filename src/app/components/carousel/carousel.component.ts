@@ -17,7 +17,7 @@ export class CarouselComponent implements OnInit {
   // uri: number = 0;
 
   constructor(private http: HttpClient) {
-    this.http.get('https://jsonplaceholder.typicode.com/photos')
+    this.http.get('http://localhost:3000/leasemetadata')
     .subscribe(res => {
       this.res = res;
       [].push.apply(this.myData, res);

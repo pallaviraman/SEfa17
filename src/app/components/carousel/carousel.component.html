@@ -14,8 +14,8 @@
     <md-grid-list cols="2" rowHeight="1:2">
       <md-grid-tile *ngFor="let data of (myData ? myData.slice(0,10): []); let i = index" routerLink="/listing-detail" routerLinkActive="active">
         <md-card>
-            <img md-card-image src="{{ data.url }}">
-          <md-card-title>{{data.title}}</md-card-title>
+            <img md-card-image src="http://localhost:3000/uploads/{{ data._source.images[0]}}">
+          <md-card-title>{{data._source.title}}</md-card-title>
           <md-card-actions>
               <button md-button>LIKE</button>
               <button md-button>SHARE</button>
