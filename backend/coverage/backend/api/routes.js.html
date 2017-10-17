@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">54.84% </span>
+        <span class="strong">73.68% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>34/62</span>
+        <span class='fraction'>42/57</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">33.33% </span>
+        <span class="strong">56.25% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>6/18</span>
+        <span class='fraction'>9/16</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">42.86% </span>
+        <span class="strong">78.95% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>9/21</span>
+        <span class='fraction'>15/19</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">54.84% </span>
+        <span class="strong">73.68% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>34/62</span>
+        <span class='fraction'>42/57</span>
       </div>
     </div>
   </div>
@@ -166,7 +166,10 @@
 121
 122
 123
-124</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+124
+125
+126
+127</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -239,41 +242,44 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -361,44 +367,47 @@ router.get("/get_id", function (req, res) {
 });
 &nbsp;
 // GET API to search points within a fixed radius of a point
-router.get("/geosearch", <span class="fstat-no" title="function not covered" >fu</span>nction(req, res) {
-<span class="cstat-no" title="statement not covered" >    dbHelper.dbgetgeo(req, res, <span class="fstat-no" title="function not covered" >fu</span>nction(data, response) {</span>
+router.get("/geosearch", function(req, res) {
+    dbHelper.dbgetgeo(req, res, function(data, response) {
         //console.log(response);
-<span class="cstat-no" title="statement not covered" >        if (response.statusCode != 200)</span>
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (response.statusCode != 200)
 <span class="cstat-no" title="statement not covered" >            return res.status(400).send("Not Found");</span>
         else
-<span class="cstat-no" title="statement not covered" >            return res.status(200).send(data.hits.hits);</span>
+            return res.status(200).send(data.hits.hits);
     })
 });
 &nbsp;
   // GET API to get lease metadata from database
-router.get("/leasemetadata", <span class="fstat-no" title="function not covered" >fu</span>nction (req, res) {
-<span class="cstat-no" title="statement not covered" >    dbHelper.dbLeaseMetadataGet(req, res, <span class="fstat-no" title="function not covered" >fu</span>nction (err, result) {</span>
-<span class="cstat-no" title="statement not covered" >	    if (err)</span>
+router.get("/leasemetadata", function (req, res) {
+    dbHelper.dbLeaseMetadataGet(req, res, function (err, result) {
+	    <span class="missing-if-branch" title="if path not taken" >I</span>if (err)
 <span class="cstat-no" title="statement not covered" >            return res.status(400).send("Cannot obtain data");</span>
-<span class="cstat-no" title="statement not covered" >		return res.status(200).send(result.hits.hits);</span>
+		return res.status(200).send(result.hits.hits);
     });
 });
 &nbsp;
 // GET API to query based on multiple filters
-router.get("/mulfilters", <span class="fstat-no" title="function not covered" >fu</span>nction (req, res) {
-<span class="cstat-no" title="statement not covered" >    dbHelper.dbgetMulFilter(req, res, <span class="fstat-no" title="function not covered" >fu</span>nction (data, response) {</span>
-<span class="cstat-no" title="statement not covered" >        if (response.statusCode != 200)</span>
+router.get("/mulfilters", function (req, res) {
+    dbHelper.dbgetMulFilter(req, res, function (data, response) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (response.statusCode != 200)
 <span class="cstat-no" title="statement not covered" >            return res.status(400).send("Not Found");</span>
-<span class="cstat-no" title="statement not covered" >        return res.status(200).send(data.hits.hits);</span>
+        return res.status(200).send(data.hits.hits);
     });
 });
 &nbsp;
+// Commenting the following API for now; this will be used once database insert 
+// scripts are ready to automate the insert part
+ 
 // DELETE API to delete the database
-router.post("/delete", <span class="fstat-no" title="function not covered" >fu</span>nction (req, res) {
+/*router.post("/delete", function (req, res) {
     //console.log("Accepting DELETE request");
-<span class="cstat-no" title="statement not covered" >    dbHelper.dbdelete(req, res, <span class="fstat-no" title="function not covered" >fu</span>nction (err, result) {</span>
-<span class="cstat-no" title="statement not covered" >        if (err)</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(400).send("Not deleted");</span>
+    dbHelper.dbdelete(req, res, function (err, result) {
+        if (err)
+            return res.status(400).send("Not deleted");
         else
-<span class="cstat-no" title="statement not covered" >            return res.status(200).send("Deleted");</span>
+            return res.status(200).send("Deleted");
     });
-});
+});*/
 &nbsp;
 // DELETE API to delete the database with a specific id
 router.delete("/delete_id", function (req, res) {
@@ -418,7 +427,7 @@ module.exports = router;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Oct 16 2017 20:55:58 GMT-0400 (Eastern Daylight Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Oct 17 2017 01:16:26 GMT-0400 (Eastern Daylight Time)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>

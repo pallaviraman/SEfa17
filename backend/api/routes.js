@@ -98,8 +98,11 @@ router.get("/mulfilters", function (req, res) {
     });
 });
 
+// Commenting the following API for now; this will be used once database insert 
+// scripts are ready to automate the insert part
+ 
 // DELETE API to delete the database
-router.post("/delete", function (req, res) {
+/*router.post("/delete", function (req, res) {
     //console.log("Accepting DELETE request");
     dbHelper.dbdelete(req, res, function (err, result) {
         if (err)
@@ -107,7 +110,7 @@ router.post("/delete", function (req, res) {
         else
             return res.status(200).send("Deleted");
     });
-});
+});*/
 
 // DELETE API to delete the database with a specific id
 router.delete("/delete_id", function (req, res) {
