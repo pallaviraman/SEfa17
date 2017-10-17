@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MaterialModule } from '../../custom-material/custom-material.module';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { MdDialogRef } from '@angular/material';
 
 import { SelectorComponent } from './selector.component';
 
@@ -13,7 +12,7 @@ describe('SelectorComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ SelectorComponent ],
       schemas: [NO_ERRORS_SCHEMA],
-      imports: [MaterialModule, MdDialogRef]
+      imports: [MaterialModule],
     })
     .compileComponents();
   }));

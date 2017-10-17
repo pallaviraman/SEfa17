@@ -1,3 +1,4 @@
+import { SelectorComponent } from './components/selector/selector.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from './custom-material/custom-material.module';
 import { TestBed, async } from '@angular/core/testing';
@@ -31,7 +32,7 @@ describe('AppComponent', () => {
         HttpModule,
         FormsModule,
         ReactiveFormsModule
-      ]
+      ],
     }).compileComponents()
     .then(() => {
       const fixture = TestBed.createComponent(AppComponent);
