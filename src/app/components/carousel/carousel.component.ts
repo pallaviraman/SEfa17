@@ -9,9 +9,12 @@ import { HttpClient } from '@angular/common/http';
 
 export class CarouselComponent implements OnInit {
   myData: Array<any> = [];
+  myDataURL: Array<string> = [];
+  urlCounter: number = 0;
+
   res: Object;
   imgUrl: string = 'https://source.unsplash.com/random/800x600';
-  urlCounter: number = 0;
+  uri: number = 0;
 
   constructor(private http: HttpClient) {
     this.http.get('https://jsonplaceholder.typicode.com/photos')
@@ -20,6 +23,10 @@ export class CarouselComponent implements OnInit {
       [].push.apply(this.myData, res);
     });
 
+    for (let entry of this.myData) {
+      this.myDataURL[this.urlCounter] = this.extractJSONurl(entry);
+      this.urlCounter++;
+    }
     // setInterval((): void => {
     //   this.imgUrl = this.extractURL(this.myData[this.urlCounter]);
     //   this.urlCounter++;
@@ -29,20 +36,22 @@ export class CarouselComponent implements OnInit {
     // }, 3000);
    }
 
-  //  extractURL(x: object): string {
-  //   const s: string = JSON.stringify(x);
+   extractJSONurl(x: object): string {
+    const s: string = JSON.stringify(x);
 
-  //   interface MyObj {
-  //     albumId: number;
-  //     id: number;
-  //     title: string;
-  //     url: string;
-  //     thumbnailUrl: string;
-  //   }
+    interface MyObj {
+      _id: string,
+      searchid: string,
+      title: string,
+      rent: string,
+      lat: number,
+      lon: number,
+      images: Array<string>
+    }
 
-  //   const obj: MyObj = JSON.parse(s);
-  //   return obj.url;
-  // }
+    const obj: MyObj = JSON.parse(s);
+    return obj.images[0];
+  }
 
   ngOnInit() {
   }

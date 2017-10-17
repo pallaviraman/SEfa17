@@ -15,7 +15,7 @@ describe('CarouselComponent', () => {
         NO_ERRORS_SCHEMA
       ],
       imports: [
-        HttpClientModule                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+        HttpClientModule
       ]
     })
     .compileComponents()

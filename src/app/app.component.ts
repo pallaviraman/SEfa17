@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
   testData: Array<any> = [];
   testObj: Object;
 
-
   constructor(
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
