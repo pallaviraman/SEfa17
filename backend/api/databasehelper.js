@@ -235,7 +235,7 @@ var dbgetgeo = function(req, res, callback) {
         }
     }
 
-    console.log(jsonData.query.bool.filter.geo_distance.distance);
+    //console.log(jsonData.query.bool.filter.geo_distance.distance);
       rest.postJson('http://localhost:9200/housing/leasemetadata/_search?pretty', jsonData).
       on('success', function(data, response) {
         callback(data, response);
@@ -244,6 +244,23 @@ var dbgetgeo = function(req, res, callback) {
         callback(data, response);
       });
 
+}
+
+var dbgetMulFilter = function(req, res, callback) {
+    var jsonData = 
+    {
+        "query": {
+            "query_string": {
+                "query": "(details.beds:2) AND (owner:saptarshi)"
+            }
+        }
+    }
+
+    rest.postJson('http://localhost:9200/housing/lease/_search?pretty', jsonData).on('success', function(data, response) {
+      callback(data, response);
+    }).on('fail', function(data, response) {
+      callback(data, response);
+    });
 }
 
 // functions exposed for other modules
@@ -256,4 +273,5 @@ exports.dbdelete_id = dbdelete_id;
 exports.dbgetgeo = dbgetgeo;
 exports.dbMetadataInsert = dbMetadataInsert;
 exports.dbLeaseMetadataGet = dbLeaseMetadataGet;
+exports.dbgetMulFilter = dbgetMulFilter;
 
