@@ -1,14 +1,27 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {MaterialModule} from '../../custom-material/custom-material.module'
 import { ListingDetailComponent } from './listing-detail.component';
+import {
+  FormsModule,
+  ReactiveFormsModule
+} from '@angular/forms';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ListingDetailComponent', () => {
   let component: ListingDetailComponent;
   let fixture: ComponentFixture<ListingDetailComponent>;
 
   beforeEach(async(() => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
     TestBed.configureTestingModule({
-      declarations: [ ListingDetailComponent ]
+      declarations: [ ListingDetailComponent ],
+      imports: [
+        FormsModule,
+        ReactiveFormsModule
+      ],
+      schemas: [
+        NO_ERRORS_SCHEMA
+      ],
     })
     .compileComponents();
   }));
