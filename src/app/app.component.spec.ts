@@ -1,4 +1,4 @@
-import { SelectorComponent } from './components/selector/selector.component';
+// import { SelectorComponent } from './components/selector/selector.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from './custom-material/custom-material.module';
 import { TestBed, async } from '@angular/core/testing';
@@ -16,6 +16,11 @@ import {
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+    // setTimeout(function () {
+    //     console.log('inside timeout');
+    //     done();
+    // }, 500);
     TestBed.configureTestingModule({
       declarations: [
       AppComponent

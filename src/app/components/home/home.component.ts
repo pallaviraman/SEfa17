@@ -5,7 +5,7 @@ import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 
-import { SelectorComponent } from '../selector/selector.component';
+// import { SelectorComponent } from '../selector/selector.component';
 
 @Component({
   selector: 'app-home',
@@ -24,8 +24,9 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone,
-    private dialog: MatDialog) { }
+    private ngZone: NgZone
+    // private dialog: MatDialog
+  ) { }
 
     ngOnInit() {
       // set google maps defaults
@@ -64,9 +65,9 @@ export class HomeComponent implements OnInit {
       });
     }
 
-    openDialog() {
-      this.dialog.open(SelectorComponent);
-    }
+    // openDialog() {
+    //   this.dialog.open(SelectorComponent);
+    // }
 
     private setCurrentPosition() {
       if ('geolocation' in navigator) {
