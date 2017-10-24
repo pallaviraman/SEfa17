@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule, LOCALE_ID} from '@angular/core';
+import {NgModule, LOCALE_ID, NO_ERRORS_SCHEMA} from '@angular/core';
 import {
   FormsModule,
   ReactiveFormsModule,
@@ -15,10 +15,10 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 
 import {AppComponent} from './app.component';
 
-import 'hammerjs';
+// import 'hammerjs';
 import { routes } from './app.router';
 
-import { SelectorComponent } from './components/selector/selector.component';
+// import { SelectorComponent } from './components/selector/selector.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -30,7 +30,7 @@ import { HomeComponent } from './components/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
-    SelectorComponent,
+    // SelectorComponent,
     CarouselComponent,
     LoginComponent,
     SignupComponent,
@@ -56,7 +56,7 @@ import { HomeComponent } from './components/home/home.component';
   providers: [
     {provide: LOCALE_ID, useValue: 'en-US'},
   ],
-  entryComponents: [SelectorComponent],
+  entryComponents: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
