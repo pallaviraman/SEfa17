@@ -10,17 +10,15 @@ branches:
   - dev
 
 before_install:
-- cd backend
+#- cd backend
 
 before_script:
-- npm install
-- npm install -g elasticsearch
-- cd ..
+#- npm install
+#- cd ..
 - npm install -g @angular/cli
 - npm install -g karma
 - npm install
 
-script: 
-- ng build
-- cd backend
-- npm test
+-script: ng build
+#- cd backend
+#- npm test
