@@ -69,7 +69,7 @@ describe('API endpoints', function() {
       .send(
         {
           "title": "some title new",
-          "owner": "saptarshi chak",
+          "owner": "saptarshi",
           "location": "gainesville, Florida, USA",
           "zipcode": 32608,
           "description": "brief description about the apartment",
@@ -141,7 +141,7 @@ describe('API endpoints', function() {
       .send(
         {
           "title": "some title new",
-          "owner": "saptarshi chak",
+          "owner": "saptarshi",
           "location": "gainesville, Florida, USA",
           "zipcode": 32608,
           "description": "brief description about the apartment",
@@ -284,6 +284,16 @@ describe('API endpoints', function() {
       });
   });
 
+
+  /*it('should return no elemets matching the particular filters', function() {
+      return chai.request(app)
+      .get('/mulfilters')
+      .then(function(res) {
+        expect(res).to.have.status(200);
+       // expect(res.body.hits.total).to.be.equal(0);
+      });
+  });
+*/
 
 
 });
