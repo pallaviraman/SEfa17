@@ -92,7 +92,8 @@ router.get("/leasemetadata", function (req, res) {
 // GET API to query based on multiple filters
 router.get("/mulfilters", function (req, res) {
     dbHelper.dbgetMulFilter(req, res, function (data, response) {
-        if (response.statusCode != 200)
+        //console.log(data.hits);
+        if (response.statusCode != 200  )
             return res.status(400).send("Not Found");
         return res.status(200).send(data.hits.hits);
     });
