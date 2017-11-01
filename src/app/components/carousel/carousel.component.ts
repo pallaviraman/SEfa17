@@ -9,49 +9,58 @@ import { HttpClient } from '@angular/common/http';
 
 export class CarouselComponent implements OnInit {
   myData: Array<any> = [];
-  // myDataURL: Array<string> = [];
-  // urlCounter: number = 0;
+
+  myDataURL: Array<string> = [];
+  urlCounter: number = 0;
 
   res: Object;
   imgUrl: string = 'https://source.unsplash.com/random/800x600';
   // uri: number = 0;
 
   constructor(private http: HttpClient) {
-    this.http.get('http://localhost:3000/leasemetadata')
+    this.http.get('http://174.64.102.57:3000/leasemetadata')
     .subscribe(res => {
       this.res = res;
       [].push.apply(this.myData, res);
     });
 
-    // for (let entry of this.myData) {
-    //   this.myDataURL[this.urlCounter] = this.extractJSONurl(entry);
-    //   this.urlCounter++;
-    // }
-    // setInterval((): void => {
-    //   this.imgUrl = this.extractURL(this.myData[this.urlCounter]);
-    //   this.urlCounter++;
-    //   this.urlCounter %= 10;
-    //   console.log(this.urlCounter);
-    //   console.log(this.imgUrl);
-    // }, 3000);
+    setInterval((): void => {
+      this.imgUrl = 'http://174.64.102.57:3000/uploads/' + this.extractURL(this.myData[this.urlCounter]);
+      this.urlCounter++;
+      this.urlCounter %= 10;
+      console.log(this.urlCounter);
+      console.log(this.imgUrl);
+    }, 3000);
    }
 
-  //  extractJSONurl(x: object): string {
-  //   const s: string = JSON.stringify(x);
+   extractURL(x: object): string {
+    const s: string = JSON.stringify(x);
 
-  //   interface MyObj {
-  //     _id: string,
-  //     searchid: string,
-  //     title: string,
-  //     rent: string,
-  //     lat: number,
-  //     lon: number,
-  //     images: Array<string>
-  //   }
+    interface MyObj {
+      _index: string;
+      _type: string;
+      _id: string;
+      _score: number;
+      _source: {
+        searchid: number;
+        title: string;
+        rent: string;
+        geolocation: {
+          lat: number;
+          long: number;
+        };
+        images: Array<string>;
+      };
+      // albumId: number;
+      // id: number;
+      // title: string;
+      // url: string;
+      // thumbnailUrl: string;
+    }
 
-  //   const obj: MyObj = JSON.parse(s);
-  //   return obj.images[0];
-  // }
+    const obj: MyObj = JSON.parse(s);
+    return obj._source.images[0];
+  }
 
   ngOnInit() {
   }
