@@ -139,7 +139,7 @@ var dbinsert = function(req, res, callback) {
 }
 
 // check if DB is present; if present, delete the DB
-var dbdelete =  function(req, res, callback) {
+/*var dbdelete =  function(req, res, callback) {
     elasticclient.indices.get({
         index:'housing'
     }, function(err,resp, status) {
@@ -161,7 +161,7 @@ function deletedb(req, res, callback) {
         }
         callback(err, resp);
       });
-}
+}*/
 
 // delete the DB element corresponding to a specific id
 var dbdelete_id =  function(input_id, res, callback) {
@@ -266,7 +266,7 @@ var dbgetMulFilter = function(req, res, callback) {
 // functions exposed for other modules
 exports.dbstart = dbstart;
 exports.dbinsert = dbinsert;
-exports.dbdelete = dbdelete;
+//exports.dbdelete = dbdelete;
 exports.dbget = dbget;
 exports.dbget_id = dbget_id;
 exports.dbdelete_id = dbdelete_id;

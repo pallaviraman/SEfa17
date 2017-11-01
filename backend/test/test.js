@@ -41,6 +41,26 @@ describe('API endpoints', function() {
   });
 
   //59c949b3008f052792a09032000002
+  /*var leaseMetadataid;
+  it('Lease metadata POST API test-1', function() {
+    return chai.request(app)
+      .post('/leasemetadata')
+      .type('form')
+      //.attach('avatar',fs.readFileSync('avatar.png'), 'avatar.png')
+      .send(
+        {
+          "searchid": 7834,
+          "title":"some title",
+          "rent":"$50",
+          "lat" : 41.12,
+          "lon" : -70.34
+        }
+      ).then(function(res) {
+        id = res.body._id;
+        console.log(id);
+        expect(res).to.have.status(200);
+      });
+  });*/
 
   var id;
   it('POST API test-1', function() {
@@ -189,6 +209,29 @@ describe('API endpoints', function() {
       });
   });
 
+  it('should return all the lease metadata content', function() {
+    return chai.request(app)
+      .get('/leasemetadata')
+      .then(function(res) {
+        expect(res).to.have.status(200);
+      });
+  });
+
+  it('should return all the elemets matching the particular filters', function() {
+    return chai.request(app)
+      .get('/mulfilters')
+      .then(function(res) {
+        expect(res).to.have.status(200);
+      });
+  });
+
+  it('should return all the elemets within specific radius of a point', function() {
+    return chai.request(app)
+      .get('/geosearch')
+      .then(function(res) {
+        expect(res).to.have.status(200);
+      });
+  });
 
   it('should return content for the particular id', function() {
     return chai.request(app)

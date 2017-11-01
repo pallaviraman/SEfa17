@@ -7,6 +7,7 @@ describe('HelpComponent', () => {
   let fixture: ComponentFixture<HelpComponent>;
 
   beforeEach(async(() => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
     TestBed.configureTestingModule({
       declarations: [ HelpComponent ]
     })
