@@ -1,26 +1,30 @@
 <md-horizontal-stepper Linear="true">
     <md-step [stepControl]="firstFormGroup">
-        <form [formGroup]="firstFormGroup">
+        <form #inititalStep="ngForm" (ngSubmit)="onSubmit(initialStep)" [formGroup]="firstFormGroup">
             <ng-template mdStepLabel>Fill out initial details</ng-template>
-            <md-form-field>
-                <input mdInput placeHolder="Owner" value={{owner}} disabled>
-            </md-form-field>
-            <div class="form-container">
-                <md-form-field>
-                    <input mdInput placeholder="where" autocorrect="on" autocapitalize="off" spellcheck="on" type="text" class="form-control"
-                        #search [formControl]="searchControl">
-                </md-form-field>
-            </div>
-            <div class="form-container">
-                <md-form-field>
-                    <input mdInput placeHolder="Zipcode">
-                </md-form-field>
-            </div>
-            <div class="form-container">
-                <md-form-field>
-                    <textarea mdInput placeholder="Description">1600 Amphitheatre Pkwy</textarea>
-                </md-form-field>
-            </div>
+            <md-grid-list cols="1" rowHeight="8:1">
+                <md-grid-tile>
+                        <md-form-field>
+                                <input mdInput placeHolder="Owner" value={{owner}} disabled>
+                            </md-form-field>
+                </md-grid-tile>
+                <md-grid-tile>
+                        <md-form-field>
+                                <input mdInput placeholder="where" autocorrect="on" autocapitalize="off" spellcheck="on" type="text" class="form-control"
+                                    #search [formControl]="searchControl">
+                            </md-form-field>
+                </md-grid-tile>
+                <md-grid-tile>
+                        <md-form-field>
+                                <input mdInput placeHolder="Zipcode">
+                            </md-form-field>
+                </md-grid-tile>
+                <md-grid-tile>
+                        <md-form-field>
+                                <textarea mdInput placeholder="Description"></textarea>
+                            </md-form-field>
+                </md-grid-tile>
+            </md-grid-list>
             <div>
                 <button md-raised-button color="warn" mdStepperNext>Next</button>
             </div>
@@ -29,80 +33,83 @@
     <md-step [stepControl]="secondFormGroup">
         <form [formGroup]="secondFormGroup">
             <ng-template mdStepLabel>Details regarding unit</ng-template>
-            <md-grid-list cols="2" rowHeight=100px>
-                <md-grid-tile>
-                    <md-select placeholder="accommodees">
-                        <md-option *ngFor='let num of numArray1'>
-                            {{numArray1[num]}}
-                        </md-option>
-                    </md-select>
-                </md-grid-tile>
-                <md-grid-tile>
-
-                    <md-select placeholder="bathrooms">
-                        <md-option>1</md-option>
-                        <md-option>2</md-option>
-                        <md-option>3</md-option>
-                        <md-option>4</md-option>
-
-                        <!-- <md-option *ngFor='let num of numArray2'>
-                            {{numArray2[num]}}    
-                        </md-option>     -->
-                    </md-select>
-
-                </md-grid-tile>
-                <md-grid-tile>
+            <md-grid-list cols="4" rowHeight=100px>
+                    <md-grid-tile>
+                            <md-radio-group>
+                                <md-radio-button value="1">
+                                    entire home
+                                </md-radio-button>
+                                <br>
+                                <md-radio-button value="2">
+                                    private room
+                                </md-radio-button>
+                                <br>
+                                <md-radio-button value="3">
+                                    shared room
+                                </md-radio-button>
+                            </md-radio-group>
+                        </md-grid-tile>
+                    <md-grid-tile>
+                            <md-slide-toggle>
+                                studio apartment?
+                            </md-slide-toggle>
+                        </md-grid-tile>
+                        <md-grid-tile>
                     <md-slide-toggle>
                         private bathroom?
                     </md-slide-toggle>
                 </md-grid-tile>
                 <md-grid-tile>
-                    <md-select placeholder="bedrooms">
-                        <md-option>1</md-option>
-                        <md-option>2</md-option>
-                        <md-option>3</md-option>
-                        <md-option>4</md-option>
-                        <!-- <md-option *ngFor='let num of numArray3'>
-                            {{numArray3[num]}}    
-                        </md-option>     -->
+                        <md-slide-toggle>
+                            pet friendly?
+                        </md-slide-toggle>
+                    </md-grid-tile>
+                <md-grid-tile>
+                    <md-select placeholder="accommodees">
+                         
+                        <md-option *ngFor='let num of numArray'>
+                            {{numArray[num - 1]}}
+                        </md-option>
                     </md-select>
                 </md-grid-tile>
+               
                 <md-grid-tile>
-                    <md-slide-toggle>
-                        studio apartment?
-                    </md-slide-toggle>
+                    <md-select placeholder="bathrooms">
+                        <!-- <md-option>1</md-option>
+                        <md-option>2</md-option>
+                        <md-option>3</md-option>
+                        <md-option>4</md-option> -->
+
+                        <md-option *ngFor='let num of numArray'>
+                            {{numArray[num - 1]}}    
+                        </md-option>    
+                    </md-select>
+
                 </md-grid-tile>
+                
+                <md-grid-tile>
+                    <md-select placeholder="bedrooms">
+                        <!-- <md-option>1</md-option>
+                        <md-option>2</md-option>
+                        <md-option>3</md-option>
+                        <md-option>4</md-option> -->
+                        <md-option *ngFor='let num of numArray'>
+                            {{numArray[num - 1]}}    
+                        </md-option>    
+                    </md-select>
+                </md-grid-tile>
+                
                 <md-grid-tile>
 
                     <md-select placeholder="beds">
-                        <md-option>1</md-option>
+                        <!-- <md-option>1</md-option>
                         <md-option>2</md-option>
                         <md-option>3</md-option>
-                        <md-option>4</md-option>
-                        <!-- <md-option *ngFor='let num of numArray4'>
-                            {{numArray4[num]}}    
-                        </md-option>     -->
+                        <md-option>4</md-option> -->
+                        <md-option *ngFor='let num of numArray'>
+                            {{numArray[num - 1]}}    
+                        </md-option>    
                     </md-select>
-                </md-grid-tile>
-
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        pet friendly?
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    Room type :
-                    <md-radio-group>
-                        <md-radio-button value="1">
-                            entire home
-                        </md-radio-button>
-                        <md-radio-button value="2">
-                            private room
-                        </md-radio-button>
-                        <md-radio-button value="3">
-                            shared room
-                        </md-radio-button>
-                    </md-radio-group>
                 </md-grid-tile>
             </md-grid-list>
             <div>
@@ -113,7 +120,7 @@
     <md-step [stepControl]="thirdFormGroup">
         <form [formGroup]="thirdFormGroup">
             <ng-template mdStepLabel>Amenities</ng-template>
-            <md-grid-list cols="2" rowHeight=100px>
+            <md-grid-list cols="4" rowHeight=100px>
                     <md-grid-tile>
                          <md-slide-toggle>
                         Kitchen

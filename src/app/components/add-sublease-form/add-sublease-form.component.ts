@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
 
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
@@ -9,14 +9,10 @@ import { MapsAPILoader } from '@agm/core';
   templateUrl: './add-sublease-form.component.html',
   styleUrls: ['./add-sublease-form.component.css']
 })
+
 export class AddSubleaseFormComponent implements OnInit {
   owner: string = 'Dilip Kunderu';
-  numArray1: Array<number> = [0, 1, 2, 3, 4, 5];
-  numArray2: Array<number> = [0, 1, 2, 3, 4, 5];
-  numArray3: Array<number> = [0, 1, 2, 3, 4, 5];
-  numArray4: Array<number> = [0, 1, 2, 3, 4, 5];
-  numArray5: Array<number> = [0, 1, 2, 3, 4, 5];
-
+  numArray: Array<number> = [1, 2, 3, 4, 5];
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -73,7 +69,7 @@ export class AddSubleaseFormComponent implements OnInit {
     });
   }
 
-  OnSubmitCLick () {
+  onSubmit(form: NgForm) {
     console.log('Form submitted');
   }
 }
