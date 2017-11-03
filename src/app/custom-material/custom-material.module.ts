@@ -16,7 +16,10 @@ import {
   MatNativeDateModule,
   MatChipsModule,
   MatExpansionModule,
-  MatGridListModule
+  MatGridListModule,
+  MatFormFieldModule,
+  MatStepperModule,
+  MatRadioModule
 } from '@angular/material';
 
 @NgModule({
@@ -36,7 +39,10 @@ import {
     MatNativeDateModule,
     MatChipsModule,
     MatExpansionModule,
-    MatGridListModule
+    MatGridListModule,
+    MatFormFieldModule,
+    MatStepperModule,
+    MatRadioModule
   ],
   exports: [
     CompatibilityModule,
@@ -54,7 +60,10 @@ import {
     MatNativeDateModule,
     MatChipsModule,
     MatExpansionModule,
-    MatGridListModule
+    MatGridListModule,
+    MatFormFieldModule,
+    MatStepperModule,
+    MatRadioModule
   ]
 })
 export     class MaterialModule {}

@@ -15,7 +15,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 
 import {AppComponent} from './app.component';
 
-// import 'hammerjs';
+import 'hammerjs';
 import { routes } from './app.router';
 
 // import { SelectorComponent } from './components/selector/selector.component';
@@ -26,6 +26,8 @@ import { HelpComponent } from './components/help/help.component';
 import { ListingDetailComponent } from './components/listing-detail/listing-detail.component';
 
 import { HomeComponent } from './components/home/home.component';
+import { LeaseFormComponent } from './components/lease-form/lease-form.component';
+import { AddSubleaseFormComponent } from './components/add-sublease-form/add-sublease-form.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { HomeComponent } from './components/home/home.component';
     SignupComponent,
     HelpComponent,
     ListingDetailComponent,
-    HomeComponent
+    HomeComponent,
+    LeaseFormComponent,
+    AddSubleaseFormComponent
   ],
   imports: [
     AgmCoreModule.forRoot({

@@ -21,13 +21,13 @@
 </md-toolbar>
 <!-- map -->
 <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed">
-<md-card fxFlex="60">
+<md-card fxFlex="70">
   <app-carousel></app-carousel>
 </md-card>
 <!-- <md-card class="z-depth-5" fxFlex="40">
     <app-agm-map></app-agm-map>
   </md-card> -->
-  <div class="container" fcFlex="40">
+  <div class="container" fcFlex="30">
       <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
       </agm-map>

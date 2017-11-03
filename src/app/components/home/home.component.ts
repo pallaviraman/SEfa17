@@ -1,7 +1,7 @@
 import { Component, OnInit,  ElementRef, NgZone, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material';
-
 import { FormControl } from '@angular/forms';
+
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 
@@ -15,10 +15,12 @@ import { MapsAPILoader } from '@agm/core';
 
 export class HomeComponent implements OnInit {
   header: string = 'Gator Housing';
+
   public latitude: number;
   public longitude: number;
-  public searchControl: FormControl;
   public zoom: number;
+
+  public searchControl: FormControl;
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
