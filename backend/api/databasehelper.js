@@ -18,17 +18,34 @@ var dbstart = function() {
 
 // helper function to create new DB
 function createdb() {
-     elasticclient.indices.create({  
-        index: 'housing'
-      },function(err,resp,status) {
-        if(err) {
-          console.log("Unable to create DB");
+    var dbCreateJson = 
+    {
+        "mappings": {
+            "leasemetadata": {
+                "properties": {
+                  "geolocation": {
+                    "type": "geo_point"
+                  },
+                  "startdate": {
+                    "type":   "date",
+                    "format": "yyyy-MM"
+                  },
+                  "enddate": {
+                    "type":   "date",
+                    "format": "yyyy-MM"
+                  }
+                }
+            }
         }
-        else {
-          console.log("DB successfully created");
-          //createGeoLocationMapping();
-        }
-      });
+    };
+
+    rest.putJson('http://localhost:9200/housing/', dbCreateJson).
+        on('success', function(data, response) {
+        console.log("Success in creating DB");
+        }).
+        on('fail', function(data, response) {
+            console.log("Failure in creating DB");
+        });
 }
 
 
@@ -66,11 +83,11 @@ var dbMetadataInsert = function(req, res, imageFileNames, callback) {
                 "lat" : req.body.lat,
                 "lon" : req.body.lon
             },
+            "startdate":req.body.startdate,
+            "enddate":req.body.enddate,
             "images":imageFileNames
         }
     },function(err,resp,status) {
-        console.log(err);
-        console.log(resp);
         callback(err, resp);
     });
 }
@@ -224,7 +241,7 @@ var dbgetgeo = function(req, res, callback) {
                 },
                 "filter" : {
                     "geo_distance" : {
-                        "distance" : "100km",
+                        "distance" : "10km",
                         "geolocation" : {
                             "lat" : 40,
                             "lon" : 79
@@ -245,7 +262,13 @@ var dbgetgeo = function(req, res, callback) {
       });
 
 }
-
+/**
+ * 
+ * 
+ * @param {any} req 
+ * @param {any} res 
+ * @param {any} callback 
+ */
 var dbgetMulFilter = function(req, res, callback) {
     var jsonData = 
     {
