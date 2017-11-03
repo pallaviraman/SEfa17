@@ -231,7 +231,7 @@ var dbget_id = function(input_id, res, callback) {
 }
 
 // geo location based searching
-var dbgetgeo = function(req, res, callback) {
+var dbgetgeo = function(latval, lonval, res, callback) {
     var jsonData = 
     {
         "query": {
@@ -241,7 +241,7 @@ var dbgetgeo = function(req, res, callback) {
                 },
                 "filter" : {
                     "geo_distance" : {
-                        "distance" : "10km",
+                        "distance" : "100km",
                         "geolocation" : {
                             "lat" : 40,
                             "lon" : 79
@@ -251,7 +251,8 @@ var dbgetgeo = function(req, res, callback) {
             }
         }
     }
-
+    jsonData.query.bool.filter.geo_distance.geolocation.lat=latval;
+    jsonData.query.bool.filter.geo_distance.geolocation.lon=lonval;
     //console.log(jsonData.query.bool.filter.geo_distance.distance);
       rest.postJson('http://localhost:9200/housing/leasemetadata/_search?pretty', jsonData).
       on('success', function(data, response) {
@@ -263,7 +264,7 @@ var dbgetgeo = function(req, res, callback) {
 
 }
 
-var dbGetBetweenDates = function(req, res, callback) {
+var dbGetBetweenDates = function(min, max, res, callback) {
     var jsonData = 
     {
         "query": {
@@ -288,6 +289,8 @@ var dbGetBetweenDates = function(req, res, callback) {
         }
     };
 
+    jsonData.query.bool.must[0].range.startdate.gte = min;
+    jsonData.query.bool.must[1].range.enddate.lte = max;
     //console.log(jsonData.query.bool.filter.geo_distance.distance);
     rest.postJson('http://localhost:9200/housing/leasemetadata/_search?pretty', jsonData).
     on('success', function(data, response) {
@@ -299,7 +302,7 @@ var dbGetBetweenDates = function(req, res, callback) {
 
 }
 
-var dbGetBetweenPrice = function(req, res, callback) {
+var dbGetBetweenPrice = function(min, max, res, callback) {
     var jsonData = 
     {
         "query": {
@@ -308,8 +311,8 @@ var dbGetBetweenPrice = function(req, res, callback) {
                     {
                         "range": {
                             "rent": {
-                                "gte": "500",
-                                "lte":"800"
+                                "gte": "0",
+                                "lte":"1000"
                             }
                         }
                     }
@@ -317,6 +320,8 @@ var dbGetBetweenPrice = function(req, res, callback) {
             }
         }
     }
+    jsonData.query.bool.must[0].range.rent.gte = min;
+    jsonData.query.bool.must[0].range.rent.lte = max;
 
     rest.postJson('http://localhost:9200/housing/leasemetadata/_search?pretty', jsonData).
     on('success', function(data, response) {
