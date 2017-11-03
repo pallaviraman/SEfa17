@@ -262,6 +262,73 @@ var dbgetgeo = function(req, res, callback) {
       });
 
 }
+
+var dbGetBetweenDates = function(req, res, callback) {
+    var jsonData = 
+    {
+        "query": {
+            "bool": {
+                "must": [
+                    {
+                        "range": {
+                            "startdate": {
+                                "gte": "2017-10"
+                            }
+                        }
+                    },
+                    {
+                        "range": {
+                            "enddate": {
+                                "lte": "2018-05"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    };
+
+    //console.log(jsonData.query.bool.filter.geo_distance.distance);
+    rest.postJson('http://localhost:9200/housing/leasemetadata/_search?pretty', jsonData).
+    on('success', function(data, response) {
+      callback(data, response);
+    }).
+    on('fail', function(data, response) {
+      callback(data, response);
+    });
+
+}
+
+var dbGetBetweenPrice = function(req, res, callback) {
+    var jsonData = 
+    {
+        "query": {
+            "bool": {
+                "must": [
+                    {
+                        "range": {
+                            "rent": {
+                                "gte": "500",
+                                "lte":"800"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+
+    rest.postJson('http://localhost:9200/housing/leasemetadata/_search?pretty', jsonData).
+    on('success', function(data, response) {
+      callback(data, response);
+    }).
+    on('fail', function(data, response) {
+      callback(data, response);
+    });
+
+
+}
+
 /**
  * 
  * 
@@ -297,4 +364,6 @@ exports.dbgetgeo = dbgetgeo;
 exports.dbMetadataInsert = dbMetadataInsert;
 exports.dbLeaseMetadataGet = dbLeaseMetadataGet;
 exports.dbgetMulFilter = dbgetMulFilter;
+exports.dbGetBetweenDates = dbGetBetweenDates;
+exports.dbGetBetweenPrice = dbGetBetweenPrice;
 

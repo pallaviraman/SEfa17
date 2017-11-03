@@ -105,7 +105,23 @@ router.get("/mulfilters", function (req, res) {
 
 
 router.get("/date", function(req, res) {
-    
+    dbHelper.dbGetBetweenDates(req, res, function (data, response) {
+        //console.log(response);
+        if (response.statusCode != 200)
+            return res.status(400).send("Not Found");
+        else
+            return res.status(200).send(data.hits.hits);
+    })
+});
+
+router.get("/price", function(req, res) {
+    dbHelper.dbGetBetweenPrice(req, res, function (data, response) {
+        //console.log(response);
+        if (response.statusCode != 200)
+            return res.status(400).send("Not Found");
+        else
+            return res.status(200).send(data.hits.hits);
+    })
 });
 
 // Commenting the following API for now; this will be used once database insert 
