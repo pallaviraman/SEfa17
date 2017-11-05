@@ -1,30 +1,38 @@
 <md-horizontal-stepper Linear="true">
     <md-step [stepControl]="firstFormGroup">
-        <form #inititalStep="ngForm" (ngSubmit)="onSubmit(initialStep)" [formGroup]="firstFormGroup">
+        <form #subleaseForm01="ngForm">
             <ng-template mdStepLabel>Fill out initial details</ng-template>
+            Owner: Dilip
+            <!-- {{diagnostic}} -->
             <md-grid-list cols="1" rowHeight="8:1">
                 <md-grid-tile>
-                        <md-form-field>
-                                <input mdInput placeHolder="Owner" value={{owner}} disabled>
-                            </md-form-field>
+                    <label for="title">Title</label>
+                    <md-form-field>
+                        <input mdInput type="text" id="accomodates1" placeHolder="accomodates" required [(ngModel)]="model.accomodates" name="accomodates"
+                            #name="ngModel"> TODO: remove this: {{model.accomodates}}
+                    </md-form-field>
+                    <br>
+                    <div [hidden]="name.valid || name.pristine">
+                        Name is required
+                    </div>
                 </md-grid-tile>
                 <md-grid-tile>
-                        <md-form-field>
-                                <input mdInput placeholder="where" autocorrect="on" autocapitalize="off" spellcheck="on" type="text" class="form-control"
-                                    #search [formControl]="searchControl">
-                            </md-form-field>
+                    <md-form-field>
+                        <input mdInput type="text" id="zipcode1" placeHolder="Zipcode" class="form-control" required [(ngModel)]="model.zipcode"
+                            name="zipcode">
+                    </md-form-field>
                 </md-grid-tile>
                 <md-grid-tile>
-                        <md-form-field>
-                                <input mdInput placeHolder="Zipcode">
-                            </md-form-field>
-                </md-grid-tile>
-                <md-grid-tile>
-                        <md-form-field>
-                                <textarea mdInput placeholder="Description"></textarea>
-                            </md-form-field>
+                    <md-form-field>
+                        <textarea mdInput type="text" id="description1" placeholder="Description" class="form-control" required [(ngModel)]="model.description"
+                            name="description">
+                            </textarea>
+                    </md-form-field>
                 </md-grid-tile>
             </md-grid-list>
+            <div>
+                <button md-raised-button color="warn" (click)="onSubmit()">Nextsdvsd</button>
+            </div>
             <div>
                 <button md-raised-button color="warn" mdStepperNext>Next</button>
             </div>
@@ -34,45 +42,45 @@
         <form [formGroup]="secondFormGroup">
             <ng-template mdStepLabel>Details regarding unit</ng-template>
             <md-grid-list cols="4" rowHeight=100px>
-                    <md-grid-tile>
-                            <md-radio-group>
-                                <md-radio-button value="1">
-                                    entire home
-                                </md-radio-button>
-                                <br>
-                                <md-radio-button value="2">
-                                    private room
-                                </md-radio-button>
-                                <br>
-                                <md-radio-button value="3">
-                                    shared room
-                                </md-radio-button>
-                            </md-radio-group>
-                        </md-grid-tile>
-                    <md-grid-tile>
-                            <md-slide-toggle>
-                                studio apartment?
-                            </md-slide-toggle>
-                        </md-grid-tile>
-                        <md-grid-tile>
+                <md-grid-tile>
+                    <md-radio-group>
+                        <md-radio-button value="1">
+                            entire home
+                        </md-radio-button>
+                        <br>
+                        <md-radio-button value="2">
+                            private room
+                        </md-radio-button>
+                        <br>
+                        <md-radio-button value="3">
+                            shared room
+                        </md-radio-button>
+                    </md-radio-group>
+                </md-grid-tile>
+                <md-grid-tile>
+                    <md-slide-toggle>
+                        studio apartment?
+                    </md-slide-toggle>
+                </md-grid-tile>
+                <md-grid-tile>
                     <md-slide-toggle>
                         private bathroom?
                     </md-slide-toggle>
                 </md-grid-tile>
                 <md-grid-tile>
-                        <md-slide-toggle>
-                            pet friendly?
-                        </md-slide-toggle>
-                    </md-grid-tile>
+                    <md-slide-toggle>
+                        pet friendly?
+                    </md-slide-toggle>
+                </md-grid-tile>
                 <md-grid-tile>
                     <md-select placeholder="accommodees">
-                         
+
                         <md-option *ngFor='let num of numArray'>
                             {{numArray[num - 1]}}
                         </md-option>
                     </md-select>
                 </md-grid-tile>
-               
+
                 <md-grid-tile>
                     <md-select placeholder="bathrooms">
                         <!-- <md-option>1</md-option>
@@ -81,12 +89,12 @@
                         <md-option>4</md-option> -->
 
                         <md-option *ngFor='let num of numArray'>
-                            {{numArray[num - 1]}}    
-                        </md-option>    
+                            {{numArray[num - 1]}}
+                        </md-option>
                     </md-select>
 
                 </md-grid-tile>
-                
+
                 <md-grid-tile>
                     <md-select placeholder="bedrooms">
                         <!-- <md-option>1</md-option>
@@ -94,11 +102,11 @@
                         <md-option>3</md-option>
                         <md-option>4</md-option> -->
                         <md-option *ngFor='let num of numArray'>
-                            {{numArray[num - 1]}}    
-                        </md-option>    
+                            {{numArray[num - 1]}}
+                        </md-option>
                     </md-select>
                 </md-grid-tile>
-                
+
                 <md-grid-tile>
 
                     <md-select placeholder="beds">
@@ -107,11 +115,12 @@
                         <md-option>3</md-option>
                         <md-option>4</md-option> -->
                         <md-option *ngFor='let num of numArray'>
-                            {{numArray[num - 1]}}    
-                        </md-option>    
+                            {{numArray[num - 1]}}
+                        </md-option>
                     </md-select>
                 </md-grid-tile>
             </md-grid-list>
+
             <div>
                 <button md-raised-button color="warn" mdStepperNext>Next</button>
             </div>
@@ -121,89 +130,132 @@
         <form [formGroup]="thirdFormGroup">
             <ng-template mdStepLabel>Amenities</ng-template>
             <md-grid-list cols="4" rowHeight=100px>
-                    <md-grid-tile>
-                         <md-slide-toggle>
+                <md-grid-tile>
+                    <md-slide-toggle>
                         Kitchen
                     </md-slide-toggle>
-                    </md-grid-tile>
-                    <md-grid-tile>
-                            <md-slide-toggle>
-                           Internet
-                       </md-slide-toggle>
-                       </md-grid-tile>
-                       <md-grid-tile>
-                            <md-slide-toggle>
-                           TV
-                       </md-slide-toggle>
-                       </md-grid-tile>
-                       <md-grid-tile>
-                            <md-slide-toggle>
-                           Heating
-                       </md-slide-toggle>
-                       </md-grid-tile>
-                       <md-grid-tile>
-                            <md-slide-toggle>
-                          Air conditioner
-                       </md-slide-toggle>
-                       </md-grid-tile>
-                       <md-grid-tile>
-                            <md-slide-toggle>
-                          Washer/Dryer
-                       </md-slide-toggle>
-                       </md-grid-tile>
-                       <md-grid-tile>
-                            <md-slide-toggle>
-                           Free parking on premises
-                       </md-slide-toggle>
-                       </md-grid-tile>
-                       <md-grid-tile>
-                            <md-slide-toggle>
-                           free parking on street
-                       </md-slide-toggle>
-                       </md-grid-tile>
-                       <md-grid-tile>
-                            <md-slide-toggle>
-                           wireless internet
-                       </md-slide-toggle>
-                       </md-grid-tile>
-                       <md-grid-tile>
-                            <md-slide-toggle>
-                           suitable for events
-                       </md-slide-toggle>
-                       </md-grid-tile>
-                       <md-grid-tile>
-                            <md-slide-toggle>
-                           smoking allowed
-                       </md-slide-toggle>
-                       </md-grid-tile>
-                       <md-grid-tile>
-                            <md-slide-toggle>
-                           wheelchair accessible
-                       </md-slide-toggle>
-                       </md-grid-tile>
-                       <md-grid-tile>
-                            <md-slide-toggle>
-                           elevator
-                       </md-slide-toggle>
-                       </md-grid-tile>
-                       <md-grid-tile>
-                            <md-slide-toggle>
-                           pool
-                       </md-slide-toggle>
-                       </md-grid-tile>
-                       <md-grid-tile>
-                            <md-slide-toggle>
-                           gym
-                       </md-slide-toggle>
-                       </md-grid-tile>
-                       <md-grid-tile>
-                            <md-slide-toggle>
-                           bathtub
-                       </md-slide-toggle>
-                       </md-grid-tile>
-                </md-grid-list>
+                </md-grid-tile>
+                <md-grid-tile>
+                    <md-slide-toggle>
+                        Internet
+                    </md-slide-toggle>
+                </md-grid-tile>
+                <md-grid-tile>
+                    <md-slide-toggle>
+                        TV
+                    </md-slide-toggle>
+                </md-grid-tile>
+                <md-grid-tile>
+                    <md-slide-toggle>
+                        Heating
+                    </md-slide-toggle>
+                </md-grid-tile>
+                <md-grid-tile>
+                    <md-slide-toggle>
+                        Air conditioner
+                    </md-slide-toggle>
+                </md-grid-tile>
+                <md-grid-tile>
+                    <md-slide-toggle>
+                        Washer/Dryer
+                    </md-slide-toggle>
+                </md-grid-tile>
+                <md-grid-tile>
+                    <md-slide-toggle>
+                        Free parking on premises
+                    </md-slide-toggle>
+                </md-grid-tile>
+                <md-grid-tile>
+                    <md-slide-toggle>
+                        free parking on street
+                    </md-slide-toggle>
+                </md-grid-tile>
+                <md-grid-tile>
+                    <md-slide-toggle>
+                        wireless internet
+                    </md-slide-toggle>
+                </md-grid-tile>
+                <md-grid-tile>
+                    <md-slide-toggle>
+                        suitable for events
+                    </md-slide-toggle>
+                </md-grid-tile>
+                <md-grid-tile>
+                    <md-slide-toggle>
+                        smoking allowed
+                    </md-slide-toggle>
+                </md-grid-tile>
+                <md-grid-tile>
+                    <md-slide-toggle>
+                        wheelchair accessible
+                    </md-slide-toggle>
+                </md-grid-tile>
+                <md-grid-tile>
+                    <md-slide-toggle>
+                        elevator
+                    </md-slide-toggle>
+                </md-grid-tile>
+                <md-grid-tile>
+                    <md-slide-toggle>
+                        pool
+                    </md-slide-toggle>
+                </md-grid-tile>
+                <md-grid-tile>
+                    <md-slide-toggle>
+                        gym
+                    </md-slide-toggle>
+                </md-grid-tile>
+                <md-grid-tile>
+                    <md-slide-toggle>
+                        bathtub
+                    </md-slide-toggle>
+                </md-grid-tile>
+            </md-grid-list>
             <div>
-                <button md-raised-button color="accent" >Submit</button>
+                <button md-raised-button color="accent">Submit</button>
+            </div>
+        </form>
+    </md-step>
+    <md-step [stepControl]="fourthFormGroup">
+        <form [formGroup]="fourthFormGroup">
+            <ng-template mdStepLabel>Fill out your name</ng-template>
+            <!-- <div class="datebox">
+                    <ng-datepicker [(ngModel)]="date"></ng-datepicker>
+                </div> -->
+            <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed">
+                <md-card fxFlex="65">
+                    <md-grid-list cols="1" rowHeight="200px">
+                        <md-grid-tile>
+                                <md-form-field>
+                                        <input mdInput [mdDatepicker]="picker" placeholder="Choose a date">
+                                        <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+                                        <md-datepicker #picker></md-datepicker>
+                                      </md-form-field>
+                            <!-- <md-datepicker #picker startView="year"></md-datepicker> -->
+                            <div>
+                                Date Chosen using 'ngModel':
+                                <div>{{ date }}</div>
+                            </div>
+
+                            <!-- <ng-datepicker [(ngModel)]="date"></ng-datepicker> -->
+                        </md-grid-tile>
+                        <md-grid-tile>
+                                Upload images of the property <br>
+                                <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+                            <button md-raised-button color="accent" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length"> 
+                                </button>
+
+                        </md-grid-tile>
+                    </md-grid-list>
+
+                </md-card>
+                <md-card fxFlex="30">
+                    <app-leafletmap></app-leafletmap>
+                </md-card>
+            </div>
+            <br>
+            <div>
+                <button md-raised-button color="warn" mdStepperNext>Next</button>
             </div>
         </form>
     </md-step>

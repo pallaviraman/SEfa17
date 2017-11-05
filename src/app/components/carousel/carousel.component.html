@@ -2,7 +2,7 @@
       <md-grid-tile *ngFor="let data of (myData ? myData.slice(0,10): []); let i = index" routerLink="/listing-detail" routerLinkActive="active">
         <button md-button>
         <md-card>
-            <img md-card-image src="http://174.64.102.57:3000/uploads/{{ data._source.images[0]}}">
+            <img md-card-image src="http://70.171.46.158:3000/uploads/{{ data._source.images[0]}}">
             <md-card-title>{{data._source.title}}</md-card-title>
           <md-card-content>
             ${{data._source.rent}}/month

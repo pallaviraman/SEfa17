@@ -9,3 +9,12 @@
 .form-container > * {
     width: 100%;
   }
+
+  .datepicker-container {
+  display: flex
+  }
+
+  .datebox {
+      width: 100px;
+      height: 1000px
+  }

@@ -1,8 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
+import { BasicDetails } from './subleaseForm01';
+import { DatepickerOptions } from 'ng2-datepicker';
+import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
+
+const URL = 'http://localhost:8000/api/upload';
 
 @Component({
   selector: 'app-add-sublease-form',
@@ -11,8 +16,24 @@ import { MapsAPILoader } from '@agm/core';
 })
 
 export class AddSubleaseFormComponent implements OnInit {
-  owner: string = 'Dilip Kunderu';
   numArray: Array<number> = [1, 2, 3, 4, 5];
+  public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
+
+  date: Date;
+
+  submitted: boolean = false;
+
+  // options: DatepickerOptions = {
+  //   minYear: 1970,
+  //   maxYear: 2030,
+  //   displayFormat: 'MMM D[,] YYYY',
+  //   barTitleFormat: 'MMMM YYYY',
+  //   firstCalendarDay: 1, // 0 - Sunday, 1 - Monday
+  // };
+
+  model = new BasicDetails('abc', '342342354', 'ikabefoiuiuhoawefd oihoef oihwdoa wsfdo i', 'abc', 'fef,efwef', '342342354',
+    'ikabefoiuiuhoawefd oihoef oihwdoa wsfdo i', 'edfsef', 'dfsf', true, true, true, true, true, true,
+    true, true, true, true, true, true, true, true, true, true, true);
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -28,9 +49,16 @@ export class AddSubleaseFormComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder,
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone) { }
+    private ngZone: NgZone) {
+  }
 
   ngOnInit() {
+    this.date = new Date();
+
+    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+      console.log('ImageUpload:uploaded:', item, status, response);
+    };
     this.searchControl = new FormControl();
 
     this.mapsAPILoader.load().then(() => {
@@ -69,7 +97,17 @@ export class AddSubleaseFormComponent implements OnInit {
     });
   }
 
-  onSubmit(form: NgForm) {
-    console.log('Form submitted');
+  onDateInput() {
+    console.log(this.date);
+   }
+  onDateChange() { }
+
+  onSubmit() {
+    this.submitted = true;
+    console.log(JSON.stringify(this.model));
+    // this.model = new BasicDetails(this.title1, this.location1, this.zipcode1, this.description1);
   }
+  // TODO: Remove this when we're done
+
+  get diagnostic() { return JSON.stringify(this.model); }
 }

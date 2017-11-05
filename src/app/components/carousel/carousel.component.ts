@@ -18,14 +18,14 @@ export class CarouselComponent implements OnInit {
   // uri: number = 0;
 
   constructor(private http: HttpClient) {
-    this.http.get('http://174.64.102.57:3000/leasemetadata')
+    this.http.get('http://70.171.46.158:3000/leasemetadata')
     .subscribe(res => {
       this.res = res;
       [].push.apply(this.myData, res);
     });
 
     setInterval((): void => {
-      this.imgUrl = 'http://174.64.102.57:3000/uploads/' + this.extractURL(this.myData[this.urlCounter]);
+      this.imgUrl = 'http://70.171.46.158:3000/uploads/' + this.extractURL(this.myData[this.urlCounter]);
       this.urlCounter++;
       this.urlCounter %= 10;
       console.log(this.urlCounter);
