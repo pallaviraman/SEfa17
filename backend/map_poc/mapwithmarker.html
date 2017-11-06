@@ -1,0 +1,47 @@
+<html>
+    <head>
+            <script
+            src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous"></script>
+            <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+              <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+              <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+
+    </head>
+    <body>
+            <div id='map' style="width:600px;height:400px"></div>
+            <script>
+
+                $.ajax({
+                url: "http://localhost:3000/leasemetadata",
+                success: function(data) {
+                    var loc = new Array(data.length);
+                    for(var i=0; i< data.length; i++) {
+                        loc[i] = new Array(3);
+                        loc[i][0] = data[i]._source.title;
+                        loc[i][1] = parseInt(data[i]._source.geolocation.lat);
+                        loc[i][2] = parseInt(data[i]._source.geolocation.lon);
+                    }
+                    console.log(loc);
+                    var map = L.map('map').setView([loc[0][1], loc[0][2]], 8);
+                    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+                        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+                        maxZoom: 18,
+                        id: 'mapbox.streets',
+                        accessToken: 'pk.eyJ1Ijoic3NhcHRhcnNoaWkiLCJhIjoiY2o3YXJwc3pxMGp6bzM4cW1sNW5pNnhubyJ9.zVADk5EX8oUPgHifY2C2EA'
+                    }).addTo(map);
+                        
+                    for (var i = 0; i < loc.length; i++) {
+                        marker = new L.marker([loc[i][1],loc[i][2]])
+                            .bindPopup(loc[i][0]).addTo(map);
+                    }
+                },
+                error: function() {
+                    console.log("Error");
+                }
+                });
+
+                
+            </script>
+    </body>
+</html>    
