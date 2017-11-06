@@ -36,6 +36,7 @@ router.post("/add", function (req, res) {
 
 
 router.post('/leasemetadata', upload.any(), function (req, res, next) {
+    console.log(req.body.rent);
     var imageFiles = [];
     for (var i = 0; i < req.files.length; i++) {
         var sampleFile = req.files[i].filename;

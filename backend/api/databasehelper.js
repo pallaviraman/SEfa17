@@ -49,26 +49,6 @@ function createdb() {
 }
 
 
-// this creates the indexing for geo location points in the DB programmatically. 
-// Need to integrate this with the main code 
-function createGeoLocationMapping() {
-    elasticclient.indices.putMapping({  
-        index: 'housing',
-        type: 'lease',
-        body: {
-          properties: {
-            "geolocation": {
-              "type": "geo_point",
-            }
-          }
-        }
-      }, (err, resp, status) => {
-          if (err) throw err;
-          console.log(resp);
-      });
-}
-
-
 var dbMetadataInsert = function(req, res, imageFileNames, callback) {
     var uuid = new ObjectId();
     elasticclient.index({
@@ -176,9 +156,6 @@ var dbLeaseMetadataGet = function(req, res, callback) {
         index:'housing',
         type : 'leasemetadata'
     },	function(err,resp, status) {
-		if(err) {
-			console.log("Unable to obtain the database"+ err);
-		}
 		callback(err,resp);
 	});  
 }
@@ -189,9 +166,6 @@ var dbget = function(req, res, callback) {
         index:'housing',
         type : 'lease'
     },	function(err,resp, status) {
-		if(err) {
-			console.log("Unable to obtain the database"+ err);
-		}
 		callback(err,resp);
 	});   
 }
@@ -203,9 +177,6 @@ var dbget_id = function(input_id, res, callback) {
 		type: 'lease',
 		id: input_id
     },	function(err,resp, status) {
-		if(err) {
-			console.log("Unable to obtain the database");
-		}
 		callback(err,resp);
 	});   
 }
@@ -235,13 +206,9 @@ var dbgetgeo = function(latval, lonval, res, callback) {
     jsonData.query.bool.filter.geo_distance.geolocation.lon=lonval;
     //console.log(jsonData.query.bool.filter.geo_distance.distance);
       rest.postJson('http://localhost:9200/housing/leasemetadata/_search?pretty', jsonData).
-      on('success', function(data, response) {
-        callback(data, response);
-      }).
-      on('fail', function(data, response) {
+      on('complete', function(data, response) {
         callback(data, response);
       });
-
 }
 
 var dbGetBetweenDates = function(min, max, res, callback) {
@@ -273,11 +240,8 @@ var dbGetBetweenDates = function(min, max, res, callback) {
     jsonData.query.bool.must[1].range.enddate.lte = max;
     //console.log(jsonData.query.bool.filter.geo_distance.distance);
     rest.postJson('http://localhost:9200/housing/leasemetadata/_search?pretty', jsonData).
-    on('success', function(data, response) {
-      callback(data, response);
-    }).
-    on('fail', function(data, response) {
-      callback(data, response);
+    on('complete', function(data, response) {
+        callback(data, response);
     });
 
 }
@@ -304,14 +268,9 @@ var dbGetBetweenPrice = function(min, max, res, callback) {
     jsonData.query.bool.must[0].range.rent.lte = max;
 
     rest.postJson('http://localhost:9200/housing/leasemetadata/_search?pretty', jsonData).
-    on('success', function(data, response) {
-      callback(data, response);
-    }).
-    on('fail', function(data, response) {
-      callback(data, response);
+    on('complete', function(data, response) {
+        callback(data, response);
     });
-
-
 }
 
 /**
@@ -331,10 +290,9 @@ var dbgetMulFilter = function(req, res, callback) {
         }
     }
 
-    rest.postJson('http://localhost:9200/housing/lease/_search?pretty', jsonData).on('success', function(data, response) {
-      callback(data, response);
-    }).on('fail', function(data, response) {
-      callback(data, response);
+    rest.postJson('http://localhost:9200/housing/lease/_search?pretty', jsonData).
+    on('complete', function(data, response) {
+        callback(data, response);
     });
 }
 
