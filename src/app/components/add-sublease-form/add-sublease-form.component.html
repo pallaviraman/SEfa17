@@ -31,9 +31,6 @@
                 </md-grid-tile>
             </md-grid-list>
             <div>
-                <button md-raised-button color="warn" (click)="onSubmit()">Nextsdvsd</button>
-            </div>
-            <div>
                 <button md-raised-button color="warn" mdStepperNext>Next</button>
             </div>
         </form>
@@ -213,7 +210,7 @@
                 </md-grid-tile>
             </md-grid-list>
             <div>
-                <button md-raised-button color="accent">Submit</button>
+                <button md-raised-button color="warn" mdStepperNext>Next</button>
             </div>
         </form>
     </md-step>
@@ -228,12 +225,13 @@
                     <md-grid-list cols="1" rowHeight="200px">
                         <md-grid-tile>
                                 <md-form-field>
-                                        <input mdInput [mdDatepicker]="picker1" placeholder="Choose a start date" ngModel name="date">
+                                        <input mdInput [mdDatepicker]="picker1" placeholder="Choose a start date">
                                         <md-datepicker-toggle mdSuffix [for]="picker1"></md-datepicker-toggle>
                                         <md-datepicker #picker1></md-datepicker>
                                       </md-form-field>
+
                                       <md-form-field>
-                                            <input mdInput [mdDatepicker]="picker" placeholder="Choose an end date" ngModel name="date">
+                                            <input mdInput [mdDatepicker]="picker" placeholder="Choose an end date">
                                             <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
                                             <md-datepicker #picker></md-datepicker>
                                           </md-form-field>
@@ -261,7 +259,7 @@
             </div>
             <br>
             <div>
-                <button md-raised-button color="warn" mdStepperNext>Next</button>
+                <button md-raised-button color="accent" routerLink="/" routerLinkActive="active" (click)="onSubmit()">Submit</button>
             </div>
         </form>
     </md-step>

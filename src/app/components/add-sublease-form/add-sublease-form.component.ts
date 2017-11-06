@@ -6,7 +6,7 @@ import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { HttpClient } from '@angular/common/http';
 
 
-const URL = 'http://70.171.46.158:3000/leasemetadata';
+const URL = 'http://174.64.102.57:3000/leasemetadata';
 
 @Component({
   selector: 'app-add-sublease-form',
@@ -139,11 +139,11 @@ export class AddSubleaseFormComponent implements OnInit {
     interface ResponseInterface {
       _id: string;
      }
-    const req = this.http.post<ResponseInterface>('http://70.171.46.158:3000/add', this.model)
+    const req = this.http.post<ResponseInterface>('http://174.64.102.57:3000/add', this.model)
     .subscribe(
       res => {
         console.log(res);
-        this.http.get('http://70.171.46.158:3000').subscribe(
+        this.http.get('http://174.64.102.57:3000').subscribe(
           res1 => {
             console.log(res1);
           },

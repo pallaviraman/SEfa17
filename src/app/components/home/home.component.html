@@ -42,6 +42,7 @@
           <div fxFlex="40">
             Price range: <br>
               <nouislider [connect]="true" [min]="0" [max]="15" [step]="1" [(ngModel)]="someRange" (ngModelChange)="onChange($event)"></nouislider>
+              
           </div>
           <div fxFlex="30">
               <button md-button [mdMenuTriggerFor]="menu3">Advanced</button>
