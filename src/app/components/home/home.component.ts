@@ -16,6 +16,17 @@ import { MapsAPILoader } from '@agm/core';
 export class HomeComponent implements OnInit {
   header: string = 'Gator Housing';
 
+  favoriteSeason: string;
+
+    seasons = [
+      'Winter',
+      'Spring',
+      'Summer',
+      'Autumn',
+    ];
+
+    someRange: number[] = [100, 1000];
+
   public latitude: number;
   public longitude: number;
   public zoom: number;
@@ -71,6 +82,11 @@ export class HomeComponent implements OnInit {
     // openDialog() {
     //   this.dialog.open(SelectorComponent);
     // }
+
+
+    onChange(e: Event) {
+      console.log('slider event');
+    }
 
     private setCurrentPosition() {
       if ('geolocation' in navigator) {

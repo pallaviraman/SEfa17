@@ -15,6 +15,9 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 
 import {AppComponent} from './app.component';
 
+// import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { NouisliderModule } from 'ng2-nouislider';
+
 import { NgDatepickerModule } from 'ng2-datepicker';
 import { FileSelectDirective } from 'ng2-file-upload';
 
@@ -63,6 +66,8 @@ import { LeafletmapComponent } from './components/leafletmap/leafletmap.componen
     FlexLayoutModule,
     BrowserAnimationsModule,
     NgDatepickerModule,
+    NouisliderModule,
+    // LeafletModule.forRoot(),
     routes
   ],
   providers: [

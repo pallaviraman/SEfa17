@@ -11,15 +11,77 @@
   </div>
   <div class="z-depth-5">
   <md-form-field>
-      <input mdInput placeholder="when" [mdDatepicker]="picker" placeholder="Choose a date">
-      <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
-      <md-datepicker #picker></md-datepicker>
+      <input mdInput placeholder="start" [mdDatepicker]="picker1">
+      <md-datepicker-toggle mdSuffix [for]="picker1"></md-datepicker-toggle>
+      <md-datepicker #picker1></md-datepicker>
     </md-form-field>
   </div>
-  <button md-raised-button color="accent">LOGISTICS</button>
+  <div class="z-depth-5">
+      <md-form-field>
+          <input mdInput placeholder="end" [mdDatepicker]="picker">
+          <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+          <md-datepicker #picker></md-datepicker>
+        </md-form-field>
+      </div>
   <span fxFlex></span>
 </md-toolbar>
 <!-- map -->
+<div fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed" height="100px">
+  <div fxFlex="70">
+      <div fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed">
+          <div fxFlex="30">
+              <button md-button [mdMenuTriggerFor]="menu1">Menu</button>
+              <md-menu #menu1="mdMenu">
+                  <md-radio-group class="example-radio-group" [(ngModel)]="favoriteSeason">
+                      <md-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+                      {{season}}  
+                      </md-radio-button>  
+                      </md-radio-group>
+              </md-menu>
+          </div>
+          <div fxFlex="40">
+            Price range: <br>
+              <nouislider [connect]="true" [min]="0" [max]="15" [step]="1" [(ngModel)]="someRange" (ngModelChange)="onChange($event)"></nouislider>
+          </div>
+          <div fxFlex="30">
+              <button md-button [mdMenuTriggerFor]="menu3">Advanced</button>
+              <md-menu #menu3="mdMenu">
+                  More filters to come
+              </md-menu>
+          </div>
+        </div>
+  </div>
+</div>
+
+<!-- <md-grid-list cols="6" rowHeight="2:1">
+    <md-grid-tile colspan='1'>
+      <button md-button [mdMenuTriggerFor]="menu1">Menu</button>
+      <md-menu #menu1="mdMenu">
+          <md-radio-group class="example-radio-group" [(ngModel)]="favoriteSeason">
+              <md-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+              {{season}}  
+              </md-radio-button>  
+              </md-radio-group>
+      </md-menu>
+      
+    </md-grid-tile>
+    <md-grid-tile colspan='4'>
+       <md-expansion-panel>
+         <md-expansion-panel-header>
+           <md-panel-title>ABCDE</md-panel-title>
+           <md-panel-description>range slider choose</md-panel-description>
+           <nouislider [connect]="true" [min]="0" [max]="15" [step]="1" [(ngModel)]="someRange" (ngModelChange)="onChange($event)"></nouislider>
+          </md-expansion-panel-header>
+       </md-expansion-panel>
+    </md-grid-tile>
+    <md-grid-tile colspan='1'>
+        <button md-button [mdMenuTriggerFor]="menu3">Advanced</button>
+        <md-menu #menu3="mdMenu">
+            More filters to come
+        </md-menu>
+    </md-grid-tile>
+  </md-grid-list> -->
+ 
 <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed">
 <md-card fxFlex="70">
   <app-carousel></app-carousel>

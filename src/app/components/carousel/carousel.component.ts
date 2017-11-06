@@ -24,43 +24,43 @@ export class CarouselComponent implements OnInit {
       [].push.apply(this.myData, res);
     });
 
-    setInterval((): void => {
-      this.imgUrl = 'http://70.171.46.158:3000/uploads/' + this.extractURL(this.myData[this.urlCounter]);
-      this.urlCounter++;
-      this.urlCounter %= 10;
-      console.log(this.urlCounter);
-      console.log(this.imgUrl);
-    }, 3000);
+    // setInterval((): void => {
+    //   this.imgUrl = 'http://70.171.46.158:3000/uploads/' + this.extractURL(this.myData[this.urlCounter]);
+    //   this.urlCounter++;
+    //   this.urlCounter %= 10;
+    //   console.log(this.urlCounter);
+    //   console.log(this.imgUrl);
+    // }, 3000);
    }
 
-   extractURL(x: object): string {
-    const s: string = JSON.stringify(x);
+  //  extractURL(x: object): string {
+  //   const s: string = JSON.stringify(x);
 
-    interface MyObj {
-      _index: string;
-      _type: string;
-      _id: string;
-      _score: number;
-      _source: {
-        searchid: number;
-        title: string;
-        rent: string;
-        geolocation: {
-          lat: number;
-          long: number;
-        };
-        images: Array<string>;
-      };
-      // albumId: number;
-      // id: number;
-      // title: string;
-      // url: string;
-      // thumbnailUrl: string;
-    }
+  //   interface MyObj {
+  //     _index: string;
+  //     _type: string;
+  //     _id: string;
+  //     _score: number;
+  //     _source: {
+  //       searchid: number;
+  //       title: string;
+  //       rent: string;
+  //       geolocation: {
+  //         lat: number;
+  //         long: number;
+  //       };
+  //       images: Array<string>;
+  //     };
+  //     // albumId: number;
+  //     // id: number;
+  //     // title: string;
+  //     // url: string;
+  //     // thumbnailUrl: string;
+  //   }
 
-    const obj: MyObj = JSON.parse(s);
-    return obj._source.images[0];
-  }
+  //   const obj: MyObj = JSON.parse(s);
+  //   return obj._source.images[0];
+  // }
 
   ngOnInit() {
   }

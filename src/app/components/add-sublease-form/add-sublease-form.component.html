@@ -134,6 +134,7 @@
                     <md-slide-toggle>
                         Kitchen
                     </md-slide-toggle>
+                   this binding : {{model.kitchen}}
                 </md-grid-tile>
                 <md-grid-tile>
                     <md-slide-toggle>
@@ -227,23 +228,28 @@
                     <md-grid-list cols="1" rowHeight="200px">
                         <md-grid-tile>
                                 <md-form-field>
-                                        <input mdInput [mdDatepicker]="picker" placeholder="Choose a date">
-                                        <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
-                                        <md-datepicker #picker></md-datepicker>
+                                        <input mdInput [mdDatepicker]="picker1" placeholder="Choose a start date" ngModel name="date">
+                                        <md-datepicker-toggle mdSuffix [for]="picker1"></md-datepicker-toggle>
+                                        <md-datepicker #picker1></md-datepicker>
                                       </md-form-field>
+                                      <md-form-field>
+                                            <input mdInput [mdDatepicker]="picker" placeholder="Choose an end date" ngModel name="date">
+                                            <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+                                            <md-datepicker #picker></md-datepicker>
+                                          </md-form-field>
                             <!-- <md-datepicker #picker startView="year"></md-datepicker> -->
-                            <div>
+                            <!-- <div>
                                 Date Chosen using 'ngModel':
                                 <div>{{ date }}</div>
-                            </div>
+                            </div> -->
 
                             <!-- <ng-datepicker [(ngModel)]="date"></ng-datepicker> -->
                         </md-grid-tile>
                         <md-grid-tile>
-                                Upload images of the property <br>
-                                <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
-                            <button md-raised-button color="accent" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length"> 
-                                </button>
+                            <input id="cin" name="cin" type="file" (change)="fileChangeEvent($event)" placeholder="Upload a file..." multiple/>
+                            <button md-raised-button color="accent" (click)="upload()">
+                                <i class="glyphicon glyphicon-open-file"></i>&nbsp;Upload
+                            </button>
 
                         </md-grid-tile>
                     </md-grid-list>
