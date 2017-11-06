@@ -1,3 +1,4 @@
+import { FormPage } from './form.po';
 import { AppPage } from './app.po';
 import {HelpPage} from './help.po'
 import {HomePage} from './home.po';
@@ -8,12 +9,14 @@ describe('course-project App', () => {
   let helppage: HelpPage;
   let apppage: AppPage;
   let listpage: ListPage;
+  let formpage: FormPage;
 
   beforeEach(() => {
     homepage = new HomePage();
     helppage = new HelpPage();
     apppage = new AppPage();
     listpage = new ListPage();
+    formpage =  new FormPage();
   });
 
   // it('should display welcome message', () => {
@@ -30,12 +33,14 @@ describe('course-project App', () => {
     apppage.getNavigation().then(function(){
       expect(helppage.navigateTo);
     })
-  })
+  });
 
   it('navigated to Listing from carousel', () => {
     homepage.navigateTo();
     homepage.carouselElement().click().then(function(){
         expect(listpage.navigateTo);
     })
-  })
+  });
+
+  it ('navigated to ')
 });

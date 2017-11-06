@@ -13,6 +13,7 @@ import {
   MatSlideToggleModule,
   MatDatepickerModule,
   MatInputModule,
+  MdInputModule,
   MatNativeDateModule,
   MatChipsModule,
   MatExpansionModule,
@@ -42,7 +43,8 @@ import {
     MatGridListModule,
     MatFormFieldModule,
     MatStepperModule,
-    MatRadioModule
+    MatRadioModule,
+    MdInputModule
   ],
   exports: [
     CompatibilityModule,
@@ -63,6 +65,7 @@ import {
     MatGridListModule,
     MatFormFieldModule,
     MatStepperModule,
+    MdInputModule,
     MatRadioModule
   ]
 })

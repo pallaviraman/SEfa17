@@ -18,6 +18,16 @@ export class AddSubleaseFormComponent implements OnInit {
   numArray: Array<number> = [1, 2, 3, 4, 5];
   filesToUpload: Array<File> = [];
 
+  selectedValue: string;
+
+    numArray1 = [
+      {value: 'option-1', viewValue: '1'},
+      {value: 'option-2', viewValue: '2'},
+      {value: 'option-3', viewValue: '3'},
+      {value: 'option-4', viewValue: '4'},
+      {value: 'option-5', viewValue: '5'},
+    ];
+
   public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
 
   date: Date  = new Date();

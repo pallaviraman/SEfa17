@@ -7,7 +7,7 @@ export class AppPage {
 
 
   getNavigation() {
-    var helpTab = element(by.id('help'));
+    const helpTab = element(by.id('help'));
     return helpTab.click();
   }
 }

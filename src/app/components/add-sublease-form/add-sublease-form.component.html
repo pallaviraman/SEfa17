@@ -36,7 +36,7 @@
         </form>
     </md-step>
     <md-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup">
+        <form>
             <ng-template mdStepLabel>Details regarding unit</ng-template>
             <md-grid-list cols="4" rowHeight=100px>
                 <md-grid-tile>
@@ -70,51 +70,38 @@
                     </md-slide-toggle>
                 </md-grid-tile>
                 <md-grid-tile>
-                    <md-select placeholder="accommodees">
-
-                        <md-option *ngFor='let num of numArray'>
-                            {{numArray[num - 1]}}
-                        </md-option>
-                    </md-select>
+                    
+                            <md-select placeholder="accommodees" [(ngModel)]="selectedValue" name="count">          
+                                 <md-option *ngFor='let count of numArray1' [value]="count.value">
+                                    {{count.viewValue}}
+                                </md-option>
+                            </md-select>
                 </md-grid-tile>
 
                 <md-grid-tile>
-                    <md-select placeholder="bathrooms">
-                        <!-- <md-option>1</md-option>
-                        <md-option>2</md-option>
-                        <md-option>3</md-option>
-                        <md-option>4</md-option> -->
-
-                        <md-option *ngFor='let num of numArray'>
-                            {{numArray[num - 1]}}
-                        </md-option>
-                    </md-select>
+                        <md-select placeholder="bedrooms" [(ngModel)]="selectedValue" name="count">          
+                                <md-option *ngFor='let count of numArray1' [value]="count.value">
+                                   {{count.viewValue}}
+                               </md-option>
+                           </md-select>
 
                 </md-grid-tile>
 
                 <md-grid-tile>
-                    <md-select placeholder="bedrooms">
-                        <!-- <md-option>1</md-option>
-                        <md-option>2</md-option>
-                        <md-option>3</md-option>
-                        <md-option>4</md-option> -->
-                        <md-option *ngFor='let num of numArray'>
-                            {{numArray[num - 1]}}
-                        </md-option>
-                    </md-select>
+                        <md-select placeholder="bathrooms" [(ngModel)]="selectedValue" name="count">          
+                                <md-option *ngFor='let count of numArray1' [value]="count.value">
+                                   {{count.viewValue}}
+                               </md-option>
+                           </md-select>
                 </md-grid-tile>
 
                 <md-grid-tile>
 
-                    <md-select placeholder="beds">
-                        <!-- <md-option>1</md-option>
-                        <md-option>2</md-option>
-                        <md-option>3</md-option>
-                        <md-option>4</md-option> -->
-                        <md-option *ngFor='let num of numArray'>
-                            {{numArray[num - 1]}}
-                        </md-option>
-                    </md-select>
+                        <md-select placeholder="beds" [(ngModel)]="selectedValue" name="count">          
+                                <md-option *ngFor='let count of numArray1' [value]="count.value">
+                                   {{count.viewValue}}
+                               </md-option>
+                           </md-select>
                 </md-grid-tile>
             </md-grid-list>
 
