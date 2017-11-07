@@ -11,14 +11,14 @@
   </div>
   <div class="z-depth-5">
   <md-form-field>
-      <input mdInput placeholder="start" [mdDatepicker]="picker1">
+      <input mdInput placeholder="start" [mdDatepicker]="picker1" class="start_date">
       <md-datepicker-toggle mdSuffix [for]="picker1"></md-datepicker-toggle>
       <md-datepicker #picker1></md-datepicker>
     </md-form-field>
   </div>
   <div class="z-depth-5">
       <md-form-field>
-          <input mdInput placeholder="end" [mdDatepicker]="picker">
+          <input mdInput placeholder="end" [mdDatepicker]="picker" class="end_date">
           <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
           <md-datepicker #picker></md-datepicker>
         </md-form-field>
@@ -42,7 +42,7 @@
           <div fxFlex="40">
             Price range: <br>
               <nouislider [connect]="true" [min]="0" [max]="15" [step]="1" [(ngModel)]="someRange" (ngModelChange)="onChange($event)"></nouislider>
-              
+
           </div>
           <div fxFlex="30">
               <button md-button [mdMenuTriggerFor]="menu3">Advanced</button>
@@ -85,7 +85,7 @@
  
 <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed">
 <md-card fxFlex="70">
-  <app-carousel></app-carousel>
+  <app-carousel id='listClick'></app-carousel>
 </md-card>
 <!-- <md-card class="z-depth-5" fxFlex="40">
     <app-agm-map></app-agm-map>

@@ -14,4 +14,12 @@ export class HomePage {
   carouselElement() {
       return element(by.id('listClick'));
   }
+
+  postPlace() {
+    return element(by.className('form-control'));
+  }
+
+  clickStartDate() {
+    return element(by.className('start_date'));
+  }
 }

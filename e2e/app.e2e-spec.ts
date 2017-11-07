@@ -3,6 +3,7 @@ import { AppPage } from './app.po';
 import {HelpPage} from './help.po'
 import {HomePage} from './home.po';
 import {ListPage} from './list.po';
+import {browser, element, by, Key, ExpectedConditions} from 'protractor';
 
 describe('course-project App', () => {
   let homepage: HomePage;
@@ -17,12 +18,13 @@ describe('course-project App', () => {
     apppage = new AppPage();
     listpage = new ListPage();
     formpage =  new FormPage();
+    browser.get('slide-toggle');
   });
 
-  // it('should display welcome message', () => {
-  //   homepage.navigateTo();
-  //   expect(homepage.getParagraphText()).toEqual('Gator Housing');
-  // });
+  it('should display welcome message', () => {
+    homepage.navigateTo();
+    expect(homepage.getParagraphText()).toEqual('Gator Housing');
+  });
 
   it('Logo displayed', () => {
     homepage.navigateTo();
@@ -38,9 +40,47 @@ describe('course-project App', () => {
   it('navigated to Listing from carousel', () => {
     homepage.navigateTo();
     homepage.carouselElement().click().then(function(){
-        expect(listpage.navigateTo);
+        expect(listpage.navigateTo());
     })
   });
 
-  it ('navigated to ')
+  it ('should show place in places', () => {
+    homepage.navigateTo();
+    const input1 = homepage.postPlace();
+    input1.click();
+    input1.sendKeys('Gainesville');
+    const input2 = homepage.clickStartDate();
+    input2.click();
+    browser.sleep(5000);
+  });
+
+  it ('should go to form and write', () => {
+    formpage.navigateTo();
+    let input3 = formpage.postAccommodees();
+    input3.sendKeys('I am working yay!!');
+    input3 = formpage.postZipcode();
+    input3.sendKeys('32608');
+    input3 = formpage.postDescription();
+    input3.sendKeys('Good morning class. I am Dilip Kunderu speaking and struggling with e2e testing :)');
+    browser.sleep(5000);
+  });
+
+
+  it('should go to step 2 of stepper', () => {
+    homepage.navigateTo();
+    formpage.navigateTo();
+    const input = formpage.stepperNext1();
+    input.click();
+    const input1 = formpage.flipStudio();
+    input1.click();
+    browser.sleep(5000);
+  });
+
+  // it('should select an option', () => {
+  //   formpage.navigateTo();
+  //   const input = formpage.stepperNext1();
+  //   input.click();
+  //   element(by.id('radiogrp1')).all(by.tagName('md-radio-button')).get(0).click();
+  //   browser.sleep(5000);
+  // });
 });
