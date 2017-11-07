@@ -1,5 +1,5 @@
     <md-grid-list cols="2" rowHeight="1:1">
-      <md-grid-tile *ngFor="let data of (myData ? myData.slice(0,10): []); let i = index" routerLink="/listing-detail" routerLinkActive="active">
+      <md-grid-tile *ngFor="let data of (data.listingArray ? data.listingArray.slice(0,10): []); let i = index" routerLink="/listing-detail" routerLinkActive="active">
         <button md-button>
         <md-card>
             <img md-card-image src="http://174.64.102.57:3000/uploads/{{ data._source.images[0]}}">

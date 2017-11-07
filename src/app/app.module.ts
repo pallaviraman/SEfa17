@@ -1,3 +1,4 @@
+import { HouseListingService } from './house-listing.service';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule, LOCALE_ID, NO_ERRORS_SCHEMA} from '@angular/core';
 import {
@@ -72,6 +73,7 @@ import { LeafletmapComponent } from './components/leafletmap/leafletmap.componen
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'en-US'},
+    HouseListingService
   ],
   entryComponents: [],
   bootstrap: [AppComponent]

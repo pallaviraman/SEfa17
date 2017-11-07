@@ -1,3 +1,4 @@
+import { HouseListingService } from './../../house-listing.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -10,19 +11,22 @@ import { HttpClient } from '@angular/common/http';
 export class CarouselComponent implements OnInit {
   myData: Array<any> = [];
 
-  myDataURL: Array<string> = [];
-  urlCounter: number = 0;
+  // myDataURL: Array<string> = [];
+  // urlCounter: number = 0;
 
   res: Object;
-  imgUrl: string = 'https://source.unsplash.com/random/800x600';
+  // imgUrl: string = 'https://source.unsplash.com/random/800x600';
   // uri: number = 0;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private data: HouseListingService) {
+    data.listingArray.length = 0;
     this.http.get('http://174.64.102.57:3000/leasemetadata/')
     .subscribe(res => {
       this.res = res;
-      [].push.apply(this.myData, res);
+      [].push.apply(data.listingArray, res);
     });
+
+    console.log(data.listingArray);
 
     // setInterval((): void => {
     //   this.imgUrl = 'http://70.171.46.158:3000/uploads/' + this.extractURL(this.myData[this.urlCounter]);

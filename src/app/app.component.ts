@@ -17,8 +17,8 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class AppComponent implements OnInit {
-  testData: Array<any> = [];
-  testObj: Object;
+  // testData: Array<any> = [];
+  // testObj: Object;
 
   constructor(
     iconRegistry: MatIconRegistry,
@@ -29,12 +29,12 @@ export class AppComponent implements OnInit {
     // To avoid XSS attacks, the URL needs to be trusted from inside of your application.
       iconRegistry.addSvgIcon( 'logo',
       sanitizer.bypassSecurityTrustResourceUrl('./assets/logo.svg'));
-      this.http.get('https://jsonplaceholder.typicode.com/posts/1')
-      .subscribe(res => {
-        this.testObj = res;
-        [].push.apply(this.testData, res);
-        console.log(res);
-      });
+      // this.http.get('https://jsonplaceholder.typicode.com/posts/1')
+      // .subscribe(res => {
+      //   this.testObj = res;
+      //   [].push.apply(this.testData, res);
+      //   console.log(res);
+      // });
 
       // console.log(this.testData);
 

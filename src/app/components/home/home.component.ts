@@ -1,9 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit,  ElementRef, NgZone, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { FormControl } from '@angular/forms';
 
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
+
+import { HouseListingService } from './../../house-listing.service';
 
 // import { SelectorComponent } from '../selector/selector.component';
 
@@ -14,6 +17,7 @@ import { MapsAPILoader } from '@agm/core';
 })
 
 export class HomeComponent implements OnInit {
+  res: Object;
   header: string = 'Gator Housing';
 
   startDate: Date = new Date();
@@ -41,7 +45,9 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private data: HouseListingService,
+    private http: HttpClient
     // private dialog: MatDialog
   ) { }
 
@@ -88,19 +94,35 @@ export class HomeComponent implements OnInit {
 
 
     onChange(e: Event) {
-      console.log(this.someRange);
+      // console.log(this.someRange);
     }
 
-    onRange() {
-      console.log(this.someRange + 'hi');
-      
+    onRangeApply() {
+      this.data.listingArray.length = 0;
+      this.http.get('http://174.64.102.57:3000/price?min=' + this.someRange[0] + '&max=' + this.someRange[1] + '/')
+      .subscribe(res => {
+        this.res = res;
+        console.log(res);
+        [].push.apply(this.data.listingArray, res);
+      });
+      // console.log(this.someRange);
+
     }
 
     onStartDateChange () {
     }
 
     onEndDateChange () {
-      console.log(this.startDate + ' ' + this.endDate);
+      this.data.listingArray.length = 0;
+      this.http.get('http://174.64.102.57:3000/date?min='
+      + this.startDate.getFullYear() + '-' + (this.startDate.getMonth() + 1)
+       + '&max=' + this.endDate.getFullYear() + '-' + (this.endDate.getMonth() + 1))
+      .subscribe(res => {
+        this.res = res;
+        console.log(res);
+        [].push.apply(this.data.listingArray, res);
+      });
+      // console.log(this.startDate.getMonth() + ' ' + this.endDate.getMonth());
     }
 
     private setCurrentPosition() {
