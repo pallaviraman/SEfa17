@@ -10,15 +10,17 @@
     
   </div>
   <div class="z-depth-5">
+
   <md-form-field>
-      <input mdInput placeholder="start" [mdDatepicker]="picker1" class="start_date">
-      <md-datepicker-toggle mdSuffix [for]="picker1"></md-datepicker-toggle>
-      <md-datepicker #picker1></md-datepicker>
-    </md-form-field>
+        <input mdInput placeholder="start" [mdDatepicker]="picker1" class="start_date" [(ngModel)]="startDate" (ngModelChange)="onStartDateChange($event)">
+        <md-datepicker-toggle mdSuffix [for]="picker1"></md-datepicker-toggle>
+        <md-datepicker #picker1></md-datepicker>
+  </md-form-field>
+      
   </div>
   <div class="z-depth-5">
       <md-form-field>
-          <input mdInput placeholder="end" [mdDatepicker]="picker" class="end_date">
+          <input mdInput placeholder="end" [mdDatepicker]="picker" class="end_date" [(ngModel)]="endDate" (ngModelChange)="onEndDateChange($event)">
           <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
           <md-datepicker #picker></md-datepicker>
         </md-form-field>
@@ -40,9 +42,14 @@
               </md-menu>
           </div>
           <div fxFlex="40">
-            Price range: <br>
-              <nouislider [connect]="true" [min]="0" [max]="15" [step]="1" [(ngModel)]="someRange" (ngModelChange)="onChange($event)"></nouislider>
-
+            <nouislider [connect]="true" [min]="0" [max]="1000" [step]="1" [(ngModel)]="someRange" (ngModelChange)="onChange($event)"></nouislider>
+            <div fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed">
+                    {{someRange[0]}} <span fxFlex></span>{{someRange[1]}}
+            </div>
+            <div fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed">
+                    <button md-button (click)="onRange()">Apply</button>
+            </div>
+           
           </div>
           <div fxFlex="30">
               <button md-button [mdMenuTriggerFor]="menu3">Advanced</button>

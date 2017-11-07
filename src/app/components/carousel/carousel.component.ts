@@ -18,7 +18,7 @@ export class CarouselComponent implements OnInit {
   // uri: number = 0;
 
   constructor(private http: HttpClient) {
-    this.http.get('http://174.64.102.57:3000/leasemetadata')
+    this.http.get('http://174.64.102.57:3000/leasemetadata/')
     .subscribe(res => {
       this.res = res;
       [].push.apply(this.myData, res);

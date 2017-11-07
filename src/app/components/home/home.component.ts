@@ -16,6 +16,9 @@ import { MapsAPILoader } from '@agm/core';
 export class HomeComponent implements OnInit {
   header: string = 'Gator Housing';
 
+  startDate: Date = new Date();
+  endDate: Date = new Date ();
+
   favoriteSeason: string;
 
     seasons = [
@@ -85,7 +88,19 @@ export class HomeComponent implements OnInit {
 
 
     onChange(e: Event) {
-      console.log('slider event');
+      console.log(this.someRange);
+    }
+
+    onRange() {
+      console.log(this.someRange + 'hi');
+      
+    }
+
+    onStartDateChange () {
+    }
+
+    onEndDateChange () {
+      console.log(this.startDate + ' ' + this.endDate);
     }
 
     private setCurrentPosition() {
