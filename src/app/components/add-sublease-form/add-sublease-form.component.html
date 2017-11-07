@@ -2,14 +2,14 @@
     <md-step [stepControl]="firstFormGroup">
         <form #subleaseForm01="ngForm">
             <ng-template mdStepLabel>Fill out initial details</ng-template>
-            Owner: Dilip
             <!-- {{diagnostic}} -->
-            <md-grid-list cols="1" rowHeight="8:1">
+            <md-grid-list cols="3" rowHeight="8:1">
+                <br><br>
                 <md-grid-tile>
-                    <label for="title">Title</label>
+                    <label for="title" style="font-size:20px; margin-right:10px">Title</label>
                     <md-form-field>
                         <input mdInput type="text" id="accomodates1" placeHolder="accomodates" required [(ngModel)]="model.accomodates" name="accomodates"
-                            #name="ngModel"> TODO: remove this: {{model.accomodates}}
+                            #name="ngModel">
                     </md-form-field>
                     <br>
                     <div [hidden]="name.valid || name.pristine">
@@ -17,12 +17,14 @@
                     </div>
                 </md-grid-tile>
                 <md-grid-tile>
+                        <label for="title" style="font-size:20px; margin-right:10px">Zipcode</label>
                     <md-form-field>
                         <input mdInput type="text" id="zipcode1" placeHolder="Zipcode" class="form-control" required [(ngModel)]="model.zipcode"
                             name="zipcode">
                     </md-form-field>
                 </md-grid-tile>
                 <md-grid-tile>
+                        <label for="title" style="font-size:20px; margin-right:10px">Description</label>
                     <md-form-field>
                         <textarea mdInput type="text" id="description1" placeholder="Description" class="form-control" required [(ngModel)]="model.description"
                             name="description">
@@ -30,7 +32,8 @@
                     </md-form-field>
                 </md-grid-tile>
             </md-grid-list>
-            <div>
+            <br><br>
+            <div style="float:right">
                 <button md-raised-button id='stepper1' color="warn" mdStepperNext>Next</button>
             </div>
         </form>
@@ -42,70 +45,69 @@
                 <md-grid-tile>
                     <md-radio-group id="radiogrp1">
                         <md-radio-button value="1">
-                            entire home
+                            Entire home
                         </md-radio-button>
                         <br>
                         <md-radio-button value="2">
-                            private room
+                            Private room
                         </md-radio-button>
                         <br>
                         <md-radio-button value="3">
-                            shared room
+                            Shared room
                         </md-radio-button>
                     </md-radio-group>
                 </md-grid-tile>
                 <md-grid-tile>
                     <md-slide-toggle id='studio_toggle'>
-                        studio apartment?
+                        Studio apartment?
                     </md-slide-toggle>
                 </md-grid-tile>
                 <md-grid-tile>
                     <md-slide-toggle>
-                        private bathroom?
+                        Private bathroom?
                     </md-slide-toggle>
                 </md-grid-tile>
                 <md-grid-tile>
                     <md-slide-toggle>
-                        pet friendly?
+                        Pet friendly?
                     </md-slide-toggle>
                 </md-grid-tile>
                 <md-grid-tile>
-                    
-                            <md-select placeholder="accommodees" [(ngModel)]="selectedValue" name="count">          
-                                 <md-option *ngFor='let count of numArray1' [value]="count.value">
-                                    {{count.viewValue}}
-                                </md-option>
-                            </md-select>
+                    <md-select placeholder="accommodees" [(ngModel)]="selectedValue1" name="count1">          
+                        <md-option *ngFor='let count1 of numArray1' [value]="count1.value">
+                            {{count1.viewValue}}
+                        </md-option>
+                    </md-select>
                 </md-grid-tile>
 
                 <md-grid-tile>
-                        <md-select placeholder="bedrooms" [(ngModel)]="selectedValue" name="count">          
-                                <md-option *ngFor='let count of numArray1' [value]="count.value">
-                                   {{count.viewValue}}
+                        <md-select placeholder="bedrooms" [(ngModel)]="selectedValue2" name="count2">          
+                                <md-option *ngFor='let count2 of numArray2' [value]="count2.value">
+                                   {{count2.viewValue}}
                                </md-option>
                            </md-select>
 
                 </md-grid-tile>
 
                 <md-grid-tile>
-                        <md-select placeholder="bathrooms" [(ngModel)]="selectedValue" name="count">          
-                                <md-option *ngFor='let count of numArray1' [value]="count.value">
-                                   {{count.viewValue}}
+                        <md-select placeholder="bathrooms" [(ngModel)]="selectedValue3" name="count3">          
+                                <md-option *ngFor='let count3 of numArray3' [value]="count3.value">
+                                   {{count3.viewValue}}
                                </md-option>
                            </md-select>
                 </md-grid-tile>
 
                 <md-grid-tile>
 
-                        <md-select placeholder="beds" [(ngModel)]="selectedValue" name="count">          
-                                <md-option *ngFor='let count of numArray1' [value]="count.value">
-                                   {{count.viewValue}}
+                        <md-select placeholder="beds" [(ngModel)]="selectedValue4" name="count4">          
+                                <md-option *ngFor='let count4 of numArray4' [value]="count4.value">
+                                   {{count4.viewValue}}
                                </md-option>
                            </md-select>
                 </md-grid-tile>
             </md-grid-list>
 
-            <div>
+            <div  style="float:right">
                 <button md-raised-button color="warn" mdStepperNext>Next</button>
             </div>
         </form>
@@ -118,7 +120,6 @@
                     <md-slide-toggle>
                         Kitchen
                     </md-slide-toggle>
-                   this binding : {{model.kitchen}}
                 </md-grid-tile>
                 <md-grid-tile>
                     <md-slide-toggle>
@@ -196,7 +197,7 @@
                     </md-slide-toggle>
                 </md-grid-tile>
             </md-grid-list>
-            <div>
+            <div  style="float:right">
                 <button md-raised-button color="warn" mdStepperNext>Next</button>
             </div>
         </form>
@@ -232,10 +233,9 @@
                         </md-grid-tile>
                         <md-grid-tile>
                             <input id="cin" name="cin" type="file" (change)="fileChangeEvent($event)" placeholder="Upload a file..." multiple/>
-                            <button md-raised-button color="accent" (click)="upload()">
+                            <!--<button md-raised-button color="accent" (click)="upload()">
                                 <i class="glyphicon glyphicon-open-file"></i>&nbsp;Upload
-                            </button>
-
+                            </button>-->
                         </md-grid-tile>
                     </md-grid-list>
 
@@ -245,8 +245,8 @@
                 </md-card>
             </div>
             <br>
-            <div>
-                <button md-raised-button color="accent" routerLink="/" routerLinkActive="active" (click)="onSubmit()">Submit</button>
+            <div style="float:right">
+                <button md-raised-button color="accent" routerLink="/" routerLinkActive="active" (click)="upload()">Submit</button>
             </div>
         </form>
     </md-step>

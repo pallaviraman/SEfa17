@@ -28,6 +28,32 @@ export class AddSubleaseFormComponent implements OnInit {
       {value: 'option-5', viewValue: '5'},
     ];
 
+    numArray2 = [
+      {value: 'option-1', viewValue: '1'},
+      {value: 'option-2', viewValue: '2'},
+      {value: 'option-3', viewValue: '3'},
+      {value: 'option-4', viewValue: '4'},
+      {value: 'option-5', viewValue: '5'},
+    ];
+
+    numArray3 = [
+      {value: 'option-1', viewValue: '1'},
+      {value: 'option-2', viewValue: '2'},
+      {value: 'option-3', viewValue: '3'},
+      {value: 'option-4', viewValue: '4'},
+      {value: 'option-5', viewValue: '5'},
+    ];
+
+
+    numArray4 = [
+      {value: 'option-1', viewValue: '1'},
+      {value: 'option-2', viewValue: '2'},
+      {value: 'option-3', viewValue: '3'},
+      {value: 'option-4', viewValue: '4'},
+      {value: 'option-5', viewValue: '5'},
+    ];
+
+
   public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
 
   date: Date  = new Date();
@@ -41,9 +67,8 @@ export class AddSubleaseFormComponent implements OnInit {
   //   firstCalendarDay: 1, // 0 - Sunday, 1 - Monday
   // };
 
-  model = new BasicDetails('abc', '342342354', 'ikabefoiuiuhoawefd oihoef oihwdoa wsfdo i', 'abc', 'fef,efwef', '342342354',
-    'ikabefoiuiuhoawefd oihoef oihwdoa wsfdo i', 'edfsef', 'dfsf', true, true, true, true, true, true,
-    true, true, true, true, true, true, true, true, true, true, true);
+  model = new BasicDetails('', '', '', '', '', '','', '', '', true, false, true, false, true, true,
+    true, false, true, true, false, true, true, true, true, true, true);
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -166,8 +191,6 @@ export class AddSubleaseFormComponent implements OnInit {
         console.log(err);
       }
     );
-    // console.log(JSON.stringify(this.model));
-    // this.model = new BasicDetails(this.title1, this.location1, this.zipcode1, this.description1);
   }
   // TODO: Remove this when we're done
 

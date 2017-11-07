@@ -51,7 +51,7 @@ describe('course-project App', () => {
     input1.sendKeys('Gainesville');
     const input2 = homepage.clickStartDate();
     input2.click();
-    browser.sleep(5000);
+    browser.sleep(1000);
   });
 
   it ('should go to form and write', () => {
@@ -62,7 +62,7 @@ describe('course-project App', () => {
     input3.sendKeys('32608');
     input3 = formpage.postDescription();
     input3.sendKeys('Good morning class. I am Dilip Kunderu speaking and struggling with e2e testing :)');
-    browser.sleep(5000);
+    browser.sleep(2000);
   });
 
 
@@ -76,11 +76,30 @@ describe('course-project App', () => {
     browser.sleep(5000);
   });
 
-  // it('should select an option', () => {
-  //   formpage.navigateTo();
-  //   const input = formpage.stepperNext1();
-  //   input.click();
-  //   element(by.id('radiogrp1')).all(by.tagName('md-radio-button')).get(0).click();
-  //   browser.sleep(5000);
-  // });
+   
 });
+
+// describe('course-project App1', () => {
+//   let homepage: HomePage;
+//   let helppage: HelpPage;
+//   let apppage: AppPage;
+//   let listpage: ListPage;
+//   let formpage: FormPage;
+
+//   beforeEach(() => {
+//     homepage = new HomePage();
+//     helppage = new HelpPage();
+//     apppage = new AppPage();
+//     listpage = new ListPage();
+//     formpage =  new FormPage();
+//     browser.get('slide-toggle');
+//   });
+// it('should select an option', () => {
+//   homepage.navigateTo();
+//   formpage.navigateTo();
+//   const input = formpage.stepperNext1();
+//   input.click();
+//   element(by.id('radiogrp1')).all(by.tagName('md-radio-button')).get(0).click();
+//   browser.sleep(5000);
+// });
+// });
