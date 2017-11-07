@@ -90,14 +90,14 @@
     </md-grid-tile>
   </md-grid-list> -->
  
-<div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed">
-<md-card fxFlex="70">
+<div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed" style="height:100%">
+<md-card fxFlex="65" style="overflow-y:scroll">
   <app-carousel id='listClick'></app-carousel>
 </md-card>
 <!-- <md-card class="z-depth-5" fxFlex="40">
     <app-agm-map></app-agm-map>
   </md-card> -->
-  <div class="container" fxFlex="30">
+  <div class="container" fxFlex="35">
       <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
       </agm-map>
