@@ -24,9 +24,28 @@ export class CarouselComponent implements OnInit {
     .subscribe(res => {
       this.res = res;
       [].push.apply(data.listingArray, res);
+      // const temp = JSON.stringify(res[0]);
+      // const t = JSON.parse(temp);
+      // console.log(t._source.geolocation.lat);
+      const a = JSON.stringify(res);
+      const b = JSON.parse(a);
+
+      for (const entry of b) {
+        const temp = JSON.stringify(entry);
+        const t = JSON.parse(temp);
+
+        const lat: number =  t._source.geolocation.lat;
+        const lng: number =  t._source.geolocation.lon;
+        const label: string = 'A';
+        const draggable: boolean = false;
+
+        data.latLngArray.push({
+         lat, lng, label, draggable
+        });
+      }
     });
 
-    console.log(data.listingArray);
+    console.log(data.latLngArray);
 
     // setInterval((): void => {
     //   this.imgUrl = 'http://70.171.46.158:3000/uploads/' + this.extractURL(this.myData[this.urlCounter]);
