@@ -4,12 +4,12 @@
             <ng-template mdStepLabel>Fill out initial details</ng-template>
             <!-- {{diagnostic}} -->
             <md-grid-list cols="3" rowHeight="8:1">
-                <br><br>
+                <br>
+                <br>
                 <md-grid-tile>
                     <label for="title" style="font-size:20px; margin-right:10px">Title</label>
                     <md-form-field>
-                        <input mdInput id="accomodates1" placeHolder="accomodates" required [(ngModel)]="model.accomodates" name="accomodates"
-                            #name="ngModel">
+                        <input mdInput id="accomodates1" placeHolder="accomodates" required [(ngModel)]="model.accomodates" name="accomodates" #name="ngModel">
                     </md-form-field>
                     <br>
                     <div [hidden]="name.valid || name.pristine">
@@ -17,14 +17,13 @@
                     </div>
                 </md-grid-tile>
                 <md-grid-tile>
-                        <label for="title" style="font-size:20px; margin-right:10px">Zipcode</label>
+                    <label for="title" style="font-size:20px; margin-right:10px">Zipcode</label>
                     <md-form-field>
-                        <input mdInput id="zipcode1" placeHolder="Zipcode" class="form-control" required [(ngModel)]="model.zipcode"
-                            name="zipcode">
+                        <input mdInput id="zipcode1" placeHolder="Zipcode" class="form-control" required [(ngModel)]="model.zipcode" name="zipcode">
                     </md-form-field>
                 </md-grid-tile>
                 <md-grid-tile>
-                        <label for="title" style="font-size:20px; margin-right:10px">Description</label>
+                    <label for="title" style="font-size:20px; margin-right:10px">Description</label>
                     <md-form-field>
                         <textarea mdInput id="description1" placeholder="Description" class="form-control" required [(ngModel)]="model.description"
                             name="description">
@@ -32,7 +31,8 @@
                     </md-form-field>
                 </md-grid-tile>
             </md-grid-list>
-            <br><br>
+            <br>
+            <br>
             <div style="float:right">
                 <button md-raised-button id='stepper1' color="warn" mdStepperNext>Next</button>
             </div>
@@ -73,7 +73,7 @@
                     </md-slide-toggle>
                 </md-grid-tile>
                 <md-grid-tile>
-                    <md-select placeholder="accommodees" [(ngModel)]="selectedValue1" name="count1">          
+                    <md-select placeholder="accommodees" [(ngModel)]="selectedValue1" name="count1">
                         <md-option *ngFor='let count1 of numArray1' [value]="count1.value">
                             {{count1.viewValue}}
                         </md-option>
@@ -81,33 +81,33 @@
                 </md-grid-tile>
 
                 <md-grid-tile>
-                        <md-select placeholder="bedrooms" [(ngModel)]="selectedValue2" name="count2">          
-                                <md-option *ngFor='let count2 of numArray2' [value]="count2.value">
-                                   {{count2.viewValue}}
-                               </md-option>
-                           </md-select>
+                    <md-select placeholder="bedrooms" [(ngModel)]="selectedValue2" name="count2">
+                        <md-option *ngFor='let count2 of numArray2' [value]="count2.value">
+                            {{count2.viewValue}}
+                        </md-option>
+                    </md-select>
 
                 </md-grid-tile>
 
                 <md-grid-tile>
-                        <md-select placeholder="bathrooms" [(ngModel)]="selectedValue3" name="count3">          
-                                <md-option *ngFor='let count3 of numArray3' [value]="count3.value">
-                                   {{count3.viewValue}}
-                               </md-option>
-                           </md-select>
+                    <md-select placeholder="bathrooms" [(ngModel)]="selectedValue3" name="count3">
+                        <md-option *ngFor='let count3 of numArray3' [value]="count3.value">
+                            {{count3.viewValue}}
+                        </md-option>
+                    </md-select>
                 </md-grid-tile>
 
                 <md-grid-tile>
 
-                        <md-select placeholder="beds" [(ngModel)]="selectedValue4" name="count4">          
-                                <md-option *ngFor='let count4 of numArray4' [value]="count4.value">
-                                   {{count4.viewValue}}
-                               </md-option>
-                           </md-select>
+                    <md-select placeholder="beds" [(ngModel)]="selectedValue4" name="count4">
+                        <md-option *ngFor='let count4 of numArray4' [value]="count4.value">
+                            {{count4.viewValue}}
+                        </md-option>
+                    </md-select>
                 </md-grid-tile>
             </md-grid-list>
 
-            <div  style="float:right">
+            <div style="float:right">
                 <button md-raised-button color="warn" mdStepperNext>Next</button>
             </div>
         </form>
@@ -197,7 +197,7 @@
                     </md-slide-toggle>
                 </md-grid-tile>
             </md-grid-list>
-            <div  style="float:right">
+            <div style="float:right">
                 <button md-raised-button color="warn" mdStepperNext>Next</button>
             </div>
         </form>
@@ -205,37 +205,24 @@
     <md-step [stepControl]="fourthFormGroup">
         <form [formGroup]="fourthFormGroup">
             <ng-template mdStepLabel>Fill out your name</ng-template>
-            <!-- <div class="datebox">
-                    <ng-datepicker [(ngModel)]="date"></ng-datepicker>
-                </div> -->
             <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed">
                 <md-card fxFlex="65">
                     <md-grid-list cols="1" rowHeight="200px">
                         <md-grid-tile>
-                                <md-form-field>
-                                        <input mdInput [mdDatepicker]="picker1" placeholder="Choose a start date">
-                                        <md-datepicker-toggle mdSuffix [for]="picker1"></md-datepicker-toggle>
-                                        <md-datepicker #picker1></md-datepicker>
-                                      </md-form-field>
+                            <md-form-field>
+                                <input mdInput [mdDatepicker]="picker1" placeholder="Choose a start date">
+                                <md-datepicker-toggle mdSuffix [for]="picker1"></md-datepicker-toggle>
+                                <md-datepicker #picker1></md-datepicker>
+                            </md-form-field>
 
-                                      <md-form-field>
-                                            <input mdInput [mdDatepicker]="picker" placeholder="Choose an end date">
-                                            <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
-                                            <md-datepicker #picker></md-datepicker>
-                                          </md-form-field>
-                            <!-- <md-datepicker #picker startView="year"></md-datepicker> -->
-                            <!-- <div>
-                                Date Chosen using 'ngModel':
-                                <div>{{ date }}</div>
-                            </div> -->
-
-                            <!-- <ng-datepicker [(ngModel)]="date"></ng-datepicker> -->
+                            <md-form-field>
+                                <input mdInput [mdDatepicker]="picker" placeholder="Choose an end date">
+                                <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+                                <md-datepicker #picker></md-datepicker>
+                            </md-form-field>
                         </md-grid-tile>
                         <md-grid-tile>
                             <input id="cin" name="cin" type="file" (change)="fileChangeEvent($event)" placeholder="Upload a file..." multiple/>
-                            <!--<button md-raised-button color="accent" (click)="upload()">
-                                <i class="glyphicon glyphicon-open-file"></i>&nbsp;Upload
-                            </button>-->
                         </md-grid-tile>
                     </md-grid-list>
 
@@ -246,92 +233,9 @@
             </div>
             <br>
             <div style="float:right">
-                <button md-raised-button color="accent" routerLink="/" routerLinkActive="active" (click)="upload()">Submit</button>
+                <button md-raised-button color="accent" (click)="upload()">upload</button>
+                <button md-raised-button color="accent" routerLink="/" routerLinkActive="active" (click)="data.onSubmit()">Submit</button>
             </div>
         </form>
     </md-step>
-    <!-- <md-step [stepControl]="fourthFormGroup">
-        <form [formGroup]="fourthFormGroup">
-            <ng-template mdStepLabel>Fill out your name</ng-template>
-            <md-form-field>
-                <input mdInput placeHolder="Last Name, First Name" formControlName="fourthCtrl" required>
-            </md-form-field>
-            <div>
-                <button md-raised-button color="warn" mdStepperNext>Next</button>
-            </div>
-        </form>
-    </md-step>
-    <md-step [stepControl]="fifthFormGroup">
-        <form [formGroup]="fifthFormGroup">
-            <ng-template mdStepLabel>Fill out your name</ng-template>
-            <md-form-field>
-                <input mdInput placeHolder="Last Name, First Name" formControlName="fifthCtrl" required>
-            </md-form-field>
-            <div>
-                <button md-raised-button color="warn" mdStepperNext>Next</button>
-            </div>
-        </form>
-    </md-step>
-    <md-step [stepControl]="sixthFormGroup">
-        <form [formGroup]="sixthFormGroup">
-            <ng-template mdStepLabel>Fill out your name</ng-template>
-            <md-form-field>
-                <input mdInput placeHolder="Last Name, First Name" formControlName="sixthCtrl" required>
-            </md-form-field>
-            <div>
-                <button md-raised-button color="accent" mdStepperNext>Submit</button>
-            </div>
-        </form>
-    </md-step> -->
-
-
-
-
-
-
-
-    <!-- <md-step [stepControl]="thirdFormGroup">
-      <form [formGroup]="thirdFormGroup">
-          <ng-template mdStepLabel>Fill out your name</ng-template>
-          <md-form-field>
-            <input mdInput placeHolder="Last Name, First Name" formControlName="secondCtrl" required>
-          </md-form-field>
-          <div>
-              <button md-raised-button color="warn" mdStepperNext>Next</button>
-            </div>
-        </form>
-  </md-step>
-  <md-step [stepControl]="fourthFormGroup">
-      <form [formGroup]="fourthFormGroup">
-          <ng-template mdStepLabel>Fill out your name</ng-template>
-          <md-form-field>
-            <input mdInput placeHolder="Last Name, First Name" formControlName="secondCtrl" required>
-          </md-form-field>
-          <div>
-              <button md-raised-button color="warn" mdStepperNext>Next</button>
-            </div>
-        </form>
-  </md-step>
-  <md-step [stepControl]="fifthFormGroup">
-      <form [formGroup]="fifthFormGroup">
-          <ng-template mdStepLabel>Fill out your name</ng-template>
-          <md-form-field>
-            <input mdInput placeHolder="Last Name, First Name" formControlName="secondCtrl" required>
-          </md-form-field>
-          <div>
-              <button md-raised-button color="warn" mdStepperNext>Next</button>
-            </div>
-        </form>
-  </md-step>
-  <md-step [stepControl]="sixthFormGroup">
-      <form [formGroup]="sixthFormGroup">
-          <ng-template mdStepLabel>Fill out your name</ng-template>
-          <md-form-field>
-            <input mdInput placeHolder="Last Name, First Name" formControlName="secondCtrl" required>
-          </md-form-field>
-          <div>
-              <button md-raised-button color="accent" mdStepperNext>Submit</button>
-            </div>
-        </form>
-  </md-step> -->
 </md-horizontal-stepper>

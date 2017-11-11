@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
-import { BasicDetails } from './subleaseForm01';
 import { DatepickerOptions } from 'ng2-datepicker';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { HttpClient } from '@angular/common/http';
+import { HouseListingService } from '../../house-listing.service';
+import { BasicDetails } from '../../subleaseForm01';
 
 
 const URL = 'http://174.64.102.57:3000/leasemetadata';
@@ -75,8 +76,10 @@ export class AddSubleaseFormComponent implements OnInit {
   @ViewChild('search')
   public searchElementRef: ElementRef;
 
-  constructor(private _formBuilder: FormBuilder,
-  private http: HttpClient) {
+  constructor(
+    private _formBuilder: FormBuilder,
+    private http: HttpClient,
+    private data: HouseListingService) {
     // this.http.post('http://jsonplaceholder.typicode.com/posts', this.data).subscribe();
   }
 
@@ -161,31 +164,33 @@ export class AddSubleaseFormComponent implements OnInit {
   onDateInput() {
     console.log(this.date);
    }
+
   onDateChange() { }
 
-  onSubmit() {
-    interface ResponseInterface {
-      _id: string;
-     }
-    const req = this.http.post<ResponseInterface>('http://174.64.102.57:3000/add', this.model)
-    .subscribe(
-      res => {
-        console.log(res);
-        this.http.get('http://174.64.102.57:3000').subscribe(
-          res1 => {
-            console.log(res1);
-          },
-          err1 => {
-            console.log(err1);
-          }
-        );
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
+  // onSubmit() {
+  //   interface ResponseInterface {
+  //     _id: string;
+  //    }
+
+  //   const req = this.http.post<ResponseInterface>('http://174.64.102.57:3000/add', this.model)
+  //   .subscribe(
+  //     res => {
+  //       console.log(res);
+  //       this.http.get('http://174.64.102.57:3000').subscribe(
+  //         res1 => {
+  //           console.log(res1);
+  //         },
+  //         err1 => {
+  //           console.log(err1);
+  //         }
+  //       );
+  //     },
+  //     err => {
+  //       console.log(err);
+  //     }
+  //   );
+  // }
   // TODO: Remove this when we're done
 
-  get diagnostic() { return JSON.stringify(this.model); }
+  // get diagnostic() { return JSON.stringify(this.model); }
 }

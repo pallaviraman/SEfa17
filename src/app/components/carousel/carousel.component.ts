@@ -9,13 +9,13 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class CarouselComponent implements OnInit {
-  myData: Array<any> = [];
+  // myData: Array<any> = [];
   // address = this.data.
 
   // myDataURL: Array<string> = [];
   // urlCounter: number = 0;
 
-  res: Object;
+  // res: Object;
   // imgUrl: string = 'https://source.unsplash.com/random/800x600';
   // uri: number = 0;
 
@@ -46,7 +46,7 @@ export class CarouselComponent implements OnInit {
     //   }
     // });
 
-    console.log(data.latLngArray);
+    // console.log(data.latLngArray);
 
     // setInterval((): void => {
     //   this.imgUrl = 'http://70.171.46.158:3000/uploads/' + this.extractURL(this.myData[this.urlCounter]);

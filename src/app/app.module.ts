@@ -35,7 +35,6 @@ import { ListingDetailComponent } from './components/listing-detail/listing-deta
 
 import { HomeComponent } from './components/home/home.component';
 import { AddSubleaseFormComponent } from './components/add-sublease-form/add-sublease-form.component';
-import { Form4Component } from './components/form4/form4.component';
 import { LeafletmapComponent } from './components/leafletmap/leafletmap.component';
 
 @NgModule({
@@ -49,7 +48,6 @@ import { LeafletmapComponent } from './components/leafletmap/leafletmap.componen
     ListingDetailComponent,
     HomeComponent,
     AddSubleaseFormComponent,
-    Form4Component,
     LeafletmapComponent,
     FileSelectDirective
   ],
