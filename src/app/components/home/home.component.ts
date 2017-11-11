@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
@@ -18,20 +18,20 @@ import { HouseListingService } from './../../house-listing.service';
 })
 
 export class HomeComponent implements OnInit {
+  animalControl = new FormControl('', [Validators.required]);
+  
+    animals = [
+      {name: 'Dog', sound: 'Woof!'},
+      {name: 'Cat', sound: 'Meow!'},
+      {name: 'Cow', sound: 'Moo!'},
+      {name: 'Fox', sound: 'Wa-pa-pa-pa-pa-pa-pow!'},
+    ];
+
   res: Object;
   header: string = 'Gator Housing';
 
   startDate: Date = new Date();
   endDate: Date = new Date();
-
-  favoriteSeason: string;
-
-  seasons = [
-    'Winter',
-    'Spring',
-    'Summer',
-    'Autumn',
-  ];
 
   someRange: number[] = [100, 1000];
 

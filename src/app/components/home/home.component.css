@@ -1,7 +1,15 @@
 agm-map {
     height: 580px;
-    width: 500px;
+    width: 450px;
   }
+
+.formdiv{
+  background: whitesmoke;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
 
 .z-depth-5 {
   background: rgb(220, 218, 21);

@@ -59,13 +59,6 @@ export class AddSubleaseFormComponent implements OnInit {
   date: Date  = new Date();
 
   res_id: string;
-  // options: DatepickerOptions = {
-  //   minYear: 1970,
-  //   maxYear: 2030,
-  //   displayFormat: 'MMM D[,] YYYY',
-  //   barTitleFormat: 'MMMM YYYY',
-  //   firstCalendarDay: 1, // 0 - Sunday, 1 - Monday
-  // };
 
   model = new BasicDetails('', '', '', '', '', '','', '', '', true, false, true, false, true, true,
     true, false, true, true, false, true, true, true, true, true, true);

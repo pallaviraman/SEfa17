@@ -1,133 +1,93 @@
-<md-toolbar color="primary">
-  <h1 id="title">{{header}}</h1>
-  <span fxFlex></span>
-  <div class="z-depth-5">
-    <md-form-field flex-gt-sm>
-        <input mdInput placeholder="where" autocorrect="on" autocapitalize="off" spellcheck="on" type="text" class="form-control"
-        #search [formControl]="searchControl">
+<div class="formdiv">
+    <span fxFlex></span>
+    <md-form-field fxFlex="35">
+        <input mdInput placeholder="where" #search [formControl]="searchControl">
     </md-form-field>
-    <md-icon class="icon" color="accent">edit_location</md-icon>
-    
-  </div>
-  <div class="z-depth-5">
-
-  <md-form-field>
+    <span fxFlex></span>
+    <md-form-field fxFlex="20">
         <input mdInput placeholder="start" [mdDatepicker]="picker1" class="start_date" [(ngModel)]="startDate" (ngModelChange)="onStartDateChange($event)">
         <md-datepicker-toggle mdSuffix [for]="picker1"></md-datepicker-toggle>
         <md-datepicker #picker1></md-datepicker>
-  </md-form-field>
-      
-  </div>
-  <div class="z-depth-5">
-      <md-form-field>
-          <input mdInput placeholder="end" [mdDatepicker]="picker" class="end_date" [(ngModel)]="endDate" (ngModelChange)="onEndDateChange($event)">
-          <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
-          <md-datepicker #picker></md-datepicker>
-        </md-form-field>
-      </div>
-  <span fxFlex></span>
-</md-toolbar>
-<!-- map -->
-<div fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed" height="100px">
-  <div fxFlex="70">
-      <div fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed">
-          <div fxFlex="30">
-              <button md-button [mdMenuTriggerFor]="menu1">Menu</button>
-              <md-menu #menu1="mdMenu">
-                  <md-radio-group class="example-radio-group" [(ngModel)]="favoriteSeason">
-                      <md-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
-                      {{season}}  
-                      </md-radio-button>  
-                      </md-radio-group>
-              </md-menu>
-          </div>
-          <div fxFlex="40">
-            <nouislider [connect]="true" [min]="0" [max]="1000" [step]="1" [(ngModel)]="someRange" (ngModelChange)="onChange($event)"></nouislider>
-            <div fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed">
-                    {{someRange[0]}} <span fxFlex></span>{{someRange[1]}}
-            </div>
-            <div fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed">
-                    <button md-button (click)="onRangeApply()">Apply</button>
-            </div>
-           
-          </div>
-          <div fxFlex="30">
-              <button md-button [mdMenuTriggerFor]="menu3">Advanced</button>
-              <md-menu #menu3="mdMenu">
-                  More filters to come
-              </md-menu>
-          </div>
-        </div>
-  </div>
+    </md-form-field>
+    <span fxFlex></span>
+    <md-form-field fxFlex="20">
+        <input mdInput placeholder="end" [mdDatepicker]="picker" class="end_date" [(ngModel)]="endDate" (ngModelChange)="onEndDateChange($event)">
+        <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+        <md-datepicker #picker></md-datepicker>
+    </md-form-field>
+    <span fxFlex></span>
+    <button md-raised-button color="warn" [mdMenuTriggerFor]="menu3">Advanced</button>
+    <span fxFlex></span>
 </div>
 
-<!-- <md-grid-list cols="6" rowHeight="2:1">
-    <md-grid-tile colspan='1'>
-      <button md-button [mdMenuTriggerFor]="menu1">Menu</button>
-      <md-menu #menu1="mdMenu">
-          <md-radio-group class="example-radio-group" [(ngModel)]="favoriteSeason">
-              <md-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
-              {{season}}  
-              </md-radio-button>  
-              </md-radio-group>
-      </md-menu>
-      
-    </md-grid-tile>
-    <md-grid-tile colspan='4'>
-       <md-expansion-panel>
-         <md-expansion-panel-header>
-           <md-panel-title>ABCDE</md-panel-title>
-           <md-panel-description>range slider choose</md-panel-description>
-           <nouislider [connect]="true" [min]="0" [max]="15" [step]="1" [(ngModel)]="someRange" (ngModelChange)="onChange($event)"></nouislider>
-          </md-expansion-panel-header>
-       </md-expansion-panel>
-    </md-grid-tile>
-    <md-grid-tile colspan='1'>
-        <button md-button [mdMenuTriggerFor]="menu3">Advanced</button>
-        <md-menu #menu3="mdMenu">
-            More filters to come
-        </md-menu>
-    </md-grid-tile>
-  </md-grid-list> -->
- 
+<div class="formdiv">
+        <div fxFlex="3">
+
+    </div>
+    <div fxFlex="20">
+        <md-select placeholder="Fav animal" [formControl]="animalControl" required>
+            <md-option>---</md-option>
+            <md-option *ngFor="let animal of animals" [value]="animal">
+                {{animal.name}}
+            </md-option>
+        </md-select>
+        <md-error *ngIf="animalControl.hasError('required')">
+            Please choose an animal
+        </md-error>
+        <md-hint>
+            {{animalControl.value?.sound}}
+        </md-hint>
+    </div>
+    <div fxFlex="3">
+            
+                </div>
+    <nouislider fxFlex="50" [connect]="true" [min]="0" [max]="1000" [step]="1" [(ngModel)]="someRange" (ngModelChange)="onChange($event)"></nouislider>
+    <div fxFlex="13.5">
+            
+                </div>
+    <button md-raised-button color="accent" (click)="onRangeApply()">Apply</button>
+    
+    <span fxFlex></span>
+    <md-menu #menu3="mdMenu">
+        More filters to come
+    </md-menu>
+</div>
+<div class="formdiv">
+    <div fxFlex="25">
+    </div>
+    <div fxFlex="25">
+            {{someRange[0]}}
+        </div>
+        <div fxFlex="25">
+                
+            </div>
+            <div fxFlex="20">
+                    {{someRange[1]}}
+                </div>
+    <span fxFlex></span>
+</div>
+
+<!-- map -->
+
 <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed" style="height:100%">
-<md-card fxFlex="65" style="overflow-y:scroll">
-  <app-carousel id='listClick'></app-carousel>
-</md-card>
-<!-- <md-card class="z-depth-5" fxFlex="40">
-    <app-agm-map></app-agm-map>
-  </md-card> -->
-  <div class="container" fxFlex="35">
-    <agm-map
-    [latitude]="lat"
-    [longitude]="lng"
-    [zoom]="zoom"
-    [disableDefaultUI]="false"
-    [zoomControl]="false"
-    (mapClick)="mapClicked($event)">
-    
-    <agm-marker 
-        *ngFor="let m of markers; let i = index"
-        (markerClick)="clickedMarker(m.label, i)"
-        [latitude]="m.lat"
-        [longitude]="m.lng"
-        [label]="m.label"
-        [markerDraggable]="m.draggable"
-        (dragEnd)="markerDragEnd(m, $event)">
-        
-      <agm-info-window>
-        <strong>InfoWindow content</strong>
-      </agm-info-window>
-      
-    </agm-marker>
-    
-    <agm-circle [latitude]="lat + 0.3" [longitude]="lng" 
-        [radius]="5000"
-        [fillColor]="'red'"
-        [circleDraggable]="true"
-        [editable]="true">
-    </agm-circle>
-    
-    </agm-map>
+    <div fxFlex="65" style="overflow-y:scroll">
+        <app-carousel id='listClick'></app-carousel>
+    </div>
+    <div class="container" fxFlex="30">
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false" (mapClick)="mapClicked($event)">
+
+            <agm-marker *ngFor="let m of markers; let i = index" (markerClick)="clickedMarker(m.label, i)" [latitude]="m.lat" [longitude]="m.lng"
+                [label]="m.label" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)">
+
+                <agm-info-window>
+                    <strong>InfoWindow content</strong>
+                </agm-info-window>
+
+            </agm-marker>
+
+            <agm-circle [latitude]="lat + 0.3" [longitude]="lng" [radius]="5000" [fillColor]="'red'" [circleDraggable]="true" [editable]="true">
+            </agm-circle>
+
+        </agm-map>
     </div>
 </div>

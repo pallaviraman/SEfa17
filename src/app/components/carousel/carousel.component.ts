@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class CarouselComponent implements OnInit {
   myData: Array<any> = [];
+  // address = this.data.
 
   // myDataURL: Array<string> = [];
   // urlCounter: number = 0;
@@ -19,31 +20,31 @@ export class CarouselComponent implements OnInit {
   // uri: number = 0;
 
   constructor(private http: HttpClient, private data: HouseListingService) {
-    data.listingArray.length = 0;
-    this.http.get('http://174.64.102.57:3000/leasemetadata/')
-    .subscribe(res => {
-      this.res = res;
-      [].push.apply(data.listingArray, res);
-      // const temp = JSON.stringify(res[0]);
-      // const t = JSON.parse(temp);
-      // console.log(t._source.geolocation.lat);
-      const a = JSON.stringify(res);
-      const b = JSON.parse(a);
+    // data.listingArray.length = 0;
+    // this.http.get('http://174.64.102.57:3000/leasemetadata/')
+    // .subscribe(res => {
+    //   this.res = res;
+    //   [].push.apply(data.listingArray, res);
+    //   // const temp = JSON.stringify(res[0]);
+    //   // const t = JSON.parse(temp);
+    //   // console.log(t._source.geolocation.lat);
+    //   const a = JSON.stringify(res);
+    //   const b = JSON.parse(a);
 
-      for (const entry of b) {
-        const temp = JSON.stringify(entry);
-        const t = JSON.parse(temp);
+    //   for (const entry of b) {
+    //     const temp = JSON.stringify(entry);
+    //     const t = JSON.parse(temp);
 
-        const lat: number =  t._source.geolocation.lat;
-        const lng: number =  t._source.geolocation.lon;
-        const label: string = 'A';
-        const draggable: boolean = false;
+    //     const lat: number =  t._source.geolocation.lat;
+    //     const lng: number =  t._source.geolocation.lon;
+    //     const label: string = 'A';
+    //     const draggable: boolean = false;
 
-        data.latLngArray.push({
-         lat, lng, label, draggable
-        });
-      }
-    });
+    //     data.latLngArray.push({
+    //      lat, lng, label, draggable
+    //     });
+    //   }
+    // });
 
     console.log(data.latLngArray);
 

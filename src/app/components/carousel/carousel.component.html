@@ -1,18 +1,13 @@
-    <md-grid-list cols="2" rowHeight="1:1">
-      <md-grid-tile *ngFor="let data of (data.listingArray ? data.listingArray.slice(0,10): []); let i = index" routerLink="/listing-detail" routerLinkActive="active">
+    <div class="cardiv">
+      <div fxFlex="50" *ngFor="let data of (data.listingArray ? data.listingArray.slice(0,10): []); let i = index" routerLink="/listing-detail" routerLinkActive="active">
         <button md-button>
-        <md-card>
-            <img md-card-image src="http://174.64.102.57:3000/uploads/{{ data._source.images[0]}}">
-            <md-card-title style="font-size:17px">{{data._source.title}}</md-card-title>
-          <md-card-content>
-            ${{data._source.rent}}/month
-          </md-card-content>
-
-          <!-- <md-card-actions>
-              <button md-button>LIKE</button>
-              <button md-button>SHARE</button>
-            </md-card-actions> -->
-        </md-card>
+          <div fxLayout="column">
+            <div fxFlex="80">
+                <img src="http://174.64.102.57:3000/uploads/{{ data._source.images[0]}}">
+            </div>
+              <div fxFlex="10">{{data._source.title}}</div>
+              <div fxFlex="10">${{data._source.rent}}/month</div>
+          </div>
         </button>
-      </md-grid-tile> 
-    </md-grid-list>
+      </div> 
+    </div>

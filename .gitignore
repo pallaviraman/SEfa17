@@ -34,4 +34,4 @@ Thumbs.db
 /backend/node_modules
 /backend/.nyc_output
 /backend/coverage
-
+/node_modules
