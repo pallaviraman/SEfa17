@@ -1,3 +1,30 @@
-<p>
-  login works!
-</p>
+<div fxLayout fxLayoutAlign="center center" style="height:100%;display: flex;
+align-items: center;">
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <md-card style="width:300px">
+            <form action="/home" #form="ngForm" (ngSubmit)="loginSubmit(form.value)" ngNativeValidate>
+                <div fxLayout="column">
+                    <div fxLayout="row" fxLayoutAlign="center center">
+                        <!-- <md-icon>perm_identity</md-icon> -->
+                        <md-input-container style="width: 100%; margin:auto auto;" hideRequiredMarker>
+
+                            <input mdInput ngModel ng-model="user.id" placeholder="User name" name="id" required>
+
+                        </md-input-container>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center center">
+                        <!-- <md-icon>vpn_key</md-icon> -->
+                        <md-input-container style="width: 100%; margin:auto auto" hideRequiredMarker>
+
+                            <input type="password" mdInput ngModel ng-model="user.password" placeholder="Password" name="password" required>
+
+                        </md-input-container>
+                    </div>
+                    <md-dialog-actions align="end">
+                        <button md-button type="submit" color="accent"><b>Login</b></button>
+                    </md-dialog-actions>
+                </div>
+            </form>
+        </md-card>
+    </div>
+</div>
