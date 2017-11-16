@@ -1,6 +1,6 @@
 import { HouseListingService } from './house-listing.service';
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule, LOCALE_ID, NO_ERRORS_SCHEMA} from '@angular/core';
+import {NgModule, LOCALE_ID, NO_ERRORS_SCHEMA, APP_INITIALIZER} from '@angular/core';
 import {
   FormsModule,
   ReactiveFormsModule,
@@ -37,6 +37,12 @@ import { HomeComponent } from './components/home/home.component';
 import { AddSubleaseFormComponent } from './components/add-sublease-form/add-sublease-form.component';
 import { LeafletmapComponent } from './components/leafletmap/leafletmap.component';
 
+// export function init (data: HouseListingService) {
+//   return () => {
+//     return data.load();
+//   };
+// }
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,10 +76,20 @@ import { LeafletmapComponent } from './components/leafletmap/leafletmap.componen
     routes
   ],
   providers: [
-    {provide: LOCALE_ID, useValue: 'en-US'},
-    HouseListingService
+    {
+      provide: LOCALE_ID, 
+      useValue: 'en-US'
+    },
+    HouseListingService,
+  //   {
+  //     provide: APP_INITIALIZER,
+  //     useFactory:init,
+  //   deps: [HouseListingService],
+  //   multi: true
+  // }
   ],
   entryComponents: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {}

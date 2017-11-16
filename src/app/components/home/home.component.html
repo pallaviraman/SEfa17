@@ -16,8 +16,6 @@
         <md-datepicker #picker></md-datepicker>
     </md-form-field>
     <span fxFlex></span>
-    <button md-raised-button color="warn" [mdMenuTriggerFor]="menu3">Advanced</button>
-    <span fxFlex></span>
 </div>
 
 <div class="formdiv">
@@ -25,17 +23,17 @@
 
     </div>
     <div fxFlex="20">
-        <md-select placeholder="Fav animal" [formControl]="animalControl" required>
+        <md-select placeholder="Type of home" [formControl]="animalControl" required>
             <md-option>---</md-option>
             <md-option *ngFor="let animal of animals" [value]="animal">
                 {{animal.name}}
             </md-option>
         </md-select>
         <md-error *ngIf="animalControl.hasError('required')">
-            Please choose an animal
+            Please choose a listing
         </md-error>
         <md-hint>
-            {{animalControl.value?.sound}}
+            kind of setting with housemates
         </md-hint>
     </div>
     <div fxFlex="3">
@@ -74,18 +72,35 @@
         <app-carousel id='listClick'></app-carousel>
     </div>
     <div class="container" fxFlex="30">
-        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false" (mapClick)="mapClicked($event)">
+        <agm-map 
+            [latitude]="lat" 
+            [longitude]="lng" 
+            [zoom]="zoom" 
+            [disableDefaultUI]="false" 
+            [zoomControl]="false" 
+            (mapClick)="mapClicked($event)">
 
-            <agm-marker *ngFor="let m of markers; let i = index" (markerClick)="clickedMarker(m.label, i)" [latitude]="m.lat" [longitude]="m.lng"
-                [label]="m.label" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)">
+            <agm-marker *ngFor="let m of this.data.markers; let i = index" 
+                (markerClick)="clickedMarker(m.label, i)" 
+                [latitude]="m.lat" 
+                [longitude]="m.lng"
+                [label]="m.label" 
+                [markerDraggable]="m.draggable" 
+                (dragEnd)="markerDragEnd(m, $event)">
 
-                <agm-info-window>
-                    <strong>InfoWindow content</strong>
-                </agm-info-window>
+                    <agm-info-window>
+                        <strong>Selected co-ordinates : ({{m.lat}}, {{m.lng}})</strong>
+                    </agm-info-window>
 
             </agm-marker>
 
-            <agm-circle [latitude]="lat + 0.3" [longitude]="lng" [radius]="5000" [fillColor]="'red'" [circleDraggable]="true" [editable]="true">
+            <agm-circle 
+                [latitude]="lat + 0.3" 
+                [longitude]="lng" 
+                [radius]="5000" 
+                [fillColor]="'red'" 
+                [circleDraggable]="true" 
+                [editable]="true">
             </agm-circle>
 
         </agm-map>

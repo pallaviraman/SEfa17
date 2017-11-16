@@ -20,7 +20,8 @@ import {
   MatGridListModule,
   MatFormFieldModule,
   MatStepperModule,
-  MatRadioModule
+  MatRadioModule,
+  MdTooltipModule
 } from '@angular/material';
 
 @NgModule({
@@ -44,7 +45,8 @@ import {
     MatFormFieldModule,
     MatStepperModule,
     MatRadioModule,
-    MdInputModule
+    MdInputModule,
+    MdTooltipModule
   ],
   exports: [
     CompatibilityModule,
@@ -66,7 +68,8 @@ import {
     MatFormFieldModule,
     MatStepperModule,
     MdInputModule,
-    MatRadioModule
+    MatRadioModule,
+    MdTooltipModule
   ]
 })
 export     class MaterialModule {}

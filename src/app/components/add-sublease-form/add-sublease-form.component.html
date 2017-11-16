@@ -116,24 +116,10 @@
         <form [formGroup]="thirdFormGroup">
             <ng-template mdStepLabel>Amenities</ng-template>
             <md-grid-list cols="4" rowHeight=100px>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        Kitchen
-                    </md-slide-toggle>
-                </md-grid-tile>
+
                 <md-grid-tile>
                     <md-slide-toggle>
                         Internet
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        TV
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        Heating
                     </md-slide-toggle>
                 </md-grid-tile>
                 <md-grid-tile>
@@ -153,21 +139,6 @@
                 </md-grid-tile>
                 <md-grid-tile>
                     <md-slide-toggle>
-                        free parking on street
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        wireless internet
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        suitable for events
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
                         smoking allowed
                     </md-slide-toggle>
                 </md-grid-tile>
@@ -178,22 +149,12 @@
                 </md-grid-tile>
                 <md-grid-tile>
                     <md-slide-toggle>
-                        elevator
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
                         pool
                     </md-slide-toggle>
                 </md-grid-tile>
                 <md-grid-tile>
                     <md-slide-toggle>
                         gym
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        bathtub
                     </md-slide-toggle>
                 </md-grid-tile>
             </md-grid-list>
@@ -228,7 +189,37 @@
 
                 </md-card>
                 <md-card fxFlex="30">
-                    <app-leafletmap></app-leafletmap>
+                    <agm-map
+                    [latitude]="lat"
+                    [longitude]="lng"
+                    [zoom]="zoom"
+                    [disableDefaultUI]="false"
+                    [zoomControl]="false"
+                    (mapClick)="mapClicked($event)">
+                    
+                    <agm-marker 
+                        *ngFor="let m of markers; let i = index"
+                        (markerClick)="clickedMarker(m.label, i)"
+                        [latitude]="m.lat"
+                        [longitude]="m.lng"
+                        [label]="m.label"
+                        [markerDraggable]="m.draggable"
+                        (dragEnd)="markerDragEnd(m, $event)">
+                        
+                      <agm-info-window>
+                        <strong>Selected co-ordinates : ({{m.lat}}, {{m.lng}})</strong>
+                      </agm-info-window>
+                      
+                    </agm-marker>
+                    
+                    <agm-circle [latitude]="lat + 0.3" [longitude]="lng" 
+                        [radius]="5000"
+                        [fillColor]="'red'"
+                        [circleDraggable]="true"
+                        [editable]="true">
+                    </agm-circle>
+                    
+                    </agm-map>
                 </md-card>
             </div>
             <br>
