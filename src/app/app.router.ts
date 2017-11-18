@@ -8,6 +8,7 @@ import { ListingDetailComponent } from './components/listing-detail/listing-deta
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
+import { AddSubleaseFormComponent } from './components/add-sublease-form/add-sublease-form.component';
 
 
 const router: Routes = [
@@ -23,7 +24,9 @@ const router: Routes = [
     {path: 'signup',
         component: SignupComponent},
     {path: 'listing-detail',
-        component: ListingDetailComponent}
+        component: ListingDetailComponent},
+        {path: 'add-sublease-form',
+        component: AddSubleaseFormComponent}
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(router);

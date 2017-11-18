@@ -1,3 +1,4 @@
+import { HouseListingService } from './house-listing.service';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule, LOCALE_ID, NO_ERRORS_SCHEMA} from '@angular/core';
 import {
@@ -15,8 +16,15 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 
 import {AppComponent} from './app.component';
 
-// import 'hammerjs';
+// import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { NouisliderModule } from 'ng2-nouislider';
+
+import { NgDatepickerModule } from 'ng2-datepicker';
+import { FileSelectDirective } from 'ng2-file-upload';
+
+import 'hammerjs';
 import { routes } from './app.router';
+
 
 // import { SelectorComponent } from './components/selector/selector.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
@@ -26,6 +34,8 @@ import { HelpComponent } from './components/help/help.component';
 import { ListingDetailComponent } from './components/listing-detail/listing-detail.component';
 
 import { HomeComponent } from './components/home/home.component';
+import { AddSubleaseFormComponent } from './components/add-sublease-form/add-sublease-form.component';
+import { LeafletmapComponent } from './components/leafletmap/leafletmap.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +46,10 @@ import { HomeComponent } from './components/home/home.component';
     SignupComponent,
     HelpComponent,
     ListingDetailComponent,
-    HomeComponent
+    HomeComponent,
+    AddSubleaseFormComponent,
+    LeafletmapComponent,
+    FileSelectDirective
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -51,10 +64,14 @@ import { HomeComponent } from './components/home/home.component';
     MaterialModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
+    NgDatepickerModule,
+    NouisliderModule,
+    // LeafletModule.forRoot(),
     routes
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'en-US'},
+    HouseListingService
   ],
   entryComponents: [],
   bootstrap: [AppComponent]

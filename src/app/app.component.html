@@ -1,21 +1,21 @@
 <div fxLayout="column" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px" position="fixed" fxFlex>
   <md-sidenav-container fxFlex>
+    <md-toolbar color="primary">
+        <div fxflex="30">
+          <button md-button routerLink="/" routerLinkActive="active"> <md-icon id="gator_logo" class="icon" svgIcon="logo"></md-icon></button>
+        </div>
+        <span fxFlex></span>
+        <div fxFlex=30>
+            <button md-button routerLink="/add-sublease-form" routerLinkActive="active">Discover Hosting</button> 
+            <span fxFlex></span>
+          <button id="help" md-button routerLink="/help" routerLinkActive="active">Help</button>
+          <span fxFlex></span>
+          <button md-button routerLink="/signup" routerLinkActive="active">Sign Up</button>
+          <span fxFlex></span>
+          <button md-button routerLink="/login" routerLinkActive="active">Login</button>
+          <span fxFlex></span>
+        </div>
+    </md-toolbar>
     <router-outlet></router-outlet>
-    <md-sidenav mode="side" opened>
-      <md-toolbar color="primary">
-        <md-icon id="gator_logo" class="icon" svgIcon="logo"></md-icon>
-      </md-toolbar>
-      <nav>
-        <a routerLink="/" routerLinkActive="active">
-                  <button md-raised-button color="accent"><md-icon>home</md-icon></button>
-                </a>
-        <a routerLink="/help" routerLinkActive="active">
-                    <button id="help" md-raised-button color="accent">Help</button></a>
-        <a routerLink="/signup" routerLinkActive="active">
-                      <button md-raised-button color="accent">Sign Up</button></a>
-        <a routerLink="/login" routerLinkActive="active">
-                        <button md-raised-button color="accent">Login</button></a>
-      </nav>
-    </md-sidenav>
   </md-sidenav-container>
 </div>

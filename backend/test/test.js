@@ -3,19 +3,30 @@
 const chai = require('chai');
 const expect = require('chai').expect;
 chai.use(require('chai-http'));
-
 const app = require('../server.js'); // Our app
+var should = require('should'),
+supertest = require('supertest');
+
+var request = supertest('localhost:3000');
+
+describe('lease metadata upload', function() {
+  it('file upload', function(done) {
+    request.post('/leasemetadata')
+            .attach('image', './test/1.png')
+            .field('rent','500')
+            .field('searchid','1234')
+            .field('lat','45')
+            .field('lon','90')
+            .field('startdate','2017-11')
+            .field('enddate','2018-05')
+            .then(function(res) {
+              console.log(res.body);
+              done();
+            });
+  });
+});
 
 describe('API endpoints', function() {
-  this.timeout(5000); // How long to wait for a response (ms)
-
-  before(function() {
-
-  });
-
-  after(function() {
-
-  });
 
   // GET - From the default path to test the basic test case
   it('should return the welcome message ', function() {
@@ -68,17 +79,10 @@ describe('API endpoints', function() {
       .post('/add')
       .send(
         {
-          "title": "some title new",
-          "owner": "saptarshi chak",
+          "owner": "saptarshi",
           "location": "gainesville, Florida, USA",
           "zipcode": 32608,
           "description": "brief description about the apartment",
-          "rent":"$50",
-          "geolocation" : {
-                    "lat" : 41.12,
-                    "lon" : -70.34
-            },
-          "details": {
             "accomodates": 1,
             "bathrooms": 1,
             "bathroomtype": "private",
@@ -86,45 +90,23 @@ describe('API endpoints', function() {
             "studio": false,
             "beds": 2,
             "petfriendly": true,
-            "propertytype": "private",
-            "roomtype": "private room"
-          },
-          "amenities": {
+            "roomtype": "private room",
             "kitchen": true,
             "internet": false,
             "tv": true,
-            "essentials": false,
-            "shampoo": true,
             "heating": false,
             "airconditioning": true,
-            "washer": true,
-            "dryer": true,
+            "washer_dryer": true,
             "free_parking_on_premises": true,
             "free_parking_on_street": false,
-            "paid_parking_off_premises": false,
             "wireless_internet": true,
-            "cable_tv": true,
-            "family_or_kid_friendly": true,
             "suitable_for_events": false,
             "smoking_allowed": false,
             "wheelchair_accessible": true,
             "elevator": true,
-            "indoor_fireplace": false,
-            "buzzer_or_wireless_intercom": false,
-            "doorman": false,
             "pool": true,
-            "hottub": true,
             "gym": true,
-            "hangers": true,
-            "laptop_friendly_workspace": true,
-            "private_entrance": false,
-            "window_guards": false,
             "bathtub": true
-          },
-          "house_roles": ["No smoking",
-            "No parties or events",
-            "Check in time is 12PM (noon) - 5PM"
-          ]
         }
     )
       .then(function(res) {
@@ -140,16 +122,10 @@ describe('API endpoints', function() {
       .post('/add')
       .send(
         {
-          "title": "some title new",
-          "owner": "saptarshi chak",
+          "owner": "saptarshi",
           "location": "gainesville, Florida, USA",
           "zipcode": 32608,
           "description": "brief description about the apartment",
-          "geolocation" : {
-                    "lat" : 41.12,
-                    "lon" : -70.34
-            },
-          "details": {
             "accomodates": 1,
             "bathrooms": 1,
             "bathroomtype": "private",
@@ -157,45 +133,23 @@ describe('API endpoints', function() {
             "studio": false,
             "beds": 2,
             "petfriendly": true,
-            "propertytype": "private",
-            "roomtype": "private room"
-          },
-          "amenities": {
+            "roomtype": "private room",
             "kitchen": true,
             "internet": false,
             "tv": true,
-            "essentials": false,
-            "shampoo": true,
             "heating": false,
             "airconditioning": true,
-            "washer": true,
-            "dryer": true,
+            "washer_dryer": true,
             "free_parking_on_premises": true,
             "free_parking_on_street": false,
-            "paid_parking_off_premises": false,
             "wireless_internet": true,
-            "cable_tv": true,
-            "family_or_kid_friendly": true,
             "suitable_for_events": false,
             "smoking_allowed": false,
             "wheelchair_accessible": true,
             "elevator": true,
-            "indoor_fireplace": false,
-            "buzzer_or_wireless_intercom": false,
-            "doorman": false,
             "pool": true,
-            "hottub": true,
             "gym": true,
-            "hangers": true,
-            "laptop_friendly_workspace": true,
-            "private_entrance": false,
-            "window_guards": false,
             "bathtub": true
-          },
-          "house_roles": ["No smoking",
-            "No parties or events",
-            "Check in time is 12PM (noon) - 5PM"
-          ]
         }
     ).then(function(res) {
         newid = res.body._id;
@@ -227,7 +181,23 @@ describe('API endpoints', function() {
 
   it('should return all the elemets within specific radius of a point', function() {
     return chai.request(app)
-      .get('/geosearch')
+      .get('/geosearch?lat=40&lon=79')
+      .then(function(res) {
+        expect(res).to.have.status(200);
+      });
+  });
+
+  it('should return all the elemets within specific price range', function() {
+    return chai.request(app)
+      .get('/price?min=650&max=800')
+      .then(function(res) {
+        expect(res).to.have.status(200);
+      });
+  });
+
+  it('should return all the elemets within specific date range', function() {
+    return chai.request(app)
+      .get('/date?min=2017-10&max=2018-05')
       .then(function(res) {
         expect(res).to.have.status(200);
       });
@@ -284,6 +254,16 @@ describe('API endpoints', function() {
       });
   });
 
+
+  /*it('should return no elemets matching the particular filters', function() {
+      return chai.request(app)
+      .get('/mulfilters')
+      .then(function(res) {
+        expect(res).to.have.status(200);
+       // expect(res.body.hits.total).to.be.equal(0);
+      });
+  });
+*/
 
 
 });

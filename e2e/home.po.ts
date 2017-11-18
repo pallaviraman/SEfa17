@@ -11,7 +11,15 @@ export class HomePage {
   getIsDisplayed() {
       return element(by.id('gator_logo')).getAttribute('svgIcon');
   }
-  carouselElement(){
+  carouselElement() {
       return element(by.id('listClick'));
+  }
+
+  postPlace() {
+    return element(by.className('form-control'));
+  }
+
+  clickStartDate() {
+    return element(by.className('start_date'));
   }
 }

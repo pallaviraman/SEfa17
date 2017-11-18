@@ -1,7 +1,15 @@
 agm-map {
     height: 580px;
-    width: 500px;
+    width: 450px;
   }
+
+.formdiv{
+  background: whitesmoke;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
 
 .z-depth-5 {
   background: rgb(220, 218, 21);
@@ -12,4 +20,17 @@ agm-map {
   height: 60px; 
   margin: 0 0px; 
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
+.example-radio-group {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+.example-selected-value {
+  margin: 15px 0;
 }

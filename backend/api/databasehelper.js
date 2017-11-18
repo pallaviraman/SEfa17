@@ -18,37 +18,34 @@ var dbstart = function() {
 
 // helper function to create new DB
 function createdb() {
-     elasticclient.indices.create({  
-        index: 'housing'
-      },function(err,resp,status) {
-        if(err) {
-          console.log("Unable to create DB");
-        }
-        else {
-          console.log("DB successfully created");
-          //createGeoLocationMapping();
-        }
-      });
-}
-
-
-// this creates the indexing for geo location points in the DB programmatically. 
-// Need to integrate this with the main code 
-function createGeoLocationMapping() {
-    elasticclient.indices.putMapping({  
-        index: 'housing',
-        type: 'lease',
-        body: {
-          properties: {
-            "geolocation": {
-              "type": "geo_point",
+    var dbCreateJson = 
+    {
+        "mappings": {
+            "leasemetadata": {
+                "properties": {
+                  "geolocation": {
+                    "type": "geo_point"
+                  },
+                  "startdate": {
+                    "type":   "date",
+                    "format": "yyyy-MM"
+                  },
+                  "enddate": {
+                    "type":   "date",
+                    "format": "yyyy-MM"
+                  }
+                }
             }
-          }
         }
-      }, (err, resp, status) => {
-          if (err) throw err;
-          console.log(resp);
-      });
+    };
+
+    rest.putJson('http://localhost:9200/housing/', dbCreateJson).
+        on('success', function(data, response) {
+        console.log("Success in creating DB");
+        }).
+        on('fail', function(data, response) {
+            console.log("Failure in creating DB");
+        });
 }
 
 
@@ -66,11 +63,11 @@ var dbMetadataInsert = function(req, res, imageFileNames, callback) {
                 "lat" : req.body.lat,
                 "lon" : req.body.lon
             },
+            "startdate":req.body.startdate,
+            "enddate":req.body.enddate,
             "images":imageFileNames
         }
     },function(err,resp,status) {
-        console.log(err);
-        console.log(resp);
         callback(err, resp);
     });
 }
@@ -87,50 +84,30 @@ var dbinsert = function(req, res, callback) {
             "location": req.body.location,
             "zipcode": req.body.zipcode,
             "description": req.body.description,
-            "details": {
-                "accomodates": req.body.details.accomodates,
-                "bathrooms": req.body.details.bathrooms,
-                "bathroomtype": req.body.details.bathroomtype,
-                "bedrooms": req.body.details.bedrooms,
-                "studio": req.body.details.studio,
-                "beds": req.body.details.beds,
-                "petfriendly": req.body.details.petfriendly,
-                "propertytype": req.body.details.propertytype,
-                "roomtype": req.body.details.roomtype
-            },
-            "amenities": {
-                "kitchen": req.body.amenities.kitchen,
-                "internet": req.body.amenities.internet,
-                "tv": req.body.amenities.tv,
-                "essentials": req.body.amenities.essentials,
-                "shampoo": req.body.amenities.shampoo,
-                "heating": req.body.amenities.heating,
-                "airconditioning": req.body.amenities.airconditioning,
-                "washer": req.body.amenities.washer,
-                "dryer": req.body.amenities.dryer,
-                "free_parking_on_premises": req.body.amenities.free_parking_on_premises,
-                "free_parking_on_street": req.body.amenities.free_parking_on_street,
-                "paid_parking_off_premises": req.body.amenities.free_parking_off_premises,
-                "wireless_internet": req.body.amenities.wireless_internet,
-                "cable_tv": req.body.amenities.cable_tv,
-                "family_or_kid_friendly": req.body.amenities.family_or_kid_friendly,
-                "suitable_for_events": req.body.amenities.suitable_for_events,
-                "smoking_allowed": req.body.amenities.smoking_allowed,
-                "wheelchair_accessible": req.body.amenities.wheelchair_accessible,
-                "elevator": req.body.amenities.elevator,
-                "indoor_fireplace": req.body.amenities.indoor_fireplace,
-                "buzzer_or_wireless_intercom": req.body.amenities.buzzer_or_wireless_intercom,
-                "doorman": req.body.amenities.doorman,
-                "pool": req.body.amenities.pool,
-                "hottub": req.body.amenities.hottub,
-                "gym": req.body.amenities.gym,
-                "hangers": req.body.amenities.hangers,
-                "laptop_friendly_workspace": req.body.amenities.laptop_friendly_workspace,
-                "private_entrance": req.body.amenities.private_entrance,
-                "window_guards": req.body.amenities.window_guards,
-                "bathtub": req.body.amenities.bathtub
-            },
-            "house_roles": req.body.house_roles
+                "accomodates": req.body.accomodates,
+                "bathrooms": req.body.bathrooms,
+                "bathroomtype": req.body.bathroomtype,
+                "bedrooms": req.body.bedrooms,
+                "studio": req.body.studio,
+                "beds": req.body.beds,
+                "petfriendly": req.body.petfriendly,
+                "roomtype": req.body.roomtype,
+                "kitchen": req.body.kitchen,
+                "internet": req.body.internet,
+                "tv": req.body.tv,
+                "heating": req.body.heating,
+                "airconditioning": req.body.airconditioning,
+                "washer_dryer": req.body.washer_dryer,
+                "free_parking_on_premises": req.bodyfree_parking_on_premises,
+                "free_parking_on_street": req.body.free_parking_on_street,
+                "wireless_internet": req.body.wireless_internet,
+                "suitable_for_events": req.body.suitable_for_events,
+                "smoking_allowed": req.body.smoking_allowed,
+                "wheelchair_accessible": req.body.wheelchair_accessible,
+                "elevator": req.body.elevator,
+                "pool": req.body.pool,
+                "gym": req.body.gym,
+                "bathtub": req.body.bathtub
         }
       },function(err,resp,status) {
           console.log(err);
@@ -179,9 +156,6 @@ var dbLeaseMetadataGet = function(req, res, callback) {
         index:'housing',
         type : 'leasemetadata'
     },	function(err,resp, status) {
-		if(err) {
-			console.log("Unable to obtain the database"+ err);
-		}
 		callback(err,resp);
 	});  
 }
@@ -192,9 +166,6 @@ var dbget = function(req, res, callback) {
         index:'housing',
         type : 'lease'
     },	function(err,resp, status) {
-		if(err) {
-			console.log("Unable to obtain the database"+ err);
-		}
 		callback(err,resp);
 	});   
 }
@@ -206,15 +177,12 @@ var dbget_id = function(input_id, res, callback) {
 		type: 'lease',
 		id: input_id
     },	function(err,resp, status) {
-		if(err) {
-			console.log("Unable to obtain the database");
-		}
 		callback(err,resp);
 	});   
 }
 
 // geo location based searching
-var dbgetgeo = function(req, res, callback) {
+var dbgetgeo = function(latval, lonval, res, callback) {
     var jsonData = 
     {
         "query": {
@@ -234,18 +202,84 @@ var dbgetgeo = function(req, res, callback) {
             }
         }
     }
-
+    jsonData.query.bool.filter.geo_distance.geolocation.lat=latval;
+    jsonData.query.bool.filter.geo_distance.geolocation.lon=lonval;
     //console.log(jsonData.query.bool.filter.geo_distance.distance);
       rest.postJson('http://localhost:9200/housing/leasemetadata/_search?pretty', jsonData).
-      on('success', function(data, response) {
-        callback(data, response);
-      }).
-      on('fail', function(data, response) {
+      on('complete', function(data, response) {
         callback(data, response);
       });
+}
+
+var dbGetBetweenDates = function(min, max, res, callback) {
+    var jsonData = 
+    {
+        "query": {
+            "bool": {
+                "must": [
+                    {
+                        "range": {
+                            "startdate": {
+                                "gte": "2017-10"
+                            }
+                        }
+                    },
+                    {
+                        "range": {
+                            "enddate": {
+                                "lte": "2018-05"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    };
+
+    jsonData.query.bool.must[0].range.startdate.gte = min;
+    jsonData.query.bool.must[1].range.enddate.lte = max;
+    //console.log(jsonData.query.bool.filter.geo_distance.distance);
+    rest.postJson('http://localhost:9200/housing/leasemetadata/_search?pretty', jsonData).
+    on('complete', function(data, response) {
+        callback(data, response);
+    });
 
 }
 
+var dbGetBetweenPrice = function(min, max, res, callback) {
+    var jsonData = 
+    {
+        "query": {
+            "bool": {
+                "must": [
+                    {
+                        "range": {
+                            "rent": {
+                                "gte": "0",
+                                "lte":"1000"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+    jsonData.query.bool.must[0].range.rent.gte = min;
+    jsonData.query.bool.must[0].range.rent.lte = max;
+
+    rest.postJson('http://localhost:9200/housing/leasemetadata/_search?pretty', jsonData).
+    on('complete', function(data, response) {
+        callback(data, response);
+    });
+}
+
+/**
+ * 
+ * 
+ * @param {any} req 
+ * @param {any} res 
+ * @param {any} callback 
+ */
 var dbgetMulFilter = function(req, res, callback) {
     var jsonData = 
     {
@@ -256,10 +290,9 @@ var dbgetMulFilter = function(req, res, callback) {
         }
     }
 
-    rest.postJson('http://localhost:9200/housing/lease/_search?pretty', jsonData).on('success', function(data, response) {
-      callback(data, response);
-    }).on('fail', function(data, response) {
-      callback(data, response);
+    rest.postJson('http://localhost:9200/housing/lease/_search?pretty', jsonData).
+    on('complete', function(data, response) {
+        callback(data, response);
     });
 }
 
@@ -274,4 +307,6 @@ exports.dbgetgeo = dbgetgeo;
 exports.dbMetadataInsert = dbMetadataInsert;
 exports.dbLeaseMetadataGet = dbLeaseMetadataGet;
 exports.dbgetMulFilter = dbgetMulFilter;
+exports.dbGetBetweenDates = dbGetBetweenDates;
+exports.dbGetBetweenPrice = dbGetBetweenPrice;
 

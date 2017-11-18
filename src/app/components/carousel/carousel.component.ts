@@ -1,3 +1,4 @@
+import { HouseListingService } from './../../house-listing.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -8,27 +9,47 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class CarouselComponent implements OnInit {
-  myData: Array<any> = [];
+  // myData: Array<any> = [];
+  // address = this.data.
+
   // myDataURL: Array<string> = [];
   // urlCounter: number = 0;
 
-  res: Object;
-  imgUrl: string = 'https://source.unsplash.com/random/800x600';
+  // res: Object;
+  // imgUrl: string = 'https://source.unsplash.com/random/800x600';
   // uri: number = 0;
 
-  constructor(private http: HttpClient) {
-    this.http.get('http://localhost:3000/leasemetadata')
-    .subscribe(res => {
-      this.res = res;
-      [].push.apply(this.myData, res);
-    });
+  constructor(private http: HttpClient, private data: HouseListingService) {
+    // data.listingArray.length = 0;
+    // this.http.get('http://174.64.102.57:3000/leasemetadata/')
+    // .subscribe(res => {
+    //   this.res = res;
+    //   [].push.apply(data.listingArray, res);
+    //   // const temp = JSON.stringify(res[0]);
+    //   // const t = JSON.parse(temp);
+    //   // console.log(t._source.geolocation.lat);
+    //   const a = JSON.stringify(res);
+    //   const b = JSON.parse(a);
 
-    // for (let entry of this.myData) {
-    //   this.myDataURL[this.urlCounter] = this.extractJSONurl(entry);
-    //   this.urlCounter++;
-    // }
+    //   for (const entry of b) {
+    //     const temp = JSON.stringify(entry);
+    //     const t = JSON.parse(temp);
+
+    //     const lat: number =  t._source.geolocation.lat;
+    //     const lng: number =  t._source.geolocation.lon;
+    //     const label: string = 'A';
+    //     const draggable: boolean = false;
+
+    //     data.latLngArray.push({
+    //      lat, lng, label, draggable
+    //     });
+    //   }
+    // });
+
+    // console.log(data.latLngArray);
+
     // setInterval((): void => {
-    //   this.imgUrl = this.extractURL(this.myData[this.urlCounter]);
+    //   this.imgUrl = 'http://70.171.46.158:3000/uploads/' + this.extractURL(this.myData[this.urlCounter]);
     //   this.urlCounter++;
     //   this.urlCounter %= 10;
     //   console.log(this.urlCounter);
@@ -36,21 +57,33 @@ export class CarouselComponent implements OnInit {
     // }, 3000);
    }
 
-  //  extractJSONurl(x: object): string {
+  //  extractURL(x: object): string {
   //   const s: string = JSON.stringify(x);
 
   //   interface MyObj {
-  //     _id: string,
-  //     searchid: string,
-  //     title: string,
-  //     rent: string,
-  //     lat: number,
-  //     lon: number,
-  //     images: Array<string>
+  //     _index: string;
+  //     _type: string;
+  //     _id: string;
+  //     _score: number;
+  //     _source: {
+  //       searchid: number;
+  //       title: string;
+  //       rent: string;
+  //       geolocation: {
+  //         lat: number;
+  //         long: number;
+  //       };
+  //       images: Array<string>;
+  //     };
+  //     // albumId: number;
+  //     // id: number;
+  //     // title: string;
+  //     // url: string;
+  //     // thumbnailUrl: string;
   //   }
 
   //   const obj: MyObj = JSON.parse(s);
-  //   return obj.images[0];
+  //   return obj._source.images[0];
   // }
 
   ngOnInit() {
