@@ -72,6 +72,7 @@
         <app-carousel id='listClick'></app-carousel>
     </div>
     <div class="container" fxFlex="30">
+            <md-checkbox [checked]="false" (change)="onMappClick()">Show in Map</md-checkbox>
         <agm-map 
             [latitude]="lat" 
             [longitude]="lng" 

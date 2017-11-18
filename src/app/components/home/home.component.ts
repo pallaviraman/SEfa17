@@ -16,7 +16,8 @@ import { HouseListingService } from './../../house-listing.service';
 })
 
 export class HomeComponent implements OnInit {
-  
+  dummy: any[] = [];
+
   animalControl = new FormControl('', [Validators.required]);
   
     animals = [
@@ -67,17 +68,9 @@ export class HomeComponent implements OnInit {
     private ngZone: NgZone,
     private data: HouseListingService,
     private http: HttpClient
-    // private dialog: MatDialog
-  ) {
-    // console.log(this.data.markers);
-   }
+  ) {}
 
   ngOnInit() {
-    console.log('before :');
-    console.log(this.data.markers);
-    this.data.getLatLong();
-    console.log('After :');
-    console.log(this.data.markers);
     this.zoom = 4;
     this.lat = 39.8282;
     this.lng = -98.5795;
@@ -119,13 +112,59 @@ export class HomeComponent implements OnInit {
   }
 
   onRangeApply() {
+    this.data.markers.length = 0;
     this.data.listingArray.length = 0;
     this.http.get('http://174.64.102.57:3000/price?min=' + this.someRange[0] + '&max=' + this.someRange[1] + '/')
       .subscribe(res => {
         this.res = res;
-        console.log(res);
         [].push.apply(this.data.listingArray, res);
+
+        const a = JSON.stringify(res);
+        const b = JSON.parse(a);
+  
+        for (const entry of b) {
+          const temp = JSON.stringify(entry);
+          const t = JSON.parse(temp);
+  
+          const lat: number =  parseFloat(t.lat);
+          const lng: number =  parseFloat(t.lng);
+          const label: string = t.label;
+          const draggable: boolean = false;
+          this.data.markers.push({
+          lat: lat,
+          lng: lng,
+          label: label,
+          draggable: false
+        });
+        }
+
+
       });
+  }
+
+  onMappClick() {
+    this.data.markers.length = 0;
+    this.http.get<Marker>('http://174.64.102.57:3000/latlong')
+    .subscribe(res => {
+      const a = JSON.stringify(res);
+      const b = JSON.parse(a);
+
+      for (const entry of b) {
+        const temp = JSON.stringify(entry);
+        const t = JSON.parse(temp);
+
+        const lat: number =  parseFloat(t.lat);
+        const lng: number =  parseFloat(t.lng);
+        const label: string = t.label;
+        const draggable: boolean = false;
+        this.data.markers.push({
+        lat: lat,
+        lng: lng,
+        label: label,
+        draggable: false
+      });
+      }
+    });
   }
 
   onStartDateChange() {
@@ -141,7 +180,6 @@ export class HomeComponent implements OnInit {
         console.log(res);
         [].push.apply(this.data.listingArray, res);
       });
-    // console.log(this.startDate.getMonth() + ' ' + this.endDate.getMonth());
   }
 
   private setCurrentPosition() {
@@ -161,79 +199,3 @@ interface Marker {
   label?: string;
   draggable: boolean;
 }
-
-// markers: Marker[] = this.data.latLngArray;
-  // markers: Marker[] = [
-  //   {
-  //     lat: 51.373858,
-  //     lng: 7.215982,
-  //     label: 'B',
-  //     draggable: false
-  //   },
-  //   {
-  //     lat: 51.723858,
-  //     lng: 7.895982,
-  //     label: 'C',
-  //     draggable: true
-  //   }
-  // ]
-    // {
-    //   lat: this.data.latLngArray[0].lat,
-    //   lng: this.data.latLngArray[0].lng,
-    //   label: 'A',
-    //   draggable: true
-    // }
-    // {
-    //   lat: this.data.latLngArray[1].lat,
-    //   lng: this.data.latLngArray[1].lng,
-    //   label: 'A',
-    //   draggable: true
-    // },
-    // {
-    //   lat: this.data.latLngArray[2].lat,
-    //   lng: this.data.latLngArray[2].lng,
-    //   label: 'A',
-    //   draggable: true
-    // },
-    // {
-    //   lat: this.data.latLngArray[3].lat,
-    //   lng: this.data.latLngArray[3].lng,
-    //   label: 'A',
-    //   draggable: true
-    // },
-    // {
-    //   lat: this.data.latLngArray[4].lat,
-    //   lng: this.data.latLngArray[4].lng,
-    //   label: 'A',
-    //   draggable: true
-    // },
-    // {
-    //   lat: this.data.latLngArray[5].lat,
-    //   lng: this.data.latLngArray[5].lng,
-    //   label: 'A',
-    //   draggable: true
-    // },
-    // {
-    //   lat: this.data.latLngArray[6].lat,
-    //   lng: this.data.latLngArray[6].lng,
-    //   label: 'A',
-    //   draggable: true
-    // },
-    // {
-    //   lat: this.data.latLngArray[7].lat,
-    //   lng: this.data.latLngArray[7].lng,
-    //   label: 'A',
-    //   draggable: true
-    // }
-    // {
-    //   lat: 51.373858,
-    //   lng: 7.215982,
-    //   label: 'B',
-    //   draggable: false
-    // },
-    // {
-    //   lat: 51.723858,
-    //   lng: 7.895982,
-    //   label: 'C',
-    //   draggable: true
-    // }

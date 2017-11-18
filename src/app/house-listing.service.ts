@@ -43,31 +43,11 @@ export class HouseListingService {
     private router: Router,
     injector: Injector) {
       setTimeout(()=>this.http = injector.get(HttpClient));
+
     this.http.get('http://174.64.102.57:3000/leasemetadata/')
     .subscribe(res => {
       this.res = res;
       [].push.apply(this.listingArray, res);
-      // const temp = JSON.stringify(res[0]);
-      // const t = JSON.parse(temp);
-      // console.log(t._source.geolocation.lat);
-
-      // const a = JSON.stringify(res);
-      // const b = JSON.parse(a);
-
-      // for (const entry of b) {
-      //   const temp = JSON.stringify(entry);
-      //   const t = JSON.parse(temp);
-
-      //   const lat: number =  parseFloat(t._source.geolocation.lat);
-      //   const lng: number =  parseFloat(t._source.geolocation.lon);
-      //   const label: string = 'A';
-      //   const draggable: boolean = false;
-
-      //   this.markers.push({
-      //    lat, lng, label, draggable
-      //   });
-      //   this.render = true;
-      // }
     });
   }
 
@@ -89,7 +69,7 @@ export class HouseListingService {
          lat, lng, label, draggable
         });
         this.render = true;
-        // console.log('pushed ' + lat + ' ' + lng);
+        console.log('pushed ' + lat + ' ' + lng);
       }
 
     }

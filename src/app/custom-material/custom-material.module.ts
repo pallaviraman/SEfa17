@@ -21,7 +21,8 @@ import {
   MatFormFieldModule,
   MatStepperModule,
   MatRadioModule,
-  MdTooltipModule
+  MdTooltipModule,
+  MdCheckboxModule
 } from '@angular/material';
 
 @NgModule({
@@ -46,7 +47,8 @@ import {
     MatStepperModule,
     MatRadioModule,
     MdInputModule,
-    MdTooltipModule
+    MdTooltipModule,
+    MdCheckboxModule
   ],
   exports: [
     CompatibilityModule,
@@ -69,7 +71,8 @@ import {
     MatStepperModule,
     MdInputModule,
     MatRadioModule,
-    MdTooltipModule
+    MdTooltipModule,
+    MdCheckboxModule
   ]
 })
 export     class MaterialModule {}
