@@ -1,10 +1,6 @@
-var elasticsearch = require('elasticsearch');
-var config = require('./config.json');
+// config/database.js
+module.exports = {
 
-var elasticclient = new elasticsearch.Client({
-    hosts: [
-        config.hostip+":"+config.port
-    ]
-});
+    'url' : 'mongodb://localhost/passport' // looks like mongodb://<user>:<pass>@mongo.onmodulus.net:27017/Mikha4ot
 
-module.exports = elasticclient;
+};
