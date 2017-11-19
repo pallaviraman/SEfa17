@@ -126,10 +126,11 @@ export class HomeComponent implements OnInit {
           const temp = JSON.stringify(entry);
           const t = JSON.parse(temp);
   
-          const lat: number =  parseFloat(t.lat);
-          const lng: number =  parseFloat(t.lng);
-          const label: string = t.label;
+          const lat: number =  parseFloat(t._source.geolocation.lat);
+          const lng: number =  parseFloat(t._source.geolocation.lon);
+          const label: string = 'T2';
           const draggable: boolean = false;
+
           this.data.markers.push({
           lat: lat,
           lng: lng,
@@ -153,7 +154,7 @@ export class HomeComponent implements OnInit {
 
         const lat: number =  parseFloat(t._source.geolocation.lat);
         const lng: number =  parseFloat(t._source.geolocation.lon);
-        const label: string = 'TT';
+        const label: string = 'T1';
         const draggable: boolean = false;
         
         this.data.markers.push({
@@ -170,6 +171,8 @@ export class HomeComponent implements OnInit {
   }
 
   onEndDateChange() {
+    this.data.markers.length = 0;
+    
     this.data.listingArray.length = 0;
     this.http.get('http://174.64.102.57:3000/date?min='
       + this.startDate.getFullYear() + '-' + (this.startDate.getMonth() + 1)
@@ -178,6 +181,26 @@ export class HomeComponent implements OnInit {
         this.res = res;
         console.log(res);
         [].push.apply(this.data.listingArray, res);
+
+        const a = JSON.stringify(res);
+        const b = JSON.parse(a);
+  
+        for (const entry of b) {
+          const temp = JSON.stringify(entry);
+          const t = JSON.parse(temp);
+  
+          const lat: number =  parseFloat(t._source.geolocation.lat);
+          const lng: number =  parseFloat(t._source.geolocation.lon);
+          const label: string = 'T3';
+          const draggable: boolean = false;
+
+          this.data.markers.push({
+          lat: lat,
+          lng: lng,
+          label: label,
+          draggable: false
+        });
+      }
       });
   }
 
