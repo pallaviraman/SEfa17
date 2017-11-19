@@ -239,7 +239,6 @@ app.get('/logout', function(req, res) {
 
 
 };
-};
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
