@@ -148,6 +148,7 @@ router.delete("/delete_id", function (req, res) {
         return res.status(200).send("Deleted");
     });
 });
+module.exports = function(app, passport) {
 
 // LOGOUT ==============================
 app.get('/logout', function(req, res) {
@@ -238,7 +239,7 @@ app.get('/logout', function(req, res) {
 
 
 };
-
+};
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
