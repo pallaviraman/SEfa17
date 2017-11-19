@@ -136,15 +136,13 @@ export class HomeComponent implements OnInit {
           label: label,
           draggable: false
         });
-        }
-
-
+      }
       });
   }
 
   onMappClick() {
     this.data.markers.length = 0;
-    this.http.get<Marker>('http://174.64.102.57:3000/latlong')
+    this.http.get('http://174.64.102.57:3000/leasemetadata')
     .subscribe(res => {
       const a = JSON.stringify(res);
       const b = JSON.parse(a);
@@ -153,10 +151,11 @@ export class HomeComponent implements OnInit {
         const temp = JSON.stringify(entry);
         const t = JSON.parse(temp);
 
-        const lat: number =  parseFloat(t.lat);
-        const lng: number =  parseFloat(t.lng);
-        const label: string = t.label;
+        const lat: number =  parseFloat(t._source.geolocation.lat);
+        const lng: number =  parseFloat(t._source.geolocation.lon);
+        const label: string = 'TT';
         const draggable: boolean = false;
+        
         this.data.markers.push({
         lat: lat,
         lng: lng,
