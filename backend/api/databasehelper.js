@@ -72,6 +72,43 @@ var dbMetadataInsert = function(req, res, imageFileNames, callback) {
     });
 }
 
+var dbLeaseInsert = function(req, res, imageFileNames, callback) {
+    var uuid = new ObjectId();
+    elasticclient.index({
+        index: 'housing',
+        id: uuid.toString(),
+        type: 'leasemetadata',
+        body: {
+            "owner":req.body.owner,
+            "email":req.body.email,
+            "title":req.body.title,
+            "zipcode": req.body.zipcode,
+            "description": req.body.description,
+            "rent":req.body.rent,
+            "geolocation" : {
+                "lat" : req.body.lat,
+                "lon" : req.body.lon
+            },
+            "startdate":req.body.startdate,
+            "enddate":req.body.enddate,
+            "images":imageFileNames,
+            "roomtype": req.body.roomtype,
+            "bathrooms": req.body.bathrooms,
+            "bedrooms": req.body.bedrooms,
+            "internet": req.body.internet,
+            "airconditioning": req.body.airconditioning,
+            "washer_dryer": req.body.washer_dryer,
+            "free_parking_on_premises": req.bodyfree_parking_on_premises,
+            "private_bathroom": req.body.private_bathroom,
+            "wheelchair_accessible": req.body.wheelchair_accessible,
+            "pool": req.body.pool,
+            "gym": req.body.gym
+        }
+    },function(err,resp,status) {
+        callback(err, resp);
+    });
+}
+
 // helper function to insert entry in DB
 var dbinsert = function(req, res, callback) {
     var uuid = new ObjectId();
@@ -84,30 +121,17 @@ var dbinsert = function(req, res, callback) {
             "location": req.body.location,
             "zipcode": req.body.zipcode,
             "description": req.body.description,
-                "accomodates": req.body.accomodates,
-                "bathrooms": req.body.bathrooms,
-                "bathroomtype": req.body.bathroomtype,
-                "bedrooms": req.body.bedrooms,
-                "studio": req.body.studio,
-                "beds": req.body.beds,
-                "petfriendly": req.body.petfriendly,
-                "roomtype": req.body.roomtype,
-                "kitchen": req.body.kitchen,
-                "internet": req.body.internet,
-                "tv": req.body.tv,
-                "heating": req.body.heating,
-                "airconditioning": req.body.airconditioning,
-                "washer_dryer": req.body.washer_dryer,
-                "free_parking_on_premises": req.bodyfree_parking_on_premises,
-                "free_parking_on_street": req.body.free_parking_on_street,
-                "wireless_internet": req.body.wireless_internet,
-                "suitable_for_events": req.body.suitable_for_events,
-                "smoking_allowed": req.body.smoking_allowed,
-                "wheelchair_accessible": req.body.wheelchair_accessible,
-                "elevator": req.body.elevator,
-                "pool": req.body.pool,
-                "gym": req.body.gym,
-                "bathtub": req.body.bathtub
+            "roomtype": req.body.roomtype,
+            "bathrooms": req.body.bathrooms,
+            "bedrooms": req.body.bedrooms,
+            "internet": req.body.internet,
+            "airconditioning": req.body.airconditioning,
+            "washer_dryer": req.body.washer_dryer,
+            "free_parking_on_premises": req.bodyfree_parking_on_premises,
+            "private_bathroom": req.body.private_bathroom,
+            "wheelchair_accessible": req.body.wheelchair_accessible,
+            "pool": req.body.pool,
+            "gym": req.body.gym
         }
       },function(err,resp,status) {
           console.log(err);
@@ -152,6 +176,15 @@ var dbdelete_id =  function(input_id, res, callback) {
 }
 
 var dbLeaseMetadataGet = function(req, res, callback) {
+    elasticclient.search({
+        index:'housing',
+        type : 'leasemetadata'
+    },	function(err,resp, status) {
+		callback(err,resp);
+	});  
+}
+
+var dbLeaseGet = function(req, res, callback) {
     elasticclient.search({
         index:'housing',
         type : 'leasemetadata'
@@ -309,4 +342,6 @@ exports.dbLeaseMetadataGet = dbLeaseMetadataGet;
 exports.dbgetMulFilter = dbgetMulFilter;
 exports.dbGetBetweenDates = dbGetBetweenDates;
 exports.dbGetBetweenPrice = dbGetBetweenPrice;
+exports.dbLeaseInsert = dbLeaseInsert;
+exports.dbLeaseGet = dbLeaseGet;
 
