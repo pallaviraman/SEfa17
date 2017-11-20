@@ -207,7 +207,7 @@ var dbget = function(req, res, callback) {
 var dbget_id = function(input_id, res, callback) {
     elasticclient.get({
         index:'housing',
-		type: 'lease',
+		type: 'leasemetadata',
 		id: input_id
     },	function(err,resp, status) {
 		callback(err,resp);
