@@ -33,7 +33,22 @@ router.post("/add", function (req, res) {
     });
 });
 
+router.post('/lease', upload.any(), function (req, res, next) {
+    console.log(req.body.rent);
+    var imageFiles = [];
+    for (var i = 0; i < req.files.length; i++) {
+        var sampleFile = req.files[i].filename;
+        imageFiles.push(sampleFile);
+    }
+    //console.log(imageFiles);
 
+    dbHelper.dbLeaseInsert(req, res, imageFiles, function (err, result) {
+        if (err)
+            return res.status(400).send("Not Added" + err);
+        else
+            return res.status(200).send("Added" + result);
+    })
+});
 
 router.post('/leasemetadata', upload.any(), function (req, res, next) {
     console.log(req.body.rent);
@@ -88,6 +103,15 @@ router.get("/geosearch", function (req, res) {
 // GET API to get lease metadata from database
 router.get("/leasemetadata", function (req, res) {
     dbHelper.dbLeaseMetadataGet(req, res, function (err, result) {
+        if (err)
+            return res.status(400).send("Cannot obtain data");
+        return res.status(200).send(result.hits.hits);
+    });
+});
+
+// GET API to get lease metadata from database
+router.get("/lease", function (req, res) {
+    dbHelper.dbLeaseGet(req, res, function (err, result) {
         if (err)
             return res.status(400).send("Cannot obtain data");
         return res.status(200).send(result.hits.hits);
@@ -149,6 +173,7 @@ router.delete("/delete_id", function (req, res) {
     });
 });
 module.exports = function(app, passport) {
+
 
 // LOGOUT ==============================
 app.get('/logout', function(req, res) {

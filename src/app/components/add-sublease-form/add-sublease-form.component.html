@@ -41,7 +41,7 @@
     <md-step [stepControl]="secondFormGroup">
         <form>
             <ng-template mdStepLabel>Details regarding unit</ng-template>
-            <md-grid-list cols="4" rowHeight=100px>
+            <md-grid-list cols="3" rowHeight=100px>
                 <md-grid-tile>
                     <md-radio-group id="radiogrp1">
                         <md-radio-button value="1">
@@ -55,53 +55,23 @@
                         <md-radio-button value="3">
                             Shared room
                         </md-radio-button>
+                        <br>
+                        <md-radio-button value="4">
+                            Studio apartment
+                        </md-radio-button>
                     </md-radio-group>
                 </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle id='studio_toggle'>
-                        Studio apartment?
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        Private bathroom?
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        Pet friendly?
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-select placeholder="accommodees" [(ngModel)]="selectedValue1" name="count1">
-                        <md-option *ngFor='let count1 of numArray1' [value]="count1.value">
-                            {{count1.viewValue}}
-                        </md-option>
-                    </md-select>
-                </md-grid-tile>
-
                 <md-grid-tile>
                     <md-select placeholder="bedrooms" [(ngModel)]="selectedValue2" name="count2">
                         <md-option *ngFor='let count2 of numArray2' [value]="count2.value">
                             {{count2.viewValue}}
                         </md-option>
                     </md-select>
-
                 </md-grid-tile>
-
                 <md-grid-tile>
                     <md-select placeholder="bathrooms" [(ngModel)]="selectedValue3" name="count3">
                         <md-option *ngFor='let count3 of numArray3' [value]="count3.value">
                             {{count3.viewValue}}
-                        </md-option>
-                    </md-select>
-                </md-grid-tile>
-
-                <md-grid-tile>
-
-                    <md-select placeholder="beds" [(ngModel)]="selectedValue4" name="count4">
-                        <md-option *ngFor='let count4 of numArray4' [value]="count4.value">
-                            {{count4.viewValue}}
                         </md-option>
                     </md-select>
                 </md-grid-tile>
@@ -116,24 +86,10 @@
         <form [formGroup]="thirdFormGroup">
             <ng-template mdStepLabel>Amenities</ng-template>
             <md-grid-list cols="4" rowHeight=100px>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        Kitchen
-                    </md-slide-toggle>
-                </md-grid-tile>
+
                 <md-grid-tile>
                     <md-slide-toggle>
                         Internet
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        TV
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        Heating
                     </md-slide-toggle>
                 </md-grid-tile>
                 <md-grid-tile>
@@ -153,47 +109,22 @@
                 </md-grid-tile>
                 <md-grid-tile>
                     <md-slide-toggle>
-                        free parking on street
+                        Private bathroom
                     </md-slide-toggle>
                 </md-grid-tile>
                 <md-grid-tile>
                     <md-slide-toggle>
-                        wireless internet
+                        Wheelchair accessible
                     </md-slide-toggle>
                 </md-grid-tile>
                 <md-grid-tile>
                     <md-slide-toggle>
-                        suitable for events
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        smoking allowed
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        wheelchair accessible
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        elevator
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        pool
+                        Pool
                     </md-slide-toggle>
                 </md-grid-tile>
                 <md-grid-tile>
                     <md-slide-toggle>
                         gym
-                    </md-slide-toggle>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <md-slide-toggle>
-                        bathtub
                     </md-slide-toggle>
                 </md-grid-tile>
             </md-grid-list>
@@ -228,7 +159,37 @@
 
                 </md-card>
                 <md-card fxFlex="30">
-                    <app-leafletmap></app-leafletmap>
+                    <agm-map
+                    [latitude]="lat"
+                    [longitude]="lng"
+                    [zoom]="zoom"
+                    [disableDefaultUI]="false"
+                    [zoomControl]="false"
+                    (mapClick)="mapClicked($event)">
+                    
+                    <agm-marker 
+                        *ngFor="let m of markers; let i = index"
+                        (markerClick)="clickedMarker(m.label, i)"
+                        [latitude]="m.lat"
+                        [longitude]="m.lng"
+                        [label]="m.label"
+                        [markerDraggable]="m.draggable"
+                        (dragEnd)="markerDragEnd(m, $event)">
+                        
+                      <agm-info-window>
+                        <strong>Selected co-ordinates : ({{m.lat}}, {{m.lng}})</strong>
+                      </agm-info-window>
+                      
+                    </agm-marker>
+                    
+                    <agm-circle [latitude]="lat + 0.3" [longitude]="lng" 
+                        [radius]="5000"
+                        [fillColor]="'red'"
+                        [circleDraggable]="true"
+                        [editable]="true">
+                    </agm-circle>
+                    
+                    </agm-map>
                 </md-card>
             </div>
             <br>

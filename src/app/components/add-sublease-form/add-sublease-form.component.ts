@@ -5,6 +5,7 @@ import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { HttpClient } from '@angular/common/http';
 import { HouseListingService } from '../../house-listing.service';
 import { BasicDetails } from '../../subleaseForm01';
+import { MouseEvent as AGMMouseEvent } from '@agm/core';
 
 
 const URL = 'http://174.64.102.57:3000/leasemetadata';
@@ -16,6 +17,51 @@ const URL = 'http://174.64.102.57:3000/leasemetadata';
 })
 
 export class AddSubleaseFormComponent implements OnInit {
+// google maps zoom level
+zoom: number = 8;
+// initial center position for the map
+lat: number = 51.673858;
+lng: number = 7.815982;
+
+markers: Marker[] = [
+  // {
+  //   lat: 51.673858,
+  //   lng: 7.815982,
+  //   label: 'A',
+  //   draggable: true
+  // },
+  // {
+  //   lat: 51.373858,
+  //   lng: 7.215982,
+  //   label: 'B',
+  //   draggable: false
+  // },
+  // {
+  //   lat: 51.723858,
+  //   lng: 7.895982,
+  //   label: 'C',
+  //   draggable: true
+  // }
+]
+
+clickedMarker(label: string, index: number) {
+  console.log(`clicked the marker: ${label || index}`)
+}
+
+mapClicked($event: AGMMouseEvent) {
+  this.markers.length = 0;
+  this.markers.push({
+    lat: $event.coords.lat,
+    lng: $event.coords.lng,
+    label: 'D',
+    draggable: true
+  });
+}
+
+markerDragEnd(m: Marker, $event: MouseEvent) {
+  console.log('dragEnd', m, $event);
+}
+
   numArray: Array<number> = [1, 2, 3, 4, 5];
   filesToUpload: Array<File> = [];
 
@@ -79,33 +125,9 @@ export class AddSubleaseFormComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private http: HttpClient,
-    private data: HouseListingService) {
-    // this.http.post('http://jsonplaceholder.typicode.com/posts', this.data).subscribe();
-  }
+    private data: HouseListingService) {}
 
   ngOnInit() {
-//  interface ResponseInterface {
-//   _id: string;
-//  }
-
-    // const req = this.http.post<ResponseInterface>('http://70.171.46.158:3000/add', this.model)
-    //   .subscribe(
-    //     res => {
-    //       console.log(res);
-    //       this.http.get('http://70.171.46.158:3000').subscribe(
-    //         res1 => {
-    //           console.log(res1);
-    //         },
-    //         err1 => {
-    //           console.log(err1);
-    //         }
-    //       );
-    //     },
-    //     err => {
-    //       console.log(err);
-    //     }
-    //   );
-
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log('ImageUpload:uploaded:', item, status, response);
@@ -193,4 +215,12 @@ export class AddSubleaseFormComponent implements OnInit {
   // TODO: Remove this when we're done
 
   // get diagnostic() { return JSON.stringify(this.model); }
+}
+
+
+interface Marker {
+  lat: number;
+  lng: number;
+  label?: string;
+  draggable: boolean;
 }
