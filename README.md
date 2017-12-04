@@ -7,7 +7,7 @@
 ## Getting Started
 
     The following instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
+![Login](https://github.com/pallaviraman/SEfa17/tree/master/documentation/date filter.gif)
 ### Prerequisites
 
  `` 1) 'Angular 4'
